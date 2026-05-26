@@ -1,9 +1,9 @@
 export type ThemeId =
-  | 'relo-os'
-  | 'relo-official'
-  | 'relo-classic'
-  | 'relo-slate'
-  | 'relo-mono'
+  | 'hermes-os'
+  | 'hermes-official'
+  | 'hermes-classic'
+  | 'hermes-slate'
+  | 'hermes-mono'
 
 export const THEMES: Array<{
   id: ThemeId
@@ -12,39 +12,39 @@ export const THEMES: Array<{
   icon: string
 }> = [
   {
-    id: 'relo-os',
+    id: 'hermes-os',
     label: 'Relo OS',
     description: 'Electric blue cinematic agent OS theme',
     icon: '◈',
   },
   {
-    id: 'relo-official',
+    id: 'hermes-official',
     label: 'Relo Official',
     description: 'Navy and indigo flagship theme',
     icon: '⚕',
   },
   {
-    id: 'relo-classic',
+    id: 'hermes-classic',
     label: 'Relo Classic',
     description: 'Bronze accents on dark charcoal',
     icon: '🔶',
   },
   {
-    id: 'relo-slate',
+    id: 'hermes-slate',
     label: 'Relo Slate',
     description: 'Cool blue developer theme',
     icon: '🔷',
   },
   {
-    id: 'relo-mono',
+    id: 'hermes-mono',
     label: 'Relo Mono',
     description: 'Clean monochrome grayscale',
     icon: '◐',
   },
 ]
 
-const STORAGE_KEY = 'relo-theme'
-const DEFAULT_THEME: ThemeId = 'relo-os'
+const STORAGE_KEY = 'hermes-theme'
+const DEFAULT_THEME: ThemeId = 'hermes-os'
 const THEME_SET = new Set<ThemeId>(THEMES.map((theme) => theme.id))
 
 export function isValidTheme(

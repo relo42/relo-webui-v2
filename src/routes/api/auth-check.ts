@@ -24,7 +24,7 @@ export const Route = createFileRoute('/api/auth-check')({
               {
                 authenticated: false,
                 authRequired: false,
-                error: 'hermes_agent_unreachable',
+                error: 'relo_agent_unreachable',
               },
               { status: 503 },
             )
@@ -36,8 +36,8 @@ export const Route = createFileRoute('/api/auth-check')({
               authRequired: false,
               error:
                 error instanceof DOMException && error.name === 'AbortError'
-                  ? 'hermes_agent_timeout'
-                  : 'hermes_agent_unreachable',
+                  ? 'relo_agent_timeout'
+                  : 'relo_agent_unreachable',
             },
             { status: 503 },
           )

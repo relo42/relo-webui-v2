@@ -1,5 +1,5 @@
 /**
- * AgentStatusStrip — top telemetry bar for the hermes-os theme.
+ * AgentStatusStrip — top telemetry bar for the relo-os theme.
  *
  * Shows: brand mark | session context | active model | latency | connection status
  * Visible only when [data-theme='hermes-os'] is active (controlled via CSS).

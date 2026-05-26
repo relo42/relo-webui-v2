@@ -40,9 +40,9 @@ type ConnectionStatus = {
   chatReady: boolean
   modelConfigured: boolean
   activeModel: string
-  chatMode: 'enhanced-hermes' | 'portable' | 'disconnected'
+  chatMode: 'enhanced-relo' | 'portable' | 'disconnected'
   capabilities: Record<string, boolean>
-  hermesUrl: string
+  reloUrl: string
 }
 
 export const Route = createFileRoute('/api/connection-status')({
@@ -116,7 +116,7 @@ export const Route = createFileRoute('/api/connection-status')({
             config: caps.config,
             jobs: caps.jobs,
           },
-          hermesUrl: RELO_API,
+          reloUrl: RELO_API,
         }
 
         return Response.json(body)

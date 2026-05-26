@@ -1191,7 +1191,7 @@ export function DocsScreen() {
               <tr><th style={thStyle}>Key</th><th style={thStyle}>Description</th></tr>
             </thead>
             <tbody>
-              <tr><td style={tdCodeStyle}>hermes-theme</td><td style={tdStyle}>Active visual theme ID (relo-os, relo-official, relo-classic, relo-slate, relo-mono)</td></tr>
+              <tr><td style={tdCodeStyle}>hermes-theme</td><td style={tdStyle}>Active visual theme ID (hermes-os, hermes-official, hermes-classic, hermes-slate, hermes-mono)</td></tr>
               <tr><td style={tdCodeStyle}>hermes-studio:office-layout</td><td style={tdStyle}>Conductor office view layout preference (grid, roundtable, warroom)</td></tr>
               <tr><td style={tdCodeStyle}>hermes-studio:conductor-settings</td><td style={tdStyle}>Conductor configuration (orchestrator model, worker model, projects dir, max parallel, supervised)</td></tr>
               <tr><td style={tdCodeStyle}>hermes-studio:mission-history</td><td style={tdStyle}>Array of completed conductor missions (max 50 entries)</td></tr>
@@ -1294,11 +1294,11 @@ jobs:
               <tr><th style={thStyle}>Theme ID</th><th style={thStyle}>Label</th><th style={thStyle}>Description</th></tr>
             </thead>
             <tbody>
-              <tr><td style={tdCodeStyle}>relo-os</td><td style={tdStyle}>Relo OS</td><td style={tdStyle}>Electric blue cinematic agent OS theme. The default theme.</td></tr>
-              <tr><td style={tdCodeStyle}>relo-official</td><td style={tdStyle}>Relo Official</td><td style={tdStyle}>Navy and indigo flagship theme with professional aesthetics.</td></tr>
-              <tr><td style={tdCodeStyle}>relo-classic</td><td style={tdStyle}>Relo Classic</td><td style={tdStyle}>Bronze accents on dark charcoal for a warm, sophisticated look.</td></tr>
-              <tr><td style={tdCodeStyle}>relo-slate</td><td style={tdStyle}>Slate</td><td style={tdStyle}>Cool blue developer theme with subtle gradients.</td></tr>
-              <tr><td style={tdCodeStyle}>relo-mono</td><td style={tdStyle}>Mono</td><td style={tdStyle}>Clean monochrome grayscale for minimal distraction.</td></tr>
+              <tr><td style={tdCodeStyle}>hermes-os</td><td style={tdStyle}>Relo OS</td><td style={tdStyle}>Electric blue cinematic agent OS theme. The default theme.</td></tr>
+              <tr><td style={tdCodeStyle}>hermes-official</td><td style={tdStyle}>Relo Official</td><td style={tdStyle}>Navy and indigo flagship theme with professional aesthetics.</td></tr>
+              <tr><td style={tdCodeStyle}>hermes-classic</td><td style={tdStyle}>Relo Classic</td><td style={tdStyle}>Bronze accents on dark charcoal for a warm, sophisticated look.</td></tr>
+              <tr><td style={tdCodeStyle}>hermes-slate</td><td style={tdStyle}>Slate</td><td style={tdStyle}>Cool blue developer theme with subtle gradients.</td></tr>
+              <tr><td style={tdCodeStyle}>hermes-mono</td><td style={tdStyle}>Mono</td><td style={tdStyle}>Clean monochrome grayscale for minimal distraction.</td></tr>
             </tbody>
           </table>
 
