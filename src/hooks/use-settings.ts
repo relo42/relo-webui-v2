@@ -92,9 +92,12 @@ export function resolveTheme(_theme?: SettingsThemeMode): 'dark' {
   return 'dark'
 }
 
-export function applyTheme(_theme?: SettingsThemeMode) {
+export function applyTheme(theme?: SettingsThemeMode) {
   setTheme(getTheme())
   document.documentElement.setAttribute('data-accent', 'orange')
+  if (theme) {
+    updateSettings({ theme: theme as any })
+  }
 }
 
 export function initializeSettingsAppearance() {
