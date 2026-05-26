@@ -80,7 +80,7 @@ function readString(value: unknown): string {
   return typeof value === 'string' ? value.trim() : ''
 }
 
-function normalizeHermesModel(entry: unknown): ModelEntry | null {
+function normalizeReloModel(entry: unknown): ModelEntry | null {
   if (typeof entry === 'string') {
     const id = entry.trim()
     if (!id) return null
@@ -109,8 +109,11 @@ function normalizeHermesModel(entry: unknown): ModelEntry | null {
   }
 }
 
-async function fetchHermesModels(): Promise<Array<ModelEntry>> {
-  const response = await fetch(`${RELO_API_URL}/v1/models`)
+async function fetchReloModels(): Promise<Array<ModelEntry>> {
+  const headers: Record<string, string> = {}
+  const token = process.env.RELO_API_TOKEN || process.env.HERMES_API_TOKEN || ''
+  if (token) headers['Authorization'] = `Bearer ${token}`
+  const response = await fetch(`${RELO_API_URL}/v1/models`, { headers })
   if (!response.ok)
     throw new Error(`Relo models request failed (${response.status})`)
   const payload = asRecord(await response.json())
@@ -120,7 +123,7 @@ async function fetchHermesModels(): Promise<Array<ModelEntry>> {
       ? payload.models
       : []
   return rawModels
-    .map(normalizeHermesModel)
+    .map(normalizeReloModel)
     .filter((e): e is ModelEntry => e !== null)
 }
 
@@ -144,7 +147,7 @@ export const Route = createFileRoute('/api/models')({
           })
         }
         try {
-          const models = await fetchHermesModels()
+          const models = await fetchReloModels()
           // Add models from auth store providers (Anthropic, OpenAI, etc.)
           const authModels = getAuthStoreModels()
           const existingIds = new Set(models.map((m) => m.id))
