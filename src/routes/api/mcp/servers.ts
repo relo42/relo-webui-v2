@@ -17,8 +17,8 @@ type AuthResult = Response | true
 
 // ─── Local config file I/O (mirrors hermes-config.ts) ────────────────────────
 
-const HERMES_HOME = path.join(os.homedir(), '.hermes')
-const CONFIG_PATH = path.join(HERMES_HOME, 'config.yaml')
+const RELO_HOME = path.join(os.homedir(), '.relo', 'relo-agent')
+const CONFIG_PATH = path.join(RELO_HOME, 'config.yaml')
 
 function readConfig(): Record<string, unknown> {
   try {
@@ -30,7 +30,7 @@ function readConfig(): Record<string, unknown> {
 }
 
 function writeConfig(config: Record<string, unknown>): void {
-  fs.mkdirSync(HERMES_HOME, { recursive: true })
+  fs.mkdirSync(RELO_HOME, { recursive: true })
   fs.writeFileSync(CONFIG_PATH, YAML.stringify(config), 'utf-8')
 }
 

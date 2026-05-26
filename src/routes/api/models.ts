@@ -32,7 +32,7 @@ const AUTH_STORE_MODELS: Record<string, Array<ModelEntry>> = {
 function getAuthStoreModels(): Array<ModelEntry> {
   const extra: Array<ModelEntry> = []
   for (const storePath of [
-    path.join(os.homedir(), '.hermes', 'auth-profiles.json'),
+    path.join(os.homedir(), '.relo', 'relo-agent', 'auth-profiles.json'),
     path.join(
       os.homedir(),
       '.openclaw',

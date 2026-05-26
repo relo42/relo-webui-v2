@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PTY helper for Hermes Workspace terminal.
+PTY helper for Relo WebUI terminal.
 Spawns a shell in a real PTY and bridges stdin/stdout.
 Usage: python3 pty-helper.py [shell] [cwd] [cols] [rows]
 """

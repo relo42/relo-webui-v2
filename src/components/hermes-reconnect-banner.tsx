@@ -170,17 +170,17 @@ export function HermesReconnectBanner({
       }
 
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.error || 'Failed to start Hermes agent')
+        throw new Error(payload.error || 'Failed to start Relo Agent')
       }
 
       setMessage(
         payload.message === 'already running'
-          ? 'Hermes agent is already running'
-          : 'Starting Hermes agent…',
+          ? 'Relo Agent is already running'
+          : 'Starting Relo Agent…',
       )
     } catch (error) {
       setMessage(
-        error instanceof Error ? error.message : 'Failed to start Hermes agent',
+        error instanceof Error ? error.message : 'Failed to start Relo Agent',
       )
     } finally {
       setIsStarting(false)
@@ -220,7 +220,7 @@ export function HermesReconnectBanner({
           />
           <div className="min-w-0">
             <p className="text-sm font-semibold">
-              {isDisconnected ? 'Hermes agent not connected' : 'Connected'}
+              {isDisconnected ? 'Relo Agent not connected' : 'Connected'}
             </p>
             {message ? (
               <p className="truncate text-xs opacity-80">{message}</p>

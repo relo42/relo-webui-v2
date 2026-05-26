@@ -12,9 +12,9 @@ import { ensureGatewayProbed } from '../../server/gateway-capabilities'
 
 type AuthResult = Response | true
 
-const HERMES_HOME = path.join(os.homedir(), '.hermes')
-const CONFIG_PATH = path.join(HERMES_HOME, 'config.yaml')
-const ENV_PATH = path.join(HERMES_HOME, '.env')
+const RELO_HOME = path.join(os.homedir(), '.relo', 'relo-agent')
+const CONFIG_PATH = path.join(RELO_HOME, 'config.yaml')
+const ENV_PATH = path.join(RELO_HOME, '.env')
 
 // Known Hermes providers
 const PROVIDERS = [
@@ -75,7 +75,7 @@ function readConfig(): Record<string, unknown> {
 }
 
 function writeConfig(config: Record<string, unknown>): void {
-  fs.mkdirSync(HERMES_HOME, { recursive: true })
+  fs.mkdirSync(RELO_HOME, { recursive: true })
   fs.writeFileSync(CONFIG_PATH, YAML.stringify(config), 'utf-8')
 }
 
@@ -107,7 +107,7 @@ function readEnv(): Record<string, string> {
 }
 
 function writeEnv(env: Record<string, string>): void {
-  fs.mkdirSync(HERMES_HOME, { recursive: true })
+  fs.mkdirSync(RELO_HOME, { recursive: true })
   const lines = Object.entries(env).map(([k, v]) => `${k}=${v}`)
   fs.writeFileSync(ENV_PATH, lines.join('\n') + '\n', 'utf-8')
 }
@@ -124,7 +124,7 @@ function checkAuthStore(providerId: string): {
 } {
   // Check Hermes auth store
   for (const storePath of [
-    path.join(os.homedir(), '.hermes', 'auth-profiles.json'),
+    path.join(os.homedir(), '.relo', 'relo-agent', 'auth-profiles.json'),
     path.join(
       os.homedir(),
       '.openclaw',
@@ -212,7 +212,7 @@ export const Route = createFileRoute('/api/hermes-config')({
           providers: providerStatus,
           activeProvider,
           activeModel,
-          hermesHome: HERMES_HOME,
+          hermesHome: RELO_HOME,
         })
       },
 

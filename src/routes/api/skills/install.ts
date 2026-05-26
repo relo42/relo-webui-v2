@@ -170,7 +170,7 @@ export const Route = createFileRoute('/api/skills/install')({
           }
 
           const source = (body.source || '').trim()
-          const skillsBase = path.join(os.homedir(), '.hermes', 'skills')
+          const skillsBase = path.join(os.homedir(), '.relo', 'relo-agent', 'skills')
 
           // ── Strategy 1: skillsmp / skills-sh — download from GitHub ─────────
           if (source === 'skillsmp' || source === 'skills-sh') {
@@ -219,7 +219,7 @@ export const Route = createFileRoute('/api/skills/install')({
           // ── Strategy 3: clawhub CLI ───────────────────────────────────────
           const clawhubAvailable = await isBinaryAvailable('clawhub')
           if (clawhubAvailable) {
-            const hermesHome = path.join(os.homedir(), '.hermes')
+            const hermesHome = path.join(os.homedir(), '.relo', 'relo-agent')
             await execFileAsync(
               'clawhub',
               ['install', skillId, '--workdir', hermesHome, '--dir', 'skills'],

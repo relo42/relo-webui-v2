@@ -23,7 +23,7 @@ const execFileAsync = promisify(execFile)
 const WORKSPACE_ROOT = (
   process.env.HERMES_WORKSPACE_DIR ||
   process.env.HERMES_WORKSPACE_DIR ||
-  path.join(os.homedir(), '.hermes')
+  path.join(os.homedir(), '.relo', 'relo-agent')
 ).trim()
 
 type FileEntry = {
@@ -42,7 +42,7 @@ type FileEntry = {
  * scoped to that profile's directory. Falls back to the global WORKSPACE_ROOT.
  *
  * Security: `getProfileWorkspaceRoot` validates the name and always returns a
- * path inside ~/.hermes — no arbitrary path injection is possible.
+ * path inside ~/.relo/relo-agent — no arbitrary path injection is possible.
  */
 function getEffectiveRoot(profileName?: string | null): string {
   if (!profileName || profileName === 'default') return WORKSPACE_ROOT

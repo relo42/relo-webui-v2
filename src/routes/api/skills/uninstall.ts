@@ -21,7 +21,7 @@ export const Route = createFileRoute('/api/skills/uninstall')({
               { status: 400 },
             )
 
-          const skillsBase = path.join(os.homedir(), '.hermes', 'skills')
+          const skillsBase = path.join(os.homedir(), '.relo', 'relo-agent', 'skills')
           const skillPath = path.join(skillsBase, skillId)
 
           // Path traversal guard — resolved path must be within skills dir

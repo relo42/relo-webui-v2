@@ -14,7 +14,7 @@ import {
 } from '../../server/gateway-capabilities'
 import { isAuthenticated } from '../../server/auth-middleware'
 
-const CONFIG_PATH = path.join(os.homedir(), '.hermes', 'config.yaml')
+const CONFIG_PATH = path.join(os.homedir(), '.relo', 'relo-agent', 'config.yaml')
 
 function readActiveModel(): string {
   try {

@@ -1,4 +1,4 @@
-# Hermes Studio + Agent — Docker Compose Setup
+# Relo WebUI + Agent — Docker Compose Setup
 #
 # Requirements:
 #   - Docker & Docker Compose
@@ -19,7 +19,7 @@
 #   - Check logs: docker compose logs hermes-agent
 
 services:
-  # The Hermes AI Agent Gateway
+  # The Relo AI Agent Gateway
   # Provides the backend API that the workspace connects to
   hermes-agent:
     build:
@@ -38,7 +38,7 @@ services:
     ports:
       - '8642:8642'
 
-  # The Hermes Studio Web UI
+  # The Relo WebUI Web UI
   # Connects to hermes-agent at http://hermes-agent:8642
   #
   # Redis: if REDIS_URL=redis://redis:6379 is set in .env and the redis

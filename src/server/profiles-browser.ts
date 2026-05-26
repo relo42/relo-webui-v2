@@ -28,7 +28,7 @@ export type ProfileDetail = {
 }
 
 function getHermesRoot(): string {
-  return path.join(os.homedir(), '.hermes')
+  return path.join(os.homedir(), '.relo', 'relo-agent')
 }
 
 export function getProfilesRoot(): string {
@@ -38,10 +38,10 @@ export function getProfilesRoot(): string {
 /**
  * Resolve the workspace root for a given profile name.
  *
- * - 'default' (or empty/undefined) → ~/.hermes
- * - Any other name → ~/.hermes/profiles/{name}
+ * - 'default' (or empty/undefined) → ~/.relo/relo-agent
+ * - Any other name → ~/.relo/relo-agent/profiles/{name}
  *
- * The returned path is always a child of ~/.hermes — callers can rely on
+ * The returned path is always a child of ~/.relo/relo-agent — callers can rely on
  * this for path-traversal safety without additional checks.
  *
  * @throws if profileName contains path-separator characters or '..'

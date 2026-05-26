@@ -61,7 +61,7 @@ async function detectWorkspace(savedPath?: string): Promise<{
   }
 
   // Priority 3: Default Hermes workspace path
-  const defaultPath = path.join(os.homedir(), '.hermes')
+  const defaultPath = path.join(os.homedir(), '.relo', 'relo-agent')
   const defaultValid = await isValidDirectory(defaultPath)
   if (defaultValid) {
     return {
@@ -73,7 +73,7 @@ async function detectWorkspace(savedPath?: string): Promise<{
   }
 
   // Priority 4: Hermes home directory
-  const hermesDir = path.join(os.homedir(), '.hermes')
+  const hermesDir = path.join(os.homedir(), '.relo', 'relo-agent')
   const hermesDirValid = await isValidDirectory(hermesDir)
   if (hermesDirValid) {
     return {

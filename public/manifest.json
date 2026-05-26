@@ -1,7 +1,7 @@
 {
-  "name": "Hermes Studio",
-  "short_name": "Hermes",
-  "description": "Native web control surface for Hermes Agent",
+  "name": "Relo WebUI",
+  "short_name": "Relo",
+  "description": "Native web control surface for Relo Agent",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0A0E1A",

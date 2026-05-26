@@ -101,12 +101,12 @@ function slugify(input: string): string {
 }
 
 // ── Local skill preferences (enable/disable toggle) ────────────────────────
-// Stored in ~/.hermes/skills/.studio-prefs.json so the state survives restarts
+// Stored in ~/.relo/relo-agent/skills/.studio-prefs.json so the state survives restarts
 // and doesn't require gateway support.
 
 type StudioPrefs = { disabled: Array<string> }
 
-const PREFS_PATH = path.join(os.homedir(), '.hermes', 'skills', '.studio-prefs.json')
+const PREFS_PATH = path.join(os.homedir(), '.relo', 'relo-agent', 'skills', '.studio-prefs.json')
 
 function readLocalPrefs(): StudioPrefs {
   try {
@@ -129,10 +129,10 @@ function writeLocalPrefs(prefs: StudioPrefs): void {
 }
 
 // ── Local skills scanner ────────────────────────────────────────────────────
-// Reads skills installed at ~/.hermes/skills/{category}/{skill-name}/SKILL.md
+// Reads skills installed at ~/.relo/relo-agent/skills/{category}/{skill-name}/SKILL.md
 // Used when the Hermes gateway doesn't expose /api/skills.
 
-const LOCAL_SKILLS_DIR = path.join(os.homedir(), '.hermes', 'skills')
+const LOCAL_SKILLS_DIR = path.join(os.homedir(), '.relo', 'relo-agent', 'skills')
 
 function parseFrontmatter(content: string): { meta: Record<string, unknown>; body: string } {
   const match = content.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/)

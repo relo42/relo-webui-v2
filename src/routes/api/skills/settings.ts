@@ -1,6 +1,6 @@
 /**
  * /api/skills/settings — read and write skills-specific configuration.
- * Persisted to ~/.hermes/skills/.studio-settings.json (server-side only).
+ * Persisted to ~/.relo/relo-agent/skills/.studio-settings.json (server-side only).
  * The skillsmpApiKey is never returned in plaintext — only a masked preview.
  */
 import fs from 'node:fs'
@@ -12,7 +12,7 @@ import { isAuthenticated } from '../../../server/auth-middleware'
 
 const SETTINGS_PATH = path.join(
   os.homedir(),
-  '.hermes',
+  '.relo', 'relo-agent',
   'skills',
   '.studio-settings.json',
 )

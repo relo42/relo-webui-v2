@@ -1,35 +1,35 @@
 <div align="center">
 
-<img width="1520" height="648" alt="Hermes Studio — open-source web UI and dashboard for Hermes Agent by NousResearch" src="https://github.com/user-attachments/assets/7eab7817-b21d-4595-9412-ac013761dcd5" />
+<img width="1520" height="648" alt="Relo WebUI — open-source web UI and dashboard for Relo Agent by NousResearch" src="https://github.com/user-attachments/assets/7eab7817-b21d-4595-9412-ac013761dcd5" />
 
-# Hermes Studio
+# Relo WebUI
 
-**The only Hermes web UI with a built-in cron job manager — schedule, monitor, and control autonomous agent tasks without touching a terminal.**
+**The only Relo WebUI with a built-in cron job manager — schedule, monitor, and control autonomous agent tasks without touching a terminal.**
 
-[![GitHub Stars](https://img.shields.io/github/stars/JPeetz/Hermes-Studio?style=flat&color=6366F1)](https://github.com/JPeetz/Hermes-Studio/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/JPeetz/Hermes-Studio?style=flat&color=6366F1)](https://github.com/JPeetz/Hermes-Studio/network/members)
+[![GitHub Stars](https://img.shields.io/github/stars/relo42/relo-webui-v2?style=flat&color=6366F1)](https://github.com/relo42/relo-webui-v2/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/relo42/relo-webui-v2?style=flat&color=6366F1)](https://github.com/relo42/relo-webui-v2/network/members)
 [![Version](https://img.shields.io/badge/version-1.20.0-6366F1.svg)](CHANGELOG.md)
-[![Hermes Agent](https://img.shields.io/badge/hermes--agent-v0.9.0-orange.svg)](https://github.com/NousResearch/hermes-agent)
+[![Relo Agent](https://img.shields.io/badge/hermes--agent-v0.9.0-orange.svg)](https://github.com/NousResearch/hermes-agent)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D22.0.0-brightgreen.svg)](https://nodejs.org/)
-[![Tests](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/JPeetz/Hermes-Studio/main/badges/tests.json)](src/test)
-[![Last Commit](https://img.shields.io/github/last-commit/JPeetz/Hermes-Studio)](https://github.com/JPeetz/Hermes-Studio/commits/main)
+[![Tests](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/relo42/relo-webui-v2/main/badges/tests.json)](src/test)
+[![Last Commit](https://img.shields.io/github/last-commit/relo42/relo-webui-v2)](https://github.com/relo42/relo-webui-v2/commits/main)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-6366F1.svg)](CONTRIBUTING.md)
 
-> Not a chat wrapper. A complete studio — orchestrate multi-agent crews, approve actions, browse memory with a visual knowledge graph, manage skills, and schedule recurring tasks, all from one interface. Built for power users running Hermes Agent locally.
+> Not a chat wrapper. A complete studio — orchestrate multi-agent crews, approve actions, browse memory with a visual knowledge graph, manage skills, and schedule recurring tasks, all from one interface. Built for power users running Relo Agent locally.
 
 </div>
 
-## What is Hermes Studio?
+## What is Relo WebUI?
 
-Hermes Studio is an open-source, self-hosted web dashboard for [Hermes Agent](https://github.com/NousResearch/hermes-agent) by [NousResearch](https://nousresearch.com). It turns the Hermes AI agent into a full workspace you can control from your browser — with multi-agent orchestration, cron job scheduling, execution approvals, MCP server management, and 30+ features no other Hermes UI offers. Works with Ollama, OpenAI, Anthropic, and any OpenAI-compatible backend. Built with React, TypeScript, and TanStack. MIT licensed.
+Relo WebUI is an open-source, self-hosted web dashboard for [Relo Agent](https://github.com/NousResearch/hermes-agent) by [NousResearch](https://nousresearch.com). It turns the Hermes AI agent into a full workspace you can control from your browser — with multi-agent orchestration, cron job scheduling, execution approvals, MCP server management, and 30+ features no other Hermes UI offers. Works with Ollama, OpenAI, Anthropic, and any OpenAI-compatible backend. Built with React, TypeScript, and TanStack. MIT licensed.
 
 ---
 
 <details>
 <summary><strong>Table of Contents</strong></summary>
 
-- [What is Hermes Studio?](#what-is-hermes-studio)
+- [What is Relo WebUI?](#what-is-hermes-studio)
 - [Features](#-features)
 - [Cron Job Manager](#-cron-job-manager--a-feature-no-other-ui-has)
 - [What's different from hermes-workspace](#whats-different-from-hermes-workspace)
@@ -52,7 +52,7 @@ Hermes Studio is an open-source, self-hosted web dashboard for [Hermes Agent](ht
 
 ## ✨ Features
 
-- 🤖 **Hermes Agent Integration** — Direct gateway connection with real-time SSE streaming
+- 🤖 **Relo Agent Integration** — Direct gateway connection with real-time SSE streaming
 - 👥 **Multi-Agent Crews** — Create named crews of specialised agents, dispatch tasks to all or specific members, watch live activity feeds
 - 🗂️ **Profile-Scoped Workspaces** — Each agent crew member gets an isolated file system view via per-profile workspace roots
 - 🕸️ **Interactive Knowledge Graph** — Force-directed visual graph of your memory's wiki-link relationships with zoom, pan, node drag, and hover highlights
@@ -69,13 +69,13 @@ Hermes Studio is an open-source, self-hosted web dashboard for [Hermes Agent](ht
 - 🔀 **Visual Workflow Builder** — Build and run DAG-structured task pipelines for your crews; tasks run in topological order with live per-node status
 - 📋 **Crew & Conductor Templates** — 7 built-in crew templates + 4 conductor templates (Research, Build, Review, Deploy) plus save and manage your own; unified template system with `templateType` field
 - 💰 **Cost Tracking** — per-crew token usage (input/output) and estimated API cost per agent; Usage tab on every crew with model-aware price table and reset control
-- 🔌 **MCP Server Management** — add, edit, and remove MCP servers from the Settings UI; saves directly to `~/.hermes/config.yaml` and triggers a live reload; no manual file editing required
+- 🔌 **MCP Server Management** — add, edit, and remove MCP servers from the Settings UI; saves directly to `~/.relo/relo-agent/config.yaml` and triggers a live reload; no manual file editing required
 - 🧬 **Agent Library** — create, edit, and delete custom agents with bespoke system prompts, emoji, role labels, and model overrides; built-in agents include pre-written system prompts you can copy and customize; custom agents appear in the crew builder and template picker alongside built-in personas
 - 🕵️ **Audit Trail** — chronological timeline of every tool call, user message, and approval request across all sessions; filter by session, event type, and date range; expand tool events to inspect full args and results
 - 📋 **Clone Crew** — duplicate any existing crew in one click; mints fresh sessions for every member and opens the new crew immediately; available on the crew card (hover) and from the crew detail header
 - 🧪 **Test Suite** — vitest unit tests for core stores and utilities (199 tests across 17 files, all passing); Playwright e2e smoke tests for all major pages; GitHub Actions CI with visible status badge
 - ⚡ **Fast Mode** — one-click toggle in the chat composer activates Hermes v0.9.0's priority queue for OpenAI and Anthropic models; persists per-session
-- 📋 **Logs Viewer** — `/logs` screen pulls the last 500 lines from `~/.hermes/logs/` (Hermes v0.8.0 centralised logging); filter All/Errors, live search, color-coded by level, auto-scroll
+- 📋 **Logs Viewer** — `/logs` screen pulls the last 500 lines from `~/.relo/relo-agent/logs/` (Hermes v0.8.0 centralised logging); filter All/Errors, live search, color-coded by level, auto-scroll
 - 💾 **Backup & Import** — one-click Hermes data backup and restore from Settings (Hermes v0.9.0)
 - 📡 **iMessage, WeChat & WeCom** — BlueBubbles (iMessage), WeChat, and WeCom/Enterprise added to the platform integration settings alongside Telegram, Discord, Slack, and Signal (Hermes v0.9.0)
 - 🎯 **Conductor V2** — Gateway-native mission orchestration with animated SVG office (3 layouts: Grid, Roundtable, War Room), pixel-art agent avatars, real Hermes gateway integration, live session polling, worker monitoring, settings drawer (model selection, max parallel, supervised mode), mission history with cost tracking, quick actions (Research/Build/Review/Deploy), abort/pause/retry controls
@@ -96,7 +96,7 @@ Hermes Studio is an open-source, self-hosted web dashboard for [Hermes Agent](ht
 
 Every other Hermes/Claude web interface treats the agent as a request-response tool. You send a message, you get a reply.
 
-Hermes Studio is the only one that lets you **schedule the agent as a background worker** — running prompts on a timer, automatically, while you do something else.
+Relo WebUI is the only one that lets you **schedule the agent as a background worker** — running prompts on a timer, automatically, while you do something else.
 
 No `crontab -e`. No shell scripts. No babysitting.
 
@@ -121,13 +121,13 @@ From the Jobs tab you can:
 | Automated reports | Weekly Markdown report generated into your workspace files |
 | Maintenance tasks | Prune old memory entries, rotate logs, sync data — on a schedule, unattended |
 
-The gateway already runs the jobs. Hermes Studio is the control plane that makes them manageable without a terminal.
+The gateway already runs the jobs. Relo WebUI is the control plane that makes them manageable without a terminal.
 
 ---
 
 ## What's different from hermes-workspace
 
-Hermes Studio is a fork of [hermes-workspace](https://github.com/outsourc-e/hermes-workspace) extended with:
+Relo WebUI is a fork of [hermes-workspace](https://github.com/outsourc-e/hermes-workspace) extended with:
 
 - ✅ **Cron Job Manager** — the headline feature above; no other UI has it
 - ✅ **Execution Approvals UI** — approve, deny, or always-allow dangerous agent actions from the browser with expand/context and three approval scopes
@@ -136,17 +136,17 @@ Hermes Studio is a fork of [hermes-workspace](https://github.com/outsourc-e/herm
 - ✅ **Chat Platform Tokens** — set Telegram, Discord, Slack, and Signal bot tokens from the Integrations settings page (no `.env` editing required)
 - ✅ **Session Persistence** — chat history survives server restarts; Redis backend auto-connects to `localhost:6379` and falls back to file store gracefully
 - ✅ **Multi-Agent Orchestration** — Crews: named groups of persona agents, parallel task dispatch, live SSE activity feed, per-member status tracking
-- ✅ **Profile-Scoped Workspaces** — each agent works inside an isolated directory (`~/.hermes/profiles/<name>/`) so crews don't collide on the file system
+- ✅ **Profile-Scoped Workspaces** — each agent works inside an isolated directory (`~/.relo/relo-agent/profiles/<name>/`) so crews don't collide on the file system
 - ✅ **Interactive Knowledge Graph** — force-directed canvas in the Memory screen: zoom, pan, drag nodes, hover to highlight connections, nodes sized by degree
 - ✅ **Visual Workflow Builder** — DAG editor for orchestrating sequential and parallel agent task pipelines; nodes, bezier edges, auto-layout, and live execution with SSE status updates per node
 - ✅ **Crew Templates** — 7 built-in templates across 4 categories (Research Team, Deep Dive, Full-Stack Squad, Code Review Crew, Content Studio, Ops Team, Sprint Team); save your own templates; one-click pre-fill of the create-crew dialog
 - ✅ **Cost Tracking** — Usage tab on every crew detail screen; per-agent input/output token counts pulled from Hermes session API after each run; estimated cost using a built-in model price table; crew-level and per-member totals; reset control; requires Hermes enhanced mode
-- ✅ **MCP Server Management** — Settings → MCP Servers: add/edit/delete stdio and HTTP MCP servers; "Save to Config" writes directly to `~/.hermes/config.yaml` and auto-triggers a live reload; YAML copy fallback retained for environments where file access is unavailable
+- ✅ **MCP Server Management** — Settings → MCP Servers: add/edit/delete stdio and HTTP MCP servers; "Save to Config" writes directly to `~/.relo/relo-agent/config.yaml` and auto-triggers a live reload; YAML copy fallback retained for environments where file access is unavailable
 - ✅ **Agent Library** — new `/agents` screen: create custom agents with system prompt, emoji, color, role label, model override, and tags; built-in personas ship with default system prompts; custom agents surface in crew builder and template gallery dropdowns; full CRUD via `/api/agents` REST API; persisted in `.runtime/agent-definitions.json`
 - ✅ **Audit Trail** — new `/audit` screen: cross-session chronological timeline of all tool calls (with phase/args/result), user messages, and approval requests; backed by `GET /api/audit/`; filters by session, event type (Tool Call, User Message, Approval), and date range; tool event cards expand inline to show full args and result; 50-event pagination
 - ✅ **Clone Crew** — `POST /api/crews/:crewId/clone`; duplicates name/goal/member roster, mints fresh sessions for all members in parallel; clone button on the crew grid card (hover) and on the detail screen header; navigates directly to the new crew on success; inspired by xaspx/hermes-control-interface + karmsheel/mission-control-hermes
 - ✅ **Hermes v0.9.0 compatibility** — Fast Mode toggle (`/fast`), `/compress` and `/debug` slash commands, API_SERVER_KEY field, one-click backup/import, BlueBubbles + WeChat + WeCom platform integrations, rate-limit header display in provider usage meter
-- ✅ **Hermes v0.8.0 compatibility** — Logs viewer screen (`~/.hermes/logs/`), cron delivery failure badges, pre-run script field in job creation
+- ✅ **Hermes v0.8.0 compatibility** — Logs viewer screen (`~/.relo/relo-agent/logs/`), cron delivery failure badges, pre-run script field in job creation
 - ✅ **Conductor V2** — Gateway-native orchestration with animated SVG office, pixel-art avatars, live worker monitoring, settings, mission history, cost tracking, quick actions, abort/pause/retry
 - ✅ **Operations Dashboard** — Unified agent overview across crews and conductor missions; grid/outputs toggle; status filters; also available as a per-crew Operations tab
 - ✅ **Tasks / Kanban Board** — Five-column drag-and-drop board with priority, tags, source cross-links; conductor missions auto-create linked tasks
@@ -155,7 +155,7 @@ Hermes Studio is a fork of [hermes-workspace](https://github.com/outsourc-e/herm
 
 ### 💰 Cost Tracking
 
-Every crew gets a **Usage** tab on its detail screen. After each agent run completes, Hermes Studio fetches the accumulated token counts from the Hermes session API and records them per agent.
+Every crew gets a **Usage** tab on its detail screen. After each agent run completes, Relo WebUI fetches the accumulated token counts from the Hermes session API and records them per agent.
 
 The tab shows:
 - **KPI strip** — total tokens, input/output split, estimated total cost
@@ -208,7 +208,7 @@ User-created templates are saved to `.runtime/templates.json` and persist across
 | :--------------------------------------: | :------------------------------------------: |
 | ![Skills](./docs/screenshots/skills.png) | <img width="1048" height="1216" alt="image" src="https://github.com/user-attachments/assets/f62d3378-ad68-4516-81ff-eceb952d2e7d" /> |
 
-### New in Hermes Studio
+### New in Relo WebUI
 
 | Feature | Description |
 | :------ | :---------- |
@@ -226,7 +226,7 @@ User-created templates are saved to `.runtime/templates.json` and persist across
 
 ## 🚀 Quick Start
 
-Hermes Studio works with any OpenAI-compatible backend. If your backend also exposes Hermes gateway APIs, enhanced features like sessions, memory, skills, approvals, and jobs unlock automatically.
+Relo WebUI works with any OpenAI-compatible backend. If your backend also exposes Hermes gateway APIs, enhanced features like sessions, memory, skills, approvals, and jobs unlock automatically.
 
 ### Prerequisites
 
@@ -236,7 +236,7 @@ Hermes Studio works with any OpenAI-compatible backend. If your backend also exp
 
 ### Step 1: Start your backend
 
-Point Hermes Studio at any backend that supports:
+Point Relo WebUI at any backend that supports:
 
 - `POST /v1/chat/completions`
 - `GET /v1/models` recommended
@@ -255,11 +255,11 @@ hermes --gateway
 
 If you're using another OpenAI-compatible server, just note its base URL.
 
-### Step 2: Install & Run Hermes Studio
+### Step 2: Install & Run Relo WebUI
 
 ```bash
 # In a new terminal
-git clone https://github.com/JPeetz/Hermes-Studio.git
+git clone https://github.com/relo42/relo-webui-v2.git
 cd Hermes-Studio
 pnpm install
 cp .env.example .env
@@ -285,23 +285,23 @@ ANTHROPIC_API_KEY=your-key-here
 # REDIS_URL=redis://localhost:6379
 ```
 
-> **Redis is optional.** Hermes Studio automatically tries to connect to a local Redis instance for session persistence. If Redis isn't running, it silently falls back to file-based storage — no configuration needed.
+> **Redis is optional.** Relo WebUI automatically tries to connect to a local Redis instance for session persistence. If Redis isn't running, it silently falls back to file-based storage — no configuration needed.
 
 ---
 
 ## 🧠 Local Models (Ollama, LM Studio, vLLM)
 
-Hermes Studio supports two modes with local models:
+Relo WebUI supports two modes with local models:
 
 ### Portable Mode (Easiest)
 
-Point Hermes Studio directly at your local server — no Hermes gateway needed:
+Point Relo WebUI directly at your local server — no Hermes gateway needed:
 
 ```bash
 # Start Ollama
 OLLAMA_ORIGINS=* ollama serve
 
-# Start Hermes Studio pointed at Ollama
+# Start Relo WebUI pointed at Ollama
 HERMES_API_URL=http://127.0.0.1:11434 pnpm dev
 ```
 
@@ -311,7 +311,7 @@ Chat works immediately. Sessions, memory, skills, and jobs show "Not Available" 
 
 Route through the Hermes gateway for sessions, memory, skills, jobs, and tools:
 
-**1. Configure your local model in `~/.hermes/config.yaml`:**
+**1. Configure your local model in `~/.relo/relo-agent/config.yaml`:**
 
 ```yaml
 provider: ollama
@@ -323,7 +323,7 @@ custom_providers:
     api_mode: chat_completions
 ```
 
-**2. Enable the API server in `~/.hermes/.env`:**
+**2. Enable the API server in `~/.relo/relo-agent/.env`:**
 
 ```env
 API_SERVER_ENABLED=true
@@ -344,9 +344,9 @@ All workspace features unlock automatically — sessions persist, memory saves a
 
 ## 🐳 Docker Quickstart
 
-[![Open in GitHub Codespaces](https://img.shields.io/badge/GitHub%20Codespaces-Open-181717?logo=github)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=JPeetz/Hermes-Studio)
+[![Open in GitHub Codespaces](https://img.shields.io/badge/GitHub%20Codespaces-Open-181717?logo=github)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=relo42/relo-webui-v2)
 
-The Docker setup runs both the **Hermes Agent gateway** and **Hermes Studio** together.
+The Docker setup runs both the **Relo Agent gateway** and **Relo WebUI** together.
 
 ### Prerequisites
 
@@ -357,7 +357,7 @@ The Docker setup runs both the **Hermes Agent gateway** and **Hermes Studio** to
 ### Step 1: Configure Environment
 
 ```bash
-git clone https://github.com/JPeetz/Hermes-Studio.git
+git clone https://github.com/relo42/relo-webui-v2.git
 cd Hermes-Studio
 cp .env.example .env
 ```
@@ -391,36 +391,36 @@ Open `http://localhost:3000` and complete the onboarding.
 
 ## 📱 Install as App (Recommended)
 
-Hermes Studio is a **Progressive Web App (PWA)** — install it for the full native app experience with no browser chrome, keyboard shortcuts, and offline support.
+Relo WebUI is a **Progressive Web App (PWA)** — install it for the full native app experience with no browser chrome, keyboard shortcuts, and offline support.
 
 ### 🖥️ Desktop (macOS / Windows / Linux)
 
-1. Open Hermes Studio in **Chrome** or **Edge** at `http://localhost:3000`
+1. Open Relo WebUI in **Chrome** or **Edge** at `http://localhost:3000`
 2. Click the **install icon** (⊕) in the address bar
-3. Click **Install** — Hermes Studio opens as a standalone desktop app
+3. Click **Install** — Relo WebUI opens as a standalone desktop app
 4. Pin to Dock / Taskbar for quick access
 
 > **macOS users:** After installing, you can also add it to your Launchpad.
 
 ### 📱 iPhone / iPad (iOS Safari)
 
-1. Open Hermes Studio in **Safari** on your iPhone
+1. Open Relo WebUI in **Safari** on your iPhone
 2. Tap the **Share** button (□↑)
 3. Scroll down and tap **"Add to Home Screen"**
-4. Tap **Add** — the Hermes Studio icon appears on your home screen
+4. Tap **Add** — the Relo WebUI icon appears on your home screen
 5. Launch from home screen for the full native app experience
 
 ### 🤖 Android
 
-1. Open Hermes Studio in **Chrome** on your Android device
+1. Open Relo WebUI in **Chrome** on your Android device
 2. Tap the **three-dot menu** (⋮) → **"Add to Home screen"**
-3. Tap **Add** — Hermes Studio is now a native-feeling app on your device
+3. Tap **Add** — Relo WebUI is now a native-feeling app on your device
 
 ---
 
 ## 📡 Mobile Access via Tailscale
 
-Access Hermes Studio from anywhere on your devices — no port forwarding, no VPN complexity.
+Access Relo WebUI from anywhere on your devices — no port forwarding, no VPN complexity.
 
 ### Setup
 
@@ -437,7 +437,7 @@ Access Hermes Studio from anywhere on your devices — no port forwarding, no VP
    # Example output: 100.x.x.x
    ```
 
-4. **Open Hermes Studio on your phone:**
+4. **Open Relo WebUI on your phone:**
 
    ```
    http://100.x.x.x:3000
@@ -460,7 +460,7 @@ The desktop app will offer:
 - Auto-launch on startup
 - Deep OS integration (macOS menu bar, Windows taskbar)
 
-**In the meantime:** Install Hermes Studio as a PWA (see above) for a near-native desktop experience — it works great.
+**In the meantime:** Install Relo WebUI as a PWA (see above) for a near-native desktop experience — it works great.
 
 ---
 
@@ -468,7 +468,7 @@ The desktop app will offer:
 
 > **Status: Planned**
 
-A fully managed cloud version of Hermes Studio is planned:
+A fully managed cloud version of Relo WebUI is planned:
 
 - **One-click deploy** — No self-hosting required
 - **Multi-device sync** — Access your agents from any device
@@ -564,7 +564,7 @@ The Crew detail screen's **Workflow tab** is a full DAG editor for building and 
 
 Every crew member can be assigned a named profile that scopes their file system access to an isolated directory.
 
-- Each profile resolves to `~/.hermes/profiles/<name>/` — auto-created on first use
+- Each profile resolves to `~/.relo/relo-agent/profiles/<name>/` — auto-created on first use
 - The File Explorer sidebar shows the profile's workspace root, not the global workspace
 - All file operations (read, write, upload, delete, rename, mkdir) are profile-aware
 - Path traversal is prevented server-side — profile names are validated, `../` is rejected
@@ -647,7 +647,7 @@ The workspace auto-detects your gateway's capabilities on startup. Check your te
 [gateway] Missing Hermes APIs detected. Update Hermes: cd hermes-agent && git pull && pip install -e . && hermes --gateway
 ```
 
-**Fix:** Make sure you have the latest Hermes Agent with extended gateway support:
+**Fix:** Make sure you have the latest Relo Agent with extended gateway support:
 
 ```bash
 git clone https://github.com/NousResearch/hermes-agent.git
@@ -666,7 +666,7 @@ hermes gateway run
 
 ### Ollama: chat returns empty or model shows "Offline"
 
-Make sure your `~/.hermes/config.yaml` has the `custom_providers` section and `API_SERVER_ENABLED=true` in `~/.hermes/.env`. See [Local Models](#-local-models-ollama-lm-studio-vllm) above.
+Make sure your `~/.relo/relo-agent/config.yaml` has the `custom_providers` section and `API_SERVER_ENABLED=true` in `~/.relo/relo-agent/.env`. See [Local Models](#-local-models-ollama-lm-studio-vllm) above.
 
 Also ensure Ollama is running with CORS enabled:
 
@@ -680,7 +680,7 @@ Verify: `curl http://localhost:8642/health` should return `{"status": "ok"}`.
 
 ### "Using upstream NousResearch/hermes-agent"
 
-The upstream hermes-agent supports basic chat via `hermes --gateway`, but older versions may not include extended endpoints (sessions, memory, skills, config). Hermes Studio will work in **portable mode** with basic chat. For full features, ensure you have the latest version: `cd hermes-agent && git pull && pip install -e .`
+The upstream hermes-agent supports basic chat via `hermes --gateway`, but older versions may not include extended endpoints (sessions, memory, skills, config). Relo WebUI will work in **portable mode** with basic chat. For full features, ensure you have the latest version: `cd hermes-agent && git pull && pip install -e .`
 
 ### Docker: "Unauthorized" or "Connection refused" to hermes-agent
 
@@ -761,12 +761,12 @@ This will:
 **Manual steps after the script:**
 
 - **Browser localStorage** — open DevTools → Application → Storage → Local Storage → clear the entry for `http://localhost:<port>`
-- **`~/.hermes/`** — this belongs to Hermes Agent, not Hermes Studio. Do not delete it unless you are also uninstalling Hermes Agent.
+- **`~/.relo/relo-agent/`** — this belongs to Relo Agent, not Relo WebUI. Do not delete it unless you are also uninstalling Relo Agent.
 - **Redis** — if you used password protection, session tokens in Redis will expire naturally (or run `redis-cli FLUSHDB` to clear immediately).
 
 ---
 
-<img width="400" height="400" alt="Hermes Studio logo — AI agent orchestration dashboard" src="https://github.com/user-attachments/assets/2b24e3bc-fb37-4fd9-922a-641113e4e3a4" />
+<img width="400" height="400" alt="Relo WebUI logo — AI agent orchestration dashboard" src="https://github.com/user-attachments/assets/2b24e3bc-fb37-4fd9-922a-641113e4e3a4" />
 
 ## 🗺️ Roadmap
 
@@ -816,11 +816,11 @@ This will:
 
 ## ⭐ Star History
 
-## [![Star History Chart](https://api.star-history.com/svg?repos=JPeetz/Hermes-Studio&type=date&logscale&legend=top-left)](https://www.star-history.com/#JPeetz/Hermes-Studio&type=date&logscale&legend=top-left)
+## [![Star History Chart](https://api.star-history.com/svg?repos=relo42/relo-webui-v2&type=date&logscale&legend=top-left)](https://www.star-history.com/#relo42/relo-webui-v2&type=date&logscale&legend=top-left)
 
 ## 💛 Support the Project
 
-Hermes Studio is free and open source. If it's saving you time and powering your workflow, consider supporting development:
+Relo WebUI is free and open source. If it's saving you time and powering your workflow, consider supporting development:
 
 **ETH:** `0xdfa8ac0f37d1129af72d0c4c6c0dff22e7a816b7`
 
@@ -840,7 +840,7 @@ PRs are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ---
 
-<img width="1520" height="648" alt="Hermes Studio footer — self-hosted web UI for Hermes Agent" src="https://github.com/user-attachments/assets/2e86734f-b189-49b7-9f4d-1048fd75dbd5" />
+<img width="1520" height="648" alt="Relo WebUI footer — self-hosted web UI for Relo Agent" src="https://github.com/user-attachments/assets/2e86734f-b189-49b7-9f4d-1048fd75dbd5" />
 
 ## 📄 License
 
@@ -850,10 +850,10 @@ MIT — see [LICENSE](LICENSE) for details.
 
 ## 🙏 Acknowledgments
 
-Hermes Studio is built on [hermes-workspace](https://github.com/outsourc-e/hermes-workspace) by [@outsourc-e](https://github.com/outsourc-e), released under the MIT license.
+Relo WebUI is built on [hermes-workspace](https://github.com/outsourc-e/hermes-workspace) by [@outsourc-e](https://github.com/outsourc-e), released under the MIT license.
 
 ---
 
 <div align="center">
-  <sub>Built with ⚡ by <a href="https://github.com/JPeetz">@JPeetz</a> — based on <a href="https://github.com/outsourc-e/hermes-workspace">hermes-workspace</a> by @outsourc-e</sub>
+  <sub>Built with ⚡ by <a href="https://github.com/relo42">@JPeetz</a> — based on <a href="https://github.com/outsourc-e/hermes-workspace">hermes-workspace</a> by @outsourc-e</sub>
 </div>

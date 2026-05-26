@@ -1,7 +1,7 @@
 /**
  * Execution Approvals Store
  *
- * Manages pending dangerous-command approval requests from the Hermes agent.
+ * Manages pending dangerous-command approval requests from the Relo Agent.
  * In-memory Map keyed by entry id, persisted to sessionStorage so approvals
  * survive soft navigations but clear when the tab closes (stale approvals
  * would block an already-resolved agent turn).

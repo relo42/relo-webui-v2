@@ -1,4 +1,4 @@
-// Stub — connection overlay (not used in Hermes Studio)
+// Stub — connection overlay (not used in Relo WebUI)
 export function useConnectionRestart() {
   return {
     triggerRestart: async (fn: () => Promise<void>) => {

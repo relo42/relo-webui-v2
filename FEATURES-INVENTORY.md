@@ -1,7 +1,7 @@
 # Hermes Workspace — Comprehensive Features Inventory
 
 > **Version:** 1.0.0 | **Stack:** React 19 + TanStack Start/Router + Vite 7 + Tailwind CSS 4 + Zustand + xterm.js + Monaco Editor  
-> **Description:** Desktop workspace for Hermes Agent — chat, orchestration, and multi-agent coding pipelines
+> **Description:** Desktop workspace for Relo Agent — chat, orchestration, and multi-agent coding pipelines
 
 ---
 
@@ -443,7 +443,7 @@
 - Automatic default model detection from `/v1/models`
 - Multimodal support (image_url content parts)
 
-### 5.7 Hermes Agent Auto-Start
+### 5.7 Relo Agent Auto-Start
 
 - Auto-detects sibling `hermes-agent/` directory
 - Resolves Python virtualenv (`.venv`, `venv`, system `python3`)

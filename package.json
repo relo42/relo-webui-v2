@@ -1,5 +1,5 @@
 {
-  "name": "hermes-studio",
+  "name": "relo-webui",
   "version": "1.20.0",
   "description": "A full-featured web UI for Hermes Agent — chat, memory, skills, terminal, approvals and multi-agent orchestration in your browser.",
   "author": "JPeetz (https://github.com/JPeetz)",
@@ -7,11 +7,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "NODE_OPTIONS=\"--max-old-space-size=2048\" vite dev --port 3000",
+    "dev": "NODE_OPTIONS=\"--max-old-space-size=2048\" vite dev --port 8643",
     "build": "vite build",
     "start": "NODE_OPTIONS=\"--max-old-space-size=2048\" node server-entry.js",
     "deploy": "npm run build && pkill -f 'node server-entry.js' 2>/dev/null; sleep 1; NODE_OPTIONS=\"--max-old-space-size=2048\" node server-entry.js",
-    "start:dev": "NODE_OPTIONS=\"--max-old-space-size=2048\" vite dev --port 3000",
+    "start:dev": "NODE_OPTIONS=\"--max-old-space-size=2048\" vite dev --port 8643",
     "preview": "vite preview",
     "test": "vitest run",
     "test:e2e": "playwright test",

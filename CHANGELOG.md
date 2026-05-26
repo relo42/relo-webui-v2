@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Hermes Studio are documented here.
+All notable changes to Relo Studio are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
@@ -13,7 +13,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - **Animated SVG Office** — Three layouts (Grid, Roundtable, War Room) with desk/monitor/chair SVGs, agent wandering to social spots, speech bubbles, status glow animations
 - **Pixel-Art Agent Avatars** — 10 unique robot variants with per-agent accent colors
-- **Real Gateway Integration** — Spawns Hermes cron jobs for orchestration, polls live sessions for worker tracking
+- **Real Gateway Integration** — Spawns Relo cron jobs for orchestration, polls live sessions for worker tracking
 - **Live Worker Monitoring** — Session polling every 3s, output fetching, staleness detection, completion detection
 - **Mission Settings** — Orchestrator/worker model selection, projects directory, max parallel (1-5), supervised mode
 - **Mission History** — localStorage-persisted history with restore, output preview, cost breakdown
@@ -93,19 +93,19 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [1.17.0] — 2026-04-17
 
-### Added — Hermes Agent v0.8.0 + v0.9.0 compatibility
+### Added — Relo Agent v0.8.0 + v0.9.0 compatibility
 
 Full UI surface for all features introduced in NousResearch/hermes-agent v0.8.0 and v0.9.0.
 
-**Hermes v0.9.0 (2026-04)**
+**Relo v0.9.0 (2026-04)**
 - **Fast Mode toggle** — lightning bolt button in the chat composer toolbar activates `/fast` priority queue (OpenAI/Anthropic); visual active state, tooltip, aria-pressed; wired to the existing `effectiveFastMode` send logic
 - **`/fast`, `/compress`, `/debug` slash commands** — added to the slash-command autocomplete menu with descriptions
-- **API Server Key setting** — new password field in Settings → Connection for `API_SERVER_KEY` required by non-loopback Hermes instances; stored in Zustand settings and passed through auth layer
+- **API Server Key setting** — new password field in Settings → Connection for `API_SERVER_KEY` required by non-loopback Relo instances; stored in Zustand settings and passed through auth layer
 - **Backup / Import** — Settings → Connection now has "Backup" (POST `/api/backup`) and "Import" (POST `/api/backup/import`) buttons; import uses a hidden file input; both surface errors via toast
 - **BlueBubbles, WeChat, WeCom integrations** — three new entries in Settings → Integrations platform list (BlueBubbles iMessage via BlueBubbles server URL + password, WeChat via iLink Bot token, WeCom via Corp ID + agent secret)
-- **Provider usage route** — new `GET /api/provider-usage` Studio route fetches Hermes `/api/usage` (which now captures rate-limit headers: requests remaining/limit/reset, tokens remaining/limit/reset) and maps it into the usage meter's `ProviderUsageEntry` format including `resetsAt` progress bars
+- **Provider usage route** — new `GET /api/provider-usage` Studio route fetches Relo `/api/usage` (which now captures rate-limit headers: requests remaining/limit/reset, tokens remaining/limit/reset) and maps it into the usage meter's `ProviderUsageEntry` format including `resetsAt` progress bars
 
-**Hermes v0.8.0 (2026-03)**
+**Relo v0.8.0 (2026-03)**
 - **Logs viewer** — new `/logs` screen with `ConsoleIcon` nav entry; fetches `GET /api/hermes-proxy/api/logs?level=INFO|WARNING&tail=500`; All/Errors filter tabs; search with clear button; color-coded lines (ERROR=red, WARNING=amber, DEBUG=muted, INFO=text); auto-scrolls to bottom on load; `EmptyState` for no data and error states
 - **Cron delivery failure badge** — job cards now show a red badge (`X delivery failures`) when `delivery_failures > 0` (v0.8.0 tracks failed Telegram/Discord/Slack/Signal delivery attempts)
 - **Pre-run script field** — collapsible "Pre-run script" section in Create Job dialog; monospace textarea, hidden when empty, `pre_run_script` included in job creation payload
@@ -215,7 +215,7 @@ Full UI surface for all features introduced in NousResearch/hermes-agent v0.8.0 
 ## [1.7.0] — 2026-04-12
 
 ### Added
-- **Hermes v0.8.0 Compatibility** — audited and closed 4 compatibility gaps after gateway update
+- **Relo v0.8.0 Compatibility** — audited and closed 4 compatibility gaps after gateway update
   - Config schema migration (v13→v16): `stt.model` → provider-specific, `display.interim_assistant_messages`, `display.tool_progress_overrides` → `display.platforms`
   - "Status messages" toggle in Display settings (`display.interim_assistant_messages`)
   - Per-platform `tool_progress` override editor (all/new only/verbose/off per platform)
@@ -240,7 +240,7 @@ Full UI surface for all features introduced in NousResearch/hermes-agent v0.8.0 
 
 ### Added
 - **Session Persistence** (Task 8) — chat history survives server restarts in portable mode
-  - `local-session-store.ts` now fully wired: all four `/api/sessions` verbs (GET/POST/PATCH/DELETE) and `/api/history` route use the local store when the Hermes gateway is unavailable
+  - `local-session-store.ts` now fully wired: all four `/api/sessions` verbs (GET/POST/PATCH/DELETE) and `/api/history` route use the local store when the Relo gateway is unavailable
   - `send-stream.ts` saves user and assistant messages to the local store on every exchange in portable mode
   - Optional **Redis backend** activated by setting `REDIS_URL` env var — falls back to file store gracefully if Redis is unreachable
   - Redis key schema: `hermes:studio:sessions` (hash) and `hermes:studio:messages:{id}` (list), both with 30-day TTL
@@ -269,7 +269,7 @@ Full UI surface for all features introduced in NousResearch/hermes-agent v0.8.0 
 
 ### Added
 - **Cron Job Manager UI** (Task 6) — full scheduled task management from the browser
-  - `GET /api/hermes-jobs` and `GET /api/hermes-jobs/$jobId` proxy routes forward to Hermes gateway `/api/jobs`
+  - `GET /api/hermes-jobs` and `GET /api/hermes-jobs/$jobId` proxy routes forward to Relo gateway `/api/jobs`
   - `POST /api/hermes-jobs` creates new jobs; `PATCH` updates; `DELETE` deletes
   - `POST /api/hermes-jobs/$jobId?action=pause|resume|run` for lifecycle control
   - `GET /api/hermes-jobs/$jobId?action=output` fetches run history
@@ -280,7 +280,7 @@ Full UI surface for all features introduced in NousResearch/hermes-agent v0.8.0 
   - Pause/resume/trigger-now/delete/edit actions per job card
   - Auto-refresh every 30 seconds via React Query
   - Feature-gated: shows `BackendUnavailableState` when gateway doesn't expose `/api/jobs`
-  - `HermesJob` and `JobOutput` types in `src/lib/jobs-api.ts`
+  - `ReloJob` and `JobOutput` types in `src/lib/jobs-api.ts`
 
 ---
 
@@ -290,7 +290,7 @@ Full UI surface for all features introduced in NousResearch/hermes-agent v0.8.0 
 - **Skill Installation UI** (Task 5) — fully functional install/uninstall/toggle from the browser
   - `POST /api/skills` now implements the `toggle` action via a local prefs file (`~/.hermes/skills/.studio-prefs.json`); `enabled` state survives server restarts without gateway support
   - `GET /api/skills` merges local prefs to reflect accurate `enabled` state per skill
-  - `POST /api/skills/install` now tries the Hermes gateway native endpoint first, then falls back to `clawhub` CLI, then returns a clear install hint (`pip install skillhub`) when clawhub is missing — the install command is auto-copied to clipboard
+  - `POST /api/skills/install` now tries the Relo gateway native endpoint first, then falls back to `clawhub` CLI, then returns a clear install hint (`pip install skillhub`) when clawhub is missing — the install command is auto-copied to clipboard
   - Install/uninstall buttons show ⏳ loading spinner while action is in progress
   - "Installing... may take up to 2 minutes" progress hint shown during install
   - clawhub-missing banner with `pip install skillhub` instructions shown inline (dismissible)
@@ -298,8 +298,8 @@ Full UI surface for all features introduced in NousResearch/hermes-agent v0.8.0 
 
 ### Fixed
 - **Security: path traversal in `POST /api/skills/uninstall`** — `skillId` is now validated to ensure the resolved path stays within `~/.hermes/skills/`
-- Branding: "Hermes Workspace Marketplace" → "Hermes Studio Marketplace" in skills browser header
-- Branding: "Hermes Workspace" → "Hermes Studio" in security badge
+- Branding: "Relo Workspace Marketplace" → "Relo Studio Marketplace" in skills browser header
+- Branding: "Relo Workspace" → "Relo Studio" in security badge
 
 ---
 
@@ -320,7 +320,7 @@ Full UI surface for all features introduced in NousResearch/hermes-agent v0.8.0 
 ## [1.0.0] — 2026-04-10
 
 ### Added
-- Initial release of Hermes Studio, forked from hermes-workspace v1.0.0
+- Initial release of Relo Studio, forked from hermes-workspace v1.0.0
 - React 19 + TypeScript + Tailwind CSS 4 + TanStack Router
 - Real-time SSE streaming chat with tool call rendering
 - Multi-session management with persistent history (enhanced mode)
@@ -334,7 +334,7 @@ Full UI surface for all features introduced in NousResearch/hermes-agent v0.8.0 
 - Knowledge browser with wikilinks and full-text search
 - MCP server config inspection and reload
 - Docker Compose + Tailscale remote access support
-- Renamed from hermes-workspace → Hermes Studio throughout
+- Renamed from hermes-workspace → Relo Studio throughout
 - Updated LICENSE with dual attribution (JPeetz + original outsourc-e)
 
 ---

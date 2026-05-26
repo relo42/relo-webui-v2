@@ -1,4 +1,4 @@
-// Stub — research card is a legacy feature, not used in Hermes Studio
+// Stub — research card is a legacy feature, not used in Relo WebUI
 
 export interface ResearchStep {
   id: string

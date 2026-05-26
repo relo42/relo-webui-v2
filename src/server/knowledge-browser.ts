@@ -115,7 +115,7 @@ function extractWikilinks(content: string): Array<string> {
 
 export function getKnowledgeRoot(): string {
   if (process.env.KNOWLEDGE_DIR) return path.resolve(process.env.KNOWLEDGE_DIR)
-  const hermesHome = path.join(os.homedir(), '.hermes')
+  const hermesHome = path.join(os.homedir(), '.relo', 'relo-agent')
   const hermesKnowledge = path.join(hermesHome, 'knowledge')
   if (fs.existsSync(hermesKnowledge)) return hermesKnowledge
   const homeKnowledge = path.join(os.homedir(), 'knowledge', 'wiki')

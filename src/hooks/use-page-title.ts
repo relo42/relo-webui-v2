@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-const BASE_TITLE = 'Hermes'
+const BASE_TITLE = 'Relo'
 
 /**
  * Sets document.title for the current page.
