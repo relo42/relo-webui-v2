@@ -37,11 +37,6 @@ const VALID_THEMES = [
   'relo-classic',
   'relo-slate',
   'relo-mono',
-  'hermes-os',
-  'hermes-official',
-  'hermes-classic',
-  'hermes-slate',
-  'hermes-mono',
 ]
 
 const themeScript = `
