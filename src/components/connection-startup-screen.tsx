@@ -30,9 +30,9 @@ function getSetupSteps(
       note: 'Portable chat works with any backend that exposes /v1/chat/completions (Ollama, LiteLLM, vLLM, etc.)',
     },
     {
-      title: 'Optional: run a Hermes gateway locally',
+      title: 'Optional: run a Relo gateway locally',
       command: 'git clone https://github.com/outsourc-e/hermes-agent.git',
-      note: 'Hermes gateway APIs unlock sessions, skills, memory, and other workspace extras automatically',
+      note: 'Relo gateway APIs unlock sessions, skills, memory, and other workspace extras automatically',
     },
     {
       title: 'Install the gateway',
@@ -222,7 +222,7 @@ export function ConnectionStartupScreen({ onConnected }: Props) {
               Welcome! Let&apos;s connect your backend
             </p>
             <p className="mt-2 text-sm leading-6 text-white/60">
-              Relo WebUI works with any OpenAI-compatible backend. Hermes
+              Relo WebUI works with any OpenAI-compatible backend. Relo
               gateway APIs unlock enhanced features automatically when they are
               available.
             </p>
@@ -246,7 +246,7 @@ export function ConnectionStartupScreen({ onConnected }: Props) {
                     Detecting...
                   </span>
                 ) : (
-                  'Auto-Start Hermes Gateway'
+                  'Auto-Start Relo Gateway'
                 )}
               </button>
 

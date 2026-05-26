@@ -66,4 +66,4 @@ export const ONBOARDING_STEPS: Array<OnboardingStep> = [
   },
 ]
 
-export const STORAGE_KEY = 'hermes-onboarding-complete'
+export const STORAGE_KEY = 'relo-onboarding-complete'

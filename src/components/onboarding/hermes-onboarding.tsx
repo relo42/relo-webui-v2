@@ -29,7 +29,7 @@ function stripProviderPrefix(model: string): string {
   return model
 }
 
-const ONBOARDING_KEY = 'hermes-onboarding-complete'
+const ONBOARDING_KEY = 'relo-onboarding-complete'
 
 type Step = 'welcome' | 'connect' | 'provider' | 'test' | 'done'
 

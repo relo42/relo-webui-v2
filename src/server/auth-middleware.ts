@@ -163,5 +163,5 @@ export function createSessionCookie(token: string): string {
   // sameSite=strict: CSRF protection
   // path=/: available everywhere
   // maxAge: 30 days
-  return `hermes-auth=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${30 * 24 * 60 * 60}`
+  return `relo-auth=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${30 * 24 * 60 * 60}`
 }

@@ -29,8 +29,8 @@ const APP_CSP = [
   "frame-src 'self' http: https:",
 ].join('; ')
 
-const THEME_STORAGE_KEY = 'hermes-theme'
-const DEFAULT_THEME = 'hermes-os'
+const THEME_STORAGE_KEY = 'relo-theme'
+const DEFAULT_THEME = 'relo-os'
 const VALID_THEMES = [
   'relo-os',
   'relo-official',
@@ -68,11 +68,11 @@ const themeColorScript = `
     const root = document.documentElement
     const theme = root.getAttribute('data-theme') || '${DEFAULT_THEME}'
     const colors = {
-      'hermes-os': '#080c14',
-      'hermes-official': '#0A0E1A',
-      'hermes-classic': '#0d0f12',
-      'hermes-slate': '#0d1117',
-      'hermes-mono': '#111111',
+      'relo-os': '#080c14',
+      'relo-official': '#0A0E1A',
+      'relo-classic': '#0d0f12',
+      'relo-slate': '#0d1117',
+      'relo-mono': '#111111',
     }
     const nextColor = colors[theme] || colors['${DEFAULT_THEME}']
 

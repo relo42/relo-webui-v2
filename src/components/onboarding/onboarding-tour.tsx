@@ -7,7 +7,7 @@ import type { CallBackProps, Styles } from 'react-joyride'
 import { useSettingsStore } from '@/hooks/use-settings'
 import { useResolvedTheme } from '@/hooks/use-chat-settings'
 
-const TOUR_STORAGE_KEY = 'hermes-onboarding-completed'
+const TOUR_STORAGE_KEY = 'relo-onboarding-completed'
 
 // Accent color mapping to hex values
 const ACCENT_COLORS = {
