@@ -56,7 +56,7 @@ export function ChatEmptyState({
           />
           <img
             src="/hermes-avatar.webp"
-            alt="Hermes"
+            alt="Relo"
             className="relative size-20 rounded-2xl"
             style={{
               boxShadow:
@@ -70,7 +70,7 @@ export function ChatEmptyState({
           className="text-xl font-semibold tracking-tight"
           style={{ color: 'var(--theme-text)' }}
         >
-          Hermes Studio
+          Relo WebUI
         </h2>
 
         {!compact && (

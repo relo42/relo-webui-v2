@@ -579,7 +579,7 @@ export function McpSettingsScreen() {
                     Add, edit, and remove MCP servers. Save writes directly
                     to{' '}
                     <code className="rounded bg-primary-200/60 px-1.5 py-0.5 font-mono text-xs text-ink">
-                      ~/.hermes/config.yaml
+                      ~/.relo/relo-agent/config.yaml
                     </code>{' '}
                     and triggers a live reload.
                   </p>

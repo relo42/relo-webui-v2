@@ -16,12 +16,12 @@ import {
 import {
   ensureGatewayProbed,
   getGatewayCapabilities,
-} from '../../../server/hermes-api'
+} from '../../../server/relo-api'
 import {
   ensureLocalSession,
   toLocalSessionSummary,
 } from '../../../server/local-session-store'
-import { createSession } from '../../../server/hermes-api'
+import { createSession } from '../../../server/relo-api'
 
 /**
  * Mint a session for a crew member.

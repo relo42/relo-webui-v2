@@ -174,7 +174,7 @@ export function MobileHamburgerMenu() {
           <div className="flex items-center gap-2.5">
             <img
               src="/hermes-avatar.webp"
-              alt="Hermes"
+              alt="Relo"
               className="size-8 rounded-xl shrink-0"
             />
             <div className="flex flex-col leading-tight">

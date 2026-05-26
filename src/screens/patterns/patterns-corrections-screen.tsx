@@ -3,7 +3,7 @@
 /**
  * Patterns & Corrections Screen — surfaces agent learnings from MEMORY.md.
  *
- * Hermes stores memory as `§`-delimited entries in ~/.hermes/memories/MEMORY.md.
+ * Hermes stores memory as `§`-delimited entries in ~/.relo/relo-agent/memories/MEMORY.md.
  * This screen reads that file, classifies each entry, and presents two tabs:
  *
  *   Patterns   — all entries NOT prefixed with "CORRECTION:"
@@ -293,7 +293,7 @@ export function PatternsCorrectionScreen() {
         </h1>
         <p style={{ fontSize: '0.8rem', color: 'var(--theme-text-muted)' }}>
           Learnings from{' '}
-          <code style={{ fontFamily: 'monospace' }}>~/.hermes/memories/MEMORY.md</code>{' '}
+          <code style={{ fontFamily: 'monospace' }}>~/.relo/relo-agent/memories/MEMORY.md</code>{' '}
           — parsed by{' '}
           <code style={{ fontFamily: 'monospace' }}>§</code> delimiter
         </p>

@@ -1,4 +1,4 @@
-import { streamChat } from './hermes-api'
+import { streamChat } from './relo-api'
 import { resolveChatBackend } from './chat-mode'
 import { openaiChat } from './openai-compat-api'
 

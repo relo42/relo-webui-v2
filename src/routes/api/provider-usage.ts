@@ -7,7 +7,7 @@
  */
 import { createFileRoute } from '@tanstack/react-router'
 import {
-  HERMES_API,
+  RELO_API,
   BEARER_TOKEN,
 } from '../../server/gateway-capabilities'
 import { isAuthenticated } from '../../server/auth-middleware'
@@ -185,7 +185,7 @@ async function fetchProviderUsage(force: boolean): Promise<Array<ProviderUsageEn
     ? { Authorization: `Bearer ${BEARER_TOKEN}` }
     : {}
 
-  const url = `${HERMES_API}/api/usage${force ? '?force=1' : ''}`
+  const url = `${RELO_API}/api/usage${force ? '?force=1' : ''}`
   const res = await fetch(url, { headers: authHeaders })
   if (!res.ok) return []
 

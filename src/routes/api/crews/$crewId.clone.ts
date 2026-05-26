@@ -19,7 +19,7 @@ import {
   ensureGatewayProbed,
   getGatewayCapabilities,
   createSession,
-} from '../../../server/hermes-api'
+} from '../../../server/relo-api'
 import {
   ensureLocalSession,
   toLocalSessionSummary,

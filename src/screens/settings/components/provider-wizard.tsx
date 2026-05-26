@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from 'react'
 import { ProviderIcon } from './provider-icon'
 import type { ProviderAuthType } from '@/lib/provider-catalog'
 import {
-  HERMES_CONFIG_PATH,
+  RELO_CONFIG_PATH,
   PROVIDER_CATALOG,
   buildConfigExample,
   getAuthTypeLabel,
@@ -277,7 +277,7 @@ export function ProviderWizard({
       setSaveState('saved')
       setVerifyState('checking')
       setVerificationMessage(
-        `${providerName} API key saved. Hermes is restarting…`,
+        `${providerName} API key saved. Relo Agent is restarting…`,
       )
       setStep('verify')
 
@@ -301,7 +301,7 @@ export function ProviderWizard({
         } else {
           setVerifyState('warning')
           setVerificationMessage(
-            `Hermes restarted, but ${providerName} models haven't appeared yet. ` +
+            `Relo Agent restarted, but ${providerName} models haven't appeared yet. ` +
               `Check your API key or wait a moment and refresh.`,
           )
         }
@@ -353,7 +353,7 @@ export function ProviderWizard({
                 </DialogTitle>
                 <DialogDescription className="text-pretty">
                   Add provider credentials safely. API keys stay local in your
-                  Hermes config file and are never sent to Studio.
+                  Relo config file and are never sent to Studio.
                 </DialogDescription>
               </div>
               <Button
@@ -483,7 +483,7 @@ export function ProviderWizard({
                 <div className="mt-3 rounded-xl border border-[var(--theme-border)] bg-[var(--theme-panel)]/70 px-3 py-2">
                   <p className="text-xs text-[var(--theme-text)] text-pretty">
                     Config file path:{' '}
-                    <code className="font-mono">{HERMES_CONFIG_PATH}</code>
+                    <code className="font-mono">{RELO_CONFIG_PATH}</code>
                   </p>
                 </div>
 
@@ -723,7 +723,7 @@ export function ProviderWizard({
                             strokeWidth={1.5}
                             className="inline mr-1"
                           />
-                          Key saved! Hermes is restarting to apply changes.
+                          Key saved! Relo Agent is restarting to apply changes.
                         </p>
                       ) : null}
                     </div>
@@ -745,7 +745,7 @@ export function ProviderWizard({
                     <div className="mt-4 rounded-xl border border-[var(--theme-border)] bg-[var(--theme-panel)]/70 px-3 py-2">
                       <p className="text-xs text-[var(--theme-text)] text-pretty">
                         API keys are stored locally in{' '}
-                        <code className="font-mono">{HERMES_CONFIG_PATH}</code>,
+                        <code className="font-mono">{RELO_CONFIG_PATH}</code>,
                         never sent to Studio.
                       </p>
                     </div>
@@ -856,7 +856,7 @@ export function ProviderWizard({
                     {verifyTitle}
                   </p>
                   <p className="mt-1 text-sm text-primary-600 text-pretty">
-                    {verificationMessage || 'Waiting for Hermes to respond…'}
+                    {verificationMessage || 'Waiting for Relo Agent to respond…'}
                   </p>
                 </div>
 

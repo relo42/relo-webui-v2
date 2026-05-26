@@ -102,7 +102,7 @@ export function MobilePromptTrigger() {
                 <div className="flex shrink-0 items-center gap-1.5">
                   <img
                     src="/hermes-avatar.webp"
-                    alt="Hermes"
+                    alt="Relo"
                     className="size-8 rounded-lg"
                   />
                   <span className="text-xs text-primary-600">+</span>
@@ -180,7 +180,7 @@ export function MobilePromptTrigger() {
                     className="text-xs"
                     style={{ color: 'var(--theme-muted)' }}
                   >
-                    Connect your phone to this Hermes Studio instance in a
+                    Connect your phone to this Relo WebUI instance in a
                     few steps.
                   </p>
                 </div>

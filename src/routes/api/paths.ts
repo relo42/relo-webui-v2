@@ -16,7 +16,7 @@ export const Route = createFileRoute('/api/paths')({
         }
         return json({
           ok: true,
-          hermesHome: RELO_HOME,
+          reloHome: RELO_HOME,
           memoriesDir: path.join(RELO_HOME, 'memories'),
           skillsDir: path.join(RELO_HOME, 'skills'),
         })

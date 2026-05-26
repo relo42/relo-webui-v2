@@ -4,14 +4,14 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { isAuthenticated } from '../../server/auth-middleware'
 import {
-  HERMES_API,
-  HERMES_UPGRADE_INSTRUCTIONS,
+  RELO_API,
+  RELO_UPGRADE_INSTRUCTIONS,
   ensureGatewayProbed,
   getCapabilities,
 } from '../../server/gateway-capabilities'
 import { createCapabilityUnavailablePayload } from '@/lib/feature-gates'
 
-export const Route = createFileRoute('/api/hermes-jobs')({
+export const Route = createFileRoute('/api/relo-jobs')({
   server: {
     handlers: {
       GET: async ({ request }) => {
@@ -33,7 +33,7 @@ export const Route = createFileRoute('/api/hermes-jobs')({
         }
         const url = new URL(request.url)
         const params = url.searchParams.toString()
-        const target = `${HERMES_API}/api/jobs${params ? `?${params}` : ''}`
+        const target = `${RELO_API}/api/jobs${params ? `?${params}` : ''}`
         const res = await fetch(target)
         return new Response(res.body, {
           status: res.status,
@@ -51,14 +51,14 @@ export const Route = createFileRoute('/api/hermes-jobs')({
           return new Response(
             JSON.stringify({
               ...createCapabilityUnavailablePayload('jobs', {
-                error: `Gateway does not support /api/jobs. ${HERMES_UPGRADE_INSTRUCTIONS}`,
+                error: `Gateway does not support /api/jobs. ${RELO_UPGRADE_INSTRUCTIONS}`,
               }),
             }),
             { status: 503, headers: { 'Content-Type': 'application/json' } },
           )
         }
         const body = await request.text()
-        const res = await fetch(`${HERMES_API}/api/jobs`, {
+        const res = await fetch(`${RELO_API}/api/jobs`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body,

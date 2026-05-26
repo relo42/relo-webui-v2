@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import {
-  HERMES_API,
+  RELO_API,
   ensureGatewayProbed,
 } from '../../server/gateway-capabilities'
 import { requireLocalOrAuth } from '../../server/auth-middleware'
@@ -9,7 +9,7 @@ type PingResponse = {
   ok: boolean
   error?: string
   status?: number
-  hermesUrl: string
+  reloUrl: string
 }
 
 export const Route = createFileRoute('/api/ping')({
@@ -22,7 +22,7 @@ export const Route = createFileRoute('/api/ping')({
               ok: false,
               error: 'Authentication required',
               status: 401,
-              hermesUrl: HERMES_API,
+              reloUrl: RELO_API,
             } satisfies PingResponse,
             { status: 401 },
           )
@@ -33,9 +33,9 @@ export const Route = createFileRoute('/api/ping')({
           return Response.json(
             {
               ok: false,
-              error: 'Hermes unavailable',
+              error: 'Relo Gateway unavailable',
               status: 503,
-              hermesUrl: HERMES_API,
+              reloUrl: RELO_API,
             } satisfies PingResponse,
             { status: 503 },
           )
@@ -45,7 +45,7 @@ export const Route = createFileRoute('/api/ping')({
           {
             ok: true,
             status: 200,
-            hermesUrl: HERMES_API,
+            reloUrl: RELO_API,
           } satisfies PingResponse,
           { status: 200 },
         )

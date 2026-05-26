@@ -139,7 +139,7 @@
   padding: 0.2rem 0.45rem;
 }
 
-[data-theme='hermes-os'] .kpi-card:hover,
+[data-theme='relo-os'] .kpi-card:hover,
 [data-theme='ops-dark'] .kpi-card:hover,
 [data-theme='premium-dark'] .kpi-card:hover,
 [data-theme='sunset-brand'] .kpi-card:hover {
@@ -698,7 +698,7 @@ code {
   height: 0;
   overflow: hidden;
 }
-[data-theme='hermes-os'] .agent-status-strip {
+[data-theme='relo-os'] .agent-status-strip {
   display: flex;
   height: 30px;
   align-items: center;
@@ -717,7 +717,7 @@ code {
 }
 
 /* ── Hermes Workspace Themes ── */
-[data-theme='hermes-os'] {
+[data-theme='relo-os'] {
   --statusbar-h: 30px;
   --theme-bg: #080c14;
   --theme-sidebar: #050911;
@@ -768,7 +768,7 @@ code {
   --glow-cyan: 0 0 18px rgba(103, 232, 249, 0.18), 0 0 36px rgba(103, 232, 249, 0.08);
 }
 
-[data-theme='hermes-official'] {
+[data-theme='relo-official'] {
   --theme-bg: #0a0e1a;
   --theme-sidebar: #0d1220;
   --theme-panel: #0d1220;
@@ -815,7 +815,7 @@ code {
   --theme-input: #0f1728;
 }
 
-[data-theme='hermes-classic'] {
+[data-theme='relo-classic'] {
   --theme-bg: #0d0f12;
   --theme-sidebar: #13171c;
   --theme-panel: #13171c;
@@ -863,7 +863,7 @@ code {
   --theme-input: #232a33;
 }
 
-[data-theme='hermes-slate'] {
+[data-theme='relo-slate'] {
   --theme-bg: #0d1117;
   --theme-sidebar: #0d1117;
   --theme-panel: #161b22;
@@ -910,7 +910,7 @@ code {
   --theme-input: #232a33;
 }
 
-[data-theme='hermes-mono'] {
+[data-theme='relo-mono'] {
   --theme-bg: #111111;
   --theme-sidebar: #111111;
   --theme-panel: #1a1a1a;
@@ -957,26 +957,26 @@ code {
   --theme-input: #222222;
 }
 
-[data-theme='hermes-os'] html,
-[data-theme='hermes-os'] body,
-[data-theme='hermes-os'] #root,
-[data-theme='hermes-os'] .dark,
-[data-theme='hermes-official'] html,
-[data-theme='hermes-official'] body,
-[data-theme='hermes-official'] #root,
-[data-theme='hermes-official'] .dark,
-[data-theme='hermes-classic'] html,
-[data-theme='hermes-classic'] body,
-[data-theme='hermes-classic'] #root,
-[data-theme='hermes-classic'] .dark,
-[data-theme='hermes-slate'] html,
-[data-theme='hermes-slate'] body,
-[data-theme='hermes-slate'] #root,
-[data-theme='hermes-slate'] .dark,
-[data-theme='hermes-mono'] html,
-[data-theme='hermes-mono'] body,
-[data-theme='hermes-mono'] #root,
-[data-theme='hermes-mono'] .dark {
+[data-theme='relo-os'] html,
+[data-theme='relo-os'] body,
+[data-theme='relo-os'] #root,
+[data-theme='relo-os'] .dark,
+[data-theme='relo-official'] html,
+[data-theme='relo-official'] body,
+[data-theme='relo-official'] #root,
+[data-theme='relo-official'] .dark,
+[data-theme='relo-classic'] html,
+[data-theme='relo-classic'] body,
+[data-theme='relo-classic'] #root,
+[data-theme='relo-classic'] .dark,
+[data-theme='relo-slate'] html,
+[data-theme='relo-slate'] body,
+[data-theme='relo-slate'] #root,
+[data-theme='relo-slate'] .dark,
+[data-theme='relo-mono'] html,
+[data-theme='relo-mono'] body,
+[data-theme='relo-mono'] #root,
+[data-theme='relo-mono'] .dark {
   background-color: var(--theme-bg);
   color: var(--theme-text);
 }
@@ -987,11 +987,11 @@ code {
    to theme-appropriate values so ALL existing Tailwind classes work.
    Dark: 50=darkest surface, 950=lightest text (already set above) */
 
-[data-theme='hermes-os'],
-[data-theme='hermes-official'],
-[data-theme='hermes-classic'],
-[data-theme='hermes-slate'],
-[data-theme='hermes-mono'] {
+[data-theme='relo-os'],
+[data-theme='relo-official'],
+[data-theme='relo-classic'],
+[data-theme='relo-slate'],
+[data-theme='relo-mono'] {
   --color-primary-50: var(--theme-panel);
   --color-primary-100: var(--theme-card);
   --color-primary-200: var(--theme-border);
@@ -1034,46 +1034,46 @@ code {
 
 /* ── Hermes OS Theme Overrides ──────────────────────────────────────────
    Premium cinematic overrides for the hermes-os theme.
-   All rules below only apply when [data-theme='hermes-os'] is active.
+   All rules below only apply when [data-theme='relo-os'] is active.
    ─────────────────────────────────────────────────────────────────────── */
 
 /* Sidebar: glassmorphism + luminous left border on active items */
-[data-theme='hermes-os'] aside {
+[data-theme='relo-os'] aside {
   border-right-color: rgba(56, 189, 248, 0.1) !important;
 }
 
 /* Active nav item: electric blue accent bar */
-[data-theme='hermes-os'] .bg-accent-500\/10 {
+[data-theme='relo-os'] .bg-accent-500\/10 {
   background: rgba(56, 189, 248, 0.07) !important;
   border-left: 2px solid rgba(56, 189, 248, 0.7);
   color: #38bdf8 !important;
 }
 
 /* Nav icon color for active items */
-[data-theme='hermes-os'] .bg-accent-500\/10 svg {
+[data-theme='relo-os'] .bg-accent-500\/10 svg {
   color: #38bdf8 !important;
   opacity: 1;
 }
 
 /* Accent color remaps for hermes-os */
-[data-theme='hermes-os'] .text-accent-500 {
+[data-theme='relo-os'] .text-accent-500 {
   color: #38bdf8 !important;
 }
-[data-theme='hermes-os'] .bg-accent-500 {
+[data-theme='relo-os'] .bg-accent-500 {
   background-color: #38bdf8 !important;
 }
-[data-theme='hermes-os'] .hover\:bg-accent-600:hover {
+[data-theme='relo-os'] .hover\:bg-accent-600:hover {
   background-color: #0ea5e9 !important;
 }
 
 /* Composer: terminal-style look */
-[data-theme='hermes-os'] .composer-input {
+[data-theme='relo-os'] .composer-input {
   background: var(--composer-bg) !important;
   border-color: rgba(56, 189, 248, 0.15) !important;
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 0.875rem;
 }
-[data-theme='hermes-os'] .composer-input:focus-within {
+[data-theme='relo-os'] .composer-input:focus-within {
   border-color: rgba(56, 189, 248, 0.5) !important;
   box-shadow:
     0 0 0 1px rgba(56, 189, 248, 0.2),
@@ -1082,11 +1082,11 @@ code {
 }
 
 /* Card / panel: subtle glass effect */
-[data-theme='hermes-os'] .kpi-card {
+[data-theme='relo-os'] .kpi-card {
   background: var(--theme-card);
   border-color: rgba(56, 189, 248, 0.1);
 }
-[data-theme='hermes-os'] .kpi-card:hover {
+[data-theme='relo-os'] .kpi-card:hover {
   border-color: rgba(56, 189, 248, 0.3);
   box-shadow:
     var(--theme-shadow-2),
@@ -1094,15 +1094,15 @@ code {
 }
 
 /* Scrollbars: tinted cyan in hermes-os */
-[data-theme='hermes-os'] *:hover {
+[data-theme='relo-os'] *:hover {
   scrollbar-color: rgba(56, 189, 248, 0.2) transparent;
 }
-[data-theme='hermes-os'] *:hover::-webkit-scrollbar-thumb {
+[data-theme='relo-os'] *:hover::-webkit-scrollbar-thumb {
   background-color: rgba(56, 189, 248, 0.2);
 }
 
 /* Header branding in sidebar: upgrade to Space Grotesk */
-[data-theme='hermes-os'] aside .font-semibold {
+[data-theme='relo-os'] aside .font-semibold {
   font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
   letter-spacing: -0.02em;
 }

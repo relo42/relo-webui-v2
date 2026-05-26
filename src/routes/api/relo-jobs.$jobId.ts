@@ -4,13 +4,13 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { isAuthenticated } from '../../server/auth-middleware'
 import {
-  HERMES_API,
-  HERMES_UPGRADE_INSTRUCTIONS,
+  RELO_API,
+  RELO_UPGRADE_INSTRUCTIONS,
   ensureGatewayProbed,
   getCapabilities,
 } from '../../server/gateway-capabilities'
 
-export const Route = createFileRoute('/api/hermes-jobs/$jobId')({
+export const Route = createFileRoute('/api/relo-jobs/$jobId')({
   server: {
     handlers: {
       GET: async ({ request, params }) => {
@@ -23,7 +23,7 @@ export const Route = createFileRoute('/api/hermes-jobs/$jobId')({
         if (!getCapabilities().jobs) {
           return new Response(
             JSON.stringify({
-              error: `Gateway does not support /api/jobs. ${HERMES_UPGRADE_INSTRUCTIONS}`,
+              error: `Gateway does not support /api/jobs. ${RELO_UPGRADE_INSTRUCTIONS}`,
             }),
             { status: 404, headers: { 'Content-Type': 'application/json' } },
           )
@@ -32,8 +32,8 @@ export const Route = createFileRoute('/api/hermes-jobs/$jobId')({
         // Support sub-actions: /api/hermes-jobs/:id/output, /pause, /resume, /run
         const subPath = url.searchParams.get('action') || ''
         const target = subPath
-          ? `${HERMES_API}/api/jobs/${params.jobId}/${subPath}${url.search}`
-          : `${HERMES_API}/api/jobs/${params.jobId}`
+          ? `${RELO_API}/api/jobs/${params.jobId}/${subPath}${url.search}`
+          : `${RELO_API}/api/jobs/${params.jobId}`
         const res = await fetch(target)
         return new Response(await res.text(), {
           status: res.status,
@@ -50,7 +50,7 @@ export const Route = createFileRoute('/api/hermes-jobs/$jobId')({
         if (!getCapabilities().jobs) {
           return new Response(
             JSON.stringify({
-              error: `Gateway does not support /api/jobs. ${HERMES_UPGRADE_INSTRUCTIONS}`,
+              error: `Gateway does not support /api/jobs. ${RELO_UPGRADE_INSTRUCTIONS}`,
             }),
             { status: 404, headers: { 'Content-Type': 'application/json' } },
           )
@@ -59,8 +59,8 @@ export const Route = createFileRoute('/api/hermes-jobs/$jobId')({
         const action = url.searchParams.get('action') || ''
         const body = await request.text()
         const target = action
-          ? `${HERMES_API}/api/jobs/${params.jobId}/${action}`
-          : `${HERMES_API}/api/jobs/${params.jobId}`
+          ? `${RELO_API}/api/jobs/${params.jobId}/${action}`
+          : `${RELO_API}/api/jobs/${params.jobId}`
         const res = await fetch(target, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -81,13 +81,13 @@ export const Route = createFileRoute('/api/hermes-jobs/$jobId')({
         if (!getCapabilities().jobs) {
           return new Response(
             JSON.stringify({
-              error: `Gateway does not support /api/jobs. ${HERMES_UPGRADE_INSTRUCTIONS}`,
+              error: `Gateway does not support /api/jobs. ${RELO_UPGRADE_INSTRUCTIONS}`,
             }),
             { status: 404, headers: { 'Content-Type': 'application/json' } },
           )
         }
         const body = await request.text()
-        const res = await fetch(`${HERMES_API}/api/jobs/${params.jobId}`, {
+        const res = await fetch(`${RELO_API}/api/jobs/${params.jobId}`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body,
@@ -107,12 +107,12 @@ export const Route = createFileRoute('/api/hermes-jobs/$jobId')({
         if (!getCapabilities().jobs) {
           return new Response(
             JSON.stringify({
-              error: `Gateway does not support /api/jobs. ${HERMES_UPGRADE_INSTRUCTIONS}`,
+              error: `Gateway does not support /api/jobs. ${RELO_UPGRADE_INSTRUCTIONS}`,
             }),
             { status: 404, headers: { 'Content-Type': 'application/json' } },
           )
         }
-        const res = await fetch(`${HERMES_API}/api/jobs/${params.jobId}`, {
+        const res = await fetch(`${RELO_API}/api/jobs/${params.jobId}`, {
           method: 'DELETE',
         })
         return new Response(await res.text(), {

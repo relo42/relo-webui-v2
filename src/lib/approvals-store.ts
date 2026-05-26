@@ -118,7 +118,7 @@ export function addApproval(
     agentName,
     action,
     context,
-    source: typeof payload.source === 'string' ? payload.source : 'hermes',
+    source: 'relo',
   }
 
   _store.set(id, entry)

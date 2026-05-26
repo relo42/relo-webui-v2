@@ -11,7 +11,7 @@ import {
   YAxis,
 } from 'recharts'
 import type { ReactNode } from 'react'
-import type { HermesSession } from '@/server/hermes-api'
+import type { ReloSession } from '@/server/relo-api'
 import { cn } from '@/lib/utils'
 
 // ── Helpers ──────────────────────────────────────────────────────
@@ -193,7 +193,7 @@ function MetricTile({
 
 // ── Activity Chart ───────────────────────────────────────────────
 
-function ActivityChart({ sessions }: { sessions: Array<HermesSession> }) {
+function ActivityChart({ sessions }: { sessions: Array<ReloSession> }) {
   const chartData = useMemo(() => {
     const dayMap = new Map<string, { sessions: number; messages: number }>()
     const now = Date.now() / 1000
@@ -535,7 +535,7 @@ function SessionRow({
   maxTokens,
   onClick,
 }: {
-  session: HermesSession
+  session: ReloSession
   maxTokens: number
   onClick: () => void
 }) {
@@ -606,7 +606,7 @@ export function DashboardScreen() {
         tool_call_count: (s.tool_call_count as number | undefined) ?? 0,
         input_tokens: (s.tokenCount as number | undefined) ?? 0,
         output_tokens: 0,
-      })) as Array<HermesSession>
+      })) as Array<ReloSession>
     },
     staleTime: 10_000,
     refetchInterval: 30_000,
@@ -652,15 +652,15 @@ export function DashboardScreen() {
 
   return (
     <div className="min-h-full px-4 py-4 md:px-8 md:py-6 lg:px-10 space-y-5 pb-28">
-      {/* ── Header: Hermes Logo + Quick Actions ── */}
+      {/* ── Header: Relo Logo + Quick Actions ── */}
       <div className="flex flex-col items-center gap-3 py-3">
         <img
-          src="/hermes-avatar.webp"
-          alt="Hermes"
+          src="/relo-logo.png"
+          alt="Relo"
           className="size-12 md:size-14 rounded-xl shadow-md shadow-indigo-500/10 border border-[var(--theme-border)]"
         />
         <h1 className="text-sm font-semibold text-ink tracking-wide">
-          Hermes Studio
+          Relo WebUI
         </h1>
         <div className="mt-1 grid w-full max-w-2xl grid-cols-2 gap-2 sm:grid-cols-4">
           <QuickAction

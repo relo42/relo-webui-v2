@@ -7,7 +7,7 @@ import {
   getGatewayCapabilities,
   getSession,
   toSessionSummary,
-} from '../../../server/hermes-api'
+} from '../../../server/relo-api'
 
 export const Route = createFileRoute('/api/sessions/$sessionKey/status')({
   server: {

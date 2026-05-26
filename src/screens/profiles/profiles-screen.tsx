@@ -286,7 +286,7 @@ export function ProfilesScreen() {
           </div>
           <p className="mt-1 text-sm text-[var(--theme-muted)]">
             Browse and manage Hermes profiles stored under{' '}
-            <span className="font-mono">~/.hermes/profiles</span>.
+            <span className="font-mono">~/.relo/relo-agent/profiles</span>.
           </p>
         </div>
         <Button onClick={() => setCreateOpen(true)} className="gap-2">
@@ -588,7 +588,7 @@ export function ProfilesScreen() {
                   <p className="text-xs text-primary-500 dark:text-neutral-400">
                     Profiles are stored under{' '}
                     <code className="rounded bg-primary-100 px-1 py-0.5 font-mono text-[11px] dark:bg-neutral-800">
-                      ~/.hermes/profiles/&lt;name&gt;/
+                      ~/.relo/relo-agent/profiles/&lt;name&gt;/
                     </code>{' '}
                     with their own config, skills, sessions, and env.
                   </p>
@@ -678,7 +678,7 @@ export function ProfilesScreen() {
                   <p className="text-xs text-emerald-700 dark:text-emerald-300">
                     This will create{' '}
                     <code className="rounded bg-emerald-100 px-1 py-0.5 font-mono text-[11px] dark:bg-emerald-900/40">
-                      ~/.hermes/profiles/{newProfileName.trim()}/
+                      ~/.relo/relo-agent/profiles/{newProfileName.trim()}/
                     </code>{' '}
                     with config.yaml
                     {cloneFrom ? ` cloned from ${cloneFrom}` : ''}, skills/, and

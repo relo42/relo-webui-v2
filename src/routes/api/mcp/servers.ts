@@ -7,7 +7,7 @@ import { isAuthenticated } from '../../../server/auth-middleware'
 import { requireJsonContentType } from '../../../server/rate-limit'
 import {
   BEARER_TOKEN,
-  HERMES_API,
+  RELO_API,
   ensureGatewayProbed,
   getCapabilities,
 } from '../../../server/gateway-capabilities'
@@ -158,7 +158,7 @@ export const Route = createFileRoute('/api/mcp/servers')({
         }
 
         try {
-          const response = await fetch(`${HERMES_API}/api/config`, {
+          const response = await fetch(`${RELO_API}/api/config`, {
             headers: authHeaders(),
           })
 
@@ -176,7 +176,7 @@ export const Route = createFileRoute('/api/mcp/servers')({
           return Response.json({
             servers: [],
             ok: false,
-            message: 'Could not reach Hermes gateway config endpoint.',
+            message: 'Could not reach Relo gateway config endpoint.',
           })
         }
       },
@@ -248,7 +248,7 @@ export const Route = createFileRoute('/api/mcp/servers')({
           return Response.json({
             ok: true,
             message:
-              'MCP servers saved to config.yaml. Reload Hermes to apply changes.',
+              'MCP servers saved to config.yaml. Reload Relo to apply changes.',
             servers,
           })
         } catch (err) {

@@ -84,7 +84,7 @@ export function DocsScreen() {
     <div className="flex h-full flex-col overflow-y-auto" style={{ background: 'var(--theme-bg)' }}>
       <div className="mx-auto w-full max-w-5xl px-6 py-10">
         <h1 style={{ color: 'var(--theme-text)', fontSize: '2.25rem', fontWeight: 800, marginBottom: '0.5rem' }}>
-          Hermes Studio Documentation
+          Relo WebUI Documentation
         </h1>
         <p style={{ color: 'var(--theme-muted)', fontSize: '1.1rem', marginBottom: '2.5rem' }}>
           Version 1.20.0 — Comprehensive technical reference for architecture, APIs, configuration, and advanced usage.
@@ -122,28 +122,28 @@ export function DocsScreen() {
         <section id="overview" style={sectionStyle}>
           <h2 style={h2Style}>1. Overview</h2>
 
-          <h3 style={h3Style}>What is Hermes Studio</h3>
+          <h3 style={h3Style}>What is Relo WebUI</h3>
           <p style={pStyle}>
-            Hermes Studio is a full-featured web-based control panel for managing, monitoring, and orchestrating AI agents running on the Hermes Gateway. It provides a rich graphical interface for chat, multi-agent coordination, task tracking, memory management, skill installation, cron job scheduling, and system observability. The application is designed as a single-page progressive web app that connects to one or more Hermes Gateway instances via HTTP and Server-Sent Events (SSE).
+            Relo WebUI is a full-featured web-based control panel for managing, monitoring, and orchestrating AI agents running on the Relo Gateway. It provides a rich graphical interface for chat, multi-agent coordination, task tracking, memory management, skill installation, cron job scheduling, and system observability. The application is designed as a single-page progressive web app that connects to one or more Relo Gateway instances via HTTP and Server-Sent Events (SSE).
           </p>
 
           <h3 style={h3Style}>Architecture</h3>
           <p style={pStyle}>
-            Hermes Studio is built on a modern full-stack TypeScript architecture:
+            Relo WebUI is built on a modern full-stack TypeScript architecture:
           </p>
           <ul style={ulStyle}>
             <li><strong>Frontend:</strong> React 19 with TypeScript, rendered client-side as an SPA.</li>
             <li><strong>Routing:</strong> TanStack Router (file-based route generation) with type-safe route params and search params.</li>
             <li><strong>Data Fetching:</strong> TanStack Query for server state management with automatic caching, refetching, and optimistic updates.</li>
             <li><strong>Build System:</strong> Vite with TanStack Start for SSR-capable bundling, HMR, and production builds.</li>
-            <li><strong>Server Layer:</strong> TanStack Start server functions handle API routes. The server process runs as a Node.js HTTP server that proxies to the Hermes Gateway.</li>
+            <li><strong>Server Layer:</strong> TanStack Start server functions handle API routes. The server process runs as a Node.js HTTP server that proxies to the Relo Gateway.</li>
             <li><strong>State Management:</strong> Zustand with persist middleware for client settings. React state and TanStack Query for ephemeral/server state.</li>
             <li><strong>Styling:</strong> Tailwind CSS 4 with a custom CSS variable theming layer. All colors are theme-aware via <code style={codeStyle}>var(--theme-*)</code> tokens.</li>
           </ul>
 
           <h3 style={h3Style}>Gateway Connection Model</h3>
           <p style={pStyle}>
-            Hermes Studio does not directly communicate with LLM providers. Instead, it connects to a Hermes Gateway server that manages agent sessions, tool execution, memory, and provider routing. The connection model works as follows:
+            Relo WebUI does not directly communicate with LLM providers. Instead, it connects to a Relo Gateway server that manages agent sessions, tool execution, memory, and provider routing. The connection model works as follows:
           </p>
           <ol style={olStyle}>
             <li>On startup, the Studio server probes the configured gateway URL to detect available capabilities.</li>
@@ -185,7 +185,7 @@ export function DocsScreen() {
         <section id="screens-reference" style={sectionStyle}>
           <h2 style={h2Style}>2. Screens Reference</h2>
           <p style={pStyle}>
-            Hermes Studio contains 18 distinct screens, each accessible via the sidebar navigation or keyboard shortcuts. Below is a reference for each screen.
+            Relo WebUI contains 18 distinct screens, each accessible via the sidebar navigation or keyboard shortcuts. Below is a reference for each screen.
           </p>
 
           <table style={tableStyle}>
@@ -309,7 +309,7 @@ export function DocsScreen() {
 
           <h3 style={h3Style}>Session Management</h3>
           <p style={pStyle}>
-            Every conversation in Hermes Studio exists within a session. Sessions are server-managed entities created on the Hermes Gateway. Each session maintains its own context window, message history, tool permissions, and memory state.
+            Every conversation in Relo WebUI exists within a session. Sessions are server-managed entities created on the Relo Gateway. Each session maintains its own context window, message history, tool permissions, and memory state.
           </p>
           <ul style={ulStyle}>
             <li><strong>Creation:</strong> Sessions are created via <code style={codeStyle}>POST /api/sessions</code> which delegates to the gateway. Each session receives a unique key (UUID format).</li>
@@ -326,7 +326,7 @@ export function DocsScreen() {
           <ol style={olStyle}>
             <li>User sends a message via <code style={codeStyle}>POST /api/sessions/send</code> which dispatches to the gateway.</li>
             <li>The client opens an SSE connection to <code style={codeStyle}>GET /api/chat-events</code> with the session key as a query parameter.</li>
-            <li>The server proxies SSE events from the Hermes Gateway, forwarding token-by-token streaming data.</li>
+            <li>The server proxies SSE events from the Relo Gateway, forwarding token-by-token streaming data.</li>
             <li>Events include: <code style={codeStyle}>message_start</code>, <code style={codeStyle}>content_delta</code>, <code style={codeStyle}>content_end</code>, <code style={codeStyle}>tool_use</code>, <code style={codeStyle}>tool_result</code>, <code style={codeStyle}>approval_required</code>, <code style={codeStyle}>error</code>.</li>
             <li>The client accumulates deltas into complete messages, updating the React state incrementally for smooth rendering.</li>
             <li>When the stream ends (either naturally or via abort), the client reconciles with the full message history from the gateway.</li>
@@ -334,7 +334,7 @@ export function DocsScreen() {
 
           <h3 style={h3Style}>Message Persistence</h3>
           <p style={pStyle}>
-            Messages are persisted by the Hermes Gateway using a tiered storage strategy:
+            Messages are persisted by the Relo Gateway using a tiered storage strategy:
           </p>
           <ul style={ulStyle}>
             <li><strong>Primary (Redis):</strong> When <code style={codeStyle}>REDIS_URL</code> is configured, messages are stored in Redis sorted sets keyed by session. This provides fast retrieval and supports TTL-based expiration.</li>
@@ -403,7 +403,7 @@ export function DocsScreen() {
 
           <h4 style={h4Style}>Template System</h4>
           <p style={pStyle}>
-            Hermes Studio includes 7 built-in crew templates plus support for user-created custom templates. Templates are categorized:
+            Relo WebUI includes 7 built-in crew templates plus support for user-created custom templates. Templates are categorized:
           </p>
           <ul style={ulStyle}>
             <li><strong>Research:</strong> Templates for investigation, analysis, and report generation.</li>
@@ -578,7 +578,7 @@ export function DocsScreen() {
 
           <h3 style={h3Style}>Cross-Linking</h3>
           <p style={pStyle}>
-            Tasks integrate with other Hermes Studio systems:
+            Tasks integrate with other Relo WebUI systems:
           </p>
           <ul style={ulStyle}>
             <li>Tasks can be created from conductor mission outputs, linking the task to the originating mission.</li>
@@ -595,7 +595,7 @@ export function DocsScreen() {
 
           <h3 style={h3Style}>Job Lifecycle</h3>
           <p style={pStyle}>
-            Cron jobs in Hermes Studio follow a lifecycle:
+            Cron jobs in Relo WebUI follow a lifecycle:
           </p>
           <ol style={olStyle}>
             <li><strong>Create:</strong> Define a job with a name, prompt/instruction, schedule, and delivery configuration.</li>
@@ -707,7 +707,7 @@ export function DocsScreen() {
 
           <h3 style={h3Style}>Skill Registry</h3>
           <p style={pStyle}>
-            Hermes Studio provides access to a registry of 2000+ skills available from skillsmp.com (the Hermes skill marketplace). Skills extend agent capabilities by providing structured instructions, tool definitions, and workflow patterns. The skills screen displays installed skills with their status (enabled/disabled) and available skills from the hub.
+            Relo WebUI provides access to a registry of 2000+ skills available from skillsmp.com (the Hermes skill marketplace). Skills extend agent capabilities by providing structured instructions, tool definitions, and workflow patterns. The skills screen displays installed skills with their status (enabled/disabled) and available skills from the hub.
           </p>
 
           <h3 style={h3Style}>Installation Flow</h3>
@@ -715,7 +715,7 @@ export function DocsScreen() {
             Skill installation follows a two-tier strategy:
           </p>
           <ol style={olStyle}>
-            <li><strong>Gateway installation:</strong> The primary path sends an install request to the Hermes Gateway via <code style={codeStyle}>POST /api/skills/install</code>. The gateway downloads the skill from the registry and places it in the skills directory.</li>
+            <li><strong>Gateway installation:</strong> The primary path sends an install request to the Relo Gateway via <code style={codeStyle}>POST /api/skills/install</code>. The gateway downloads the skill from the registry and places it in the skills directory.</li>
             <li><strong>ClawHub fallback:</strong> If gateway installation fails (older gateway version, network issues), the system falls back to the ClawHub API for skill retrieval.</li>
           </ol>
           <p style={pStyle}>
@@ -741,7 +741,7 @@ export function DocsScreen() {
 
           <h3 style={h3Style}>Built-in Personas</h3>
           <p style={pStyle}>
-            Hermes Studio ships with 8 built-in agent personas, each specialized for different task types:
+            Relo WebUI ships with 8 built-in agent personas, each specialized for different task types:
           </p>
           <table style={tableStyle}>
             <thead>
@@ -890,7 +890,7 @@ export function DocsScreen() {
         <section id="api-reference" style={sectionStyle}>
           <h2 style={h2Style}>12. API Reference</h2>
           <p style={pStyle}>
-            All API endpoints are served by the Hermes Studio server process and proxy to the Hermes Gateway where appropriate. Base path: <code style={codeStyle}>/api</code>. All mutating endpoints require <code style={codeStyle}>Content-Type: application/json</code>. Authentication is via session cookie or Bearer token.
+            All API endpoints are served by the Relo WebUI server process and proxy to the Relo Gateway where appropriate. Base path: <code style={codeStyle}>/api</code>. All mutating endpoints require <code style={codeStyle}>Content-Type: application/json</code>. Authentication is via session cookie or Bearer token.
           </p>
 
           <h3 style={h3Style}>Authentication</h3>
@@ -1146,7 +1146,7 @@ export function DocsScreen() {
               <tr><th style={thStyle}>Method</th><th style={thStyle}>Path</th><th style={thStyle}>Description</th></tr>
             </thead>
             <tbody>
-              <tr><td style={tdCodeStyle}>ANY</td><td style={tdCodeStyle}>/api/hermes-proxy/*</td><td style={tdStyle}>Transparent proxy to the Hermes Gateway. Forwards any request path and method. Used for direct gateway access from custom integrations.</td></tr>
+              <tr><td style={tdCodeStyle}>ANY</td><td style={tdCodeStyle}>/api/hermes-proxy/*</td><td style={tdStyle}>Transparent proxy to the Relo Gateway. Forwards any request path and method. Used for direct gateway access from custom integrations.</td></tr>
             </tbody>
           </table>
         </section>
@@ -1200,7 +1200,7 @@ export function DocsScreen() {
 
           <h3 style={h3Style}>Gateway Configuration</h3>
           <p style={pStyle}>
-            The Hermes Gateway is configured via <code style={codeStyle}>~/.hermes/config.yaml</code>. Studio reads and writes this configuration through the <code style={codeStyle}>/api/hermes-config</code> endpoint. Key configuration sections:
+            The Relo Gateway is configured via <code style={codeStyle}>~/.hermes/config.yaml</code>. Studio reads and writes this configuration through the <code style={codeStyle}>/api/hermes-config</code> endpoint. Key configuration sections:
           </p>
           <pre style={preStyle}>{`# ~/.hermes/config.yaml
 server:
@@ -1250,7 +1250,7 @@ jobs:
 
           <h3 style={h3Style}>File-Backed Stores</h3>
           <p style={pStyle}>
-            Several data stores use the <code style={codeStyle}>.runtime/</code> directory within the Hermes Studio installation:
+            Several data stores use the <code style={codeStyle}>.runtime/</code> directory within the Relo WebUI installation:
           </p>
           <dl style={dlStyle}>
             <dt style={dtStyle}>.runtime/crews.json</dt>
@@ -1269,12 +1269,12 @@ jobs:
               <tr><th style={thStyle}>Variable</th><th style={thStyle}>Default</th><th style={thStyle}>Description</th></tr>
             </thead>
             <tbody>
-              <tr><td style={tdCodeStyle}>HERMES_API_URL</td><td style={tdCodeStyle}>http://127.0.0.1:8642</td><td style={tdStyle}>URL of the Hermes Gateway server. The Studio server connects here for all gateway operations.</td></tr>
+              <tr><td style={tdCodeStyle}>HERMES_API_URL</td><td style={tdCodeStyle}>http://127.0.0.1:8642</td><td style={tdStyle}>URL of the Relo Gateway server. The Studio server connects here for all gateway operations.</td></tr>
               <tr><td style={tdCodeStyle}>HERMES_API_TOKEN</td><td style={tdStyle}>(none)</td><td style={tdStyle}>Bearer token for authenticating with the gateway. Sent as Authorization header on all proxy requests.</td></tr>
-              <tr><td style={tdCodeStyle}>HERMES_PASSWORD</td><td style={tdStyle}>(none)</td><td style={tdStyle}>Password required to log into Hermes Studio. When set, the login screen is shown on first visit.</td></tr>
+              <tr><td style={tdCodeStyle}>HERMES_PASSWORD</td><td style={tdStyle}>(none)</td><td style={tdStyle}>Password required to log into Relo WebUI. When set, the login screen is shown on first visit.</td></tr>
               <tr><td style={tdCodeStyle}>REDIS_URL</td><td style={tdStyle}>(none)</td><td style={tdStyle}>Redis connection URL for session token persistence. Example: redis://localhost:6379. When unset, tokens are stored in memory only.</td></tr>
               <tr><td style={tdCodeStyle}>NODE_ENV</td><td style={tdCodeStyle}>development</td><td style={tdStyle}>Environment mode. In production, error messages are sanitized and debug logging is suppressed.</td></tr>
-              <tr><td style={tdCodeStyle}>PORT</td><td style={tdCodeStyle}>3000</td><td style={tdStyle}>Port number for the Hermes Studio server.</td></tr>
+              <tr><td style={tdCodeStyle}>PORT</td><td style={tdCodeStyle}>3000</td><td style={tdStyle}>Port number for the Relo WebUI server.</td></tr>
             </tbody>
           </table>
         </section>
@@ -1287,7 +1287,7 @@ jobs:
 
           <h3 style={h3Style}>Theme System</h3>
           <p style={pStyle}>
-            Hermes Studio uses a CSS custom property theming system with 5 available themes. Themes are applied by setting the <code style={codeStyle}>data-theme</code> attribute on the document root. All themes operate in dark mode only.
+            Relo WebUI uses a CSS custom property theming system with 5 available themes. Themes are applied by setting the <code style={codeStyle}>data-theme</code> attribute on the document root. All themes operate in dark mode only.
           </p>
           <table style={tableStyle}>
             <thead>
@@ -1333,7 +1333,7 @@ jobs:
 
           <h3 style={h3Style}>Component Library</h3>
           <p style={pStyle}>
-            Hermes Studio uses a design system component library for consistent UI patterns:
+            Relo WebUI uses a design system component library for consistent UI patterns:
           </p>
           <dl style={dlStyle}>
             <dt style={dtStyle}>Card</dt>
@@ -1352,7 +1352,7 @@ jobs:
 
           <h3 style={h3Style}>Icon Library</h3>
           <p style={pStyle}>
-            Hermes Studio uses <strong>HugeIcons</strong> (<code style={codeStyle}>@hugeicons/react</code> with <code style={codeStyle}>@hugeicons/core-free-icons</code>) as its primary icon library. Icons are imported individually by name and rendered via the <code style={codeStyle}>HugeiconsIcon</code> component. The icon set provides consistent 24px stroke icons with adjustable size and color props.
+            Relo WebUI uses <strong>HugeIcons</strong> (<code style={codeStyle}>@hugeicons/react</code> with <code style={codeStyle}>@hugeicons/core-free-icons</code>) as its primary icon library. Icons are imported individually by name and rendered via the <code style={codeStyle}>HugeiconsIcon</code> component. The icon set provides consistent 24px stroke icons with adjustable size and color props.
           </p>
 
           <h3 style={h3Style}>Typography and Spacing</h3>
@@ -1378,7 +1378,7 @@ jobs:
 
           <h3 style={h3Style}>Capability Probing</h3>
           <p style={pStyle}>
-            On server startup and periodically every 120 seconds, Hermes Studio probes the configured gateway to determine available API groups. The probing process:
+            On server startup and periodically every 120 seconds, Relo WebUI probes the configured gateway to determine available API groups. The probing process:
           </p>
           <ol style={olStyle}>
             <li>Send a GET request to the gateway health endpoint with a 3-second timeout.</li>
@@ -1414,7 +1414,7 @@ jobs:
 
           <h3 style={h3Style}>Session Persistence Backends</h3>
           <p style={pStyle}>
-            The Hermes Gateway supports two persistence backends for session data:
+            The Relo Gateway supports two persistence backends for session data:
           </p>
           <dl style={dlStyle}>
             <dt style={dtStyle}>Redis</dt>
@@ -1445,7 +1445,7 @@ jobs:
 
           <h3 style={h3Style}>Authentication Strategies</h3>
           <p style={pStyle}>
-            Hermes Studio supports multiple authentication methods:
+            Relo WebUI supports multiple authentication methods:
           </p>
           <ul style={ulStyle}>
             <li><strong>Password authentication:</strong> When <code style={codeStyle}>HERMES_PASSWORD</code> is set, users must authenticate via a login form. On success, a 32-byte cryptographically random session token is generated and stored.</li>
@@ -1507,7 +1507,7 @@ jobs:
         <section id="keyboard-shortcuts" style={sectionStyle}>
           <h2 style={h2Style}>17. Keyboard Shortcuts</h2>
           <p style={pStyle}>
-            Hermes Studio provides keyboard shortcuts for fast navigation and common actions. Modifier keys: Ctrl on Windows/Linux, Cmd on macOS.
+            Relo WebUI provides keyboard shortcuts for fast navigation and common actions. Modifier keys: Ctrl on Windows/Linux, Cmd on macOS.
           </p>
 
           <h3 style={h3Style}>Global Navigation</h3>
@@ -1602,7 +1602,7 @@ jobs:
 
         {/* Footer */}
         <div style={{ textAlign: 'center', padding: '2rem 0', color: 'var(--theme-muted)', fontSize: '0.85rem' }}>
-          <p>Hermes Studio Documentation v1.20.0</p>
+          <p>Relo WebUI Documentation v1.20.0</p>
           <p style={{ marginTop: '0.25rem' }}>Built with React 19, TanStack Router, TanStack Query, and Vite.</p>
         </div>
       </div>

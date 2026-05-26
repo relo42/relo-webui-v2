@@ -94,7 +94,7 @@ export const Route = createFileRoute('/api/systemd-control')({
 
         if (action === 'install') {
           const template = await readFile(TEMPLATE_PATH, 'utf8')
-          const unit = template.replaceAll('HERMES_INSTALL_DIR', INSTALL_DIR)
+          const unit = template.replaceAll('RELO_INSTALL_DIR', INSTALL_DIR)
           await mkdir(UNIT_DIR, { recursive: true })
           await writeFile(UNIT_PATH, unit, 'utf8')
           await runSystemctl('daemon-reload')

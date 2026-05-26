@@ -1,13 +1,12 @@
 /**
- * Hermes FastAPI Client
+ * Relo Gateway FastAPI Client
  *
- * HTTP client for the Hermes FastAPI backend (default: http://127.0.0.1:8642).
- * Replaces legacy WebSocket connection for the Relo WebUI fork.
+ * HTTP client for the Relo Agent gateway backend (default: http://127.0.0.1:8642).
  */
 
 import {
   BEARER_TOKEN,
-  HERMES_API,
+  RELO_API,
   SESSIONS_API_UNAVAILABLE_MESSAGE,
   ensureGatewayProbed,
   getCapabilities,
@@ -17,11 +16,11 @@ import {
 const _authHeaders = (): Record<string, string> =>
   BEARER_TOKEN ? { Authorization: `Bearer ${BEARER_TOKEN}` } : {}
 
-console.log(`[hermes-api] Configured API: ${HERMES_API}`)
+console.log(`[relo-api] Configured API: ${RELO_API}`)
 
 // ── Types ─────────────────────────────────────────────────────────
 
-export type HermesSession = {
+export type ReloSession = {
   id: string
   source?: string
   user_id?: string | null
@@ -38,7 +37,7 @@ export type HermesSession = {
   last_active?: number | null
 }
 
-export type HermesMessage = {
+export type ReloMessage = {
   id: number
   session_id: string
   role: string
@@ -51,7 +50,7 @@ export type HermesMessage = {
   finish_reason?: string | null
 }
 
-export type HermesConfig = {
+export type ReloConfig = {
   model?: string
   provider?: string
   [key: string]: unknown
@@ -59,56 +58,56 @@ export type HermesConfig = {
 
 // ── Helpers ───────────────────────────────────────────────────────
 
-async function hermesGet<T>(path: string): Promise<T> {
-  const res = await fetch(`${HERMES_API}${path}`, { headers: _authHeaders() })
+async function reloGet<T>(path: string): Promise<T> {
+  const res = await fetch(`${RELO_API}${path}`, { headers: _authHeaders() })
   if (!res.ok) {
     const body = await res.text().catch(() => '')
-    throw new Error(`Hermes API ${path}: ${res.status} ${body}`)
+    throw new Error(`Relo API ${path}: ${res.status} ${body}`)
   }
   return res.json() as Promise<T>
 }
 
-async function hermesPost<T>(path: string, body?: unknown): Promise<T> {
-  const res = await fetch(`${HERMES_API}${path}`, {
+async function reloPost<T>(path: string, body?: unknown): Promise<T> {
+  const res = await fetch(`${RELO_API}${path}`, {
     method: 'POST',
     headers: { ..._authHeaders(), 'Content-Type': 'application/json' },
     body: body ? JSON.stringify(body) : undefined,
   })
   if (!res.ok) {
     const text = await res.text().catch(() => '')
-    throw new Error(`Hermes API POST ${path}: ${res.status} ${text}`)
+    throw new Error(`Relo API POST ${path}: ${res.status} ${text}`)
   }
   return res.json() as Promise<T>
 }
 
-async function hermesPatch<T>(path: string, body: unknown): Promise<T> {
-  const res = await fetch(`${HERMES_API}${path}`, {
+async function reloPatch<T>(path: string, body: unknown): Promise<T> {
+  const res = await fetch(`${RELO_API}${path}`, {
     method: 'PATCH',
     headers: { ..._authHeaders(), 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   })
   if (!res.ok) {
     const text = await res.text().catch(() => '')
-    throw new Error(`Hermes API PATCH ${path}: ${res.status} ${text}`)
+    throw new Error(`Relo API PATCH ${path}: ${res.status} ${text}`)
   }
   return res.json() as Promise<T>
 }
 
-async function hermesDeleteReq(path: string): Promise<void> {
-  const res = await fetch(`${HERMES_API}${path}`, {
+async function reloDeleteReq(path: string): Promise<void> {
+  const res = await fetch(`${RELO_API}${path}`, {
     method: 'DELETE',
     headers: _authHeaders(),
   })
   if (!res.ok) {
     const text = await res.text().catch(() => '')
-    throw new Error(`Hermes API DELETE ${path}: ${res.status} ${text}`)
+    throw new Error(`Relo API DELETE ${path}: ${res.status} ${text}`)
   }
 }
 
 // ── Health ────────────────────────────────────────────────────────
 
 export async function checkHealth(): Promise<{ status: string }> {
-  return hermesGet('/health')
+  return reloGet('/health')
 }
 
 // ── Sessions ─────────────────────────────────────────────────────
@@ -116,15 +115,15 @@ export async function checkHealth(): Promise<{ status: string }> {
 export async function listSessions(
   limit = 50,
   offset = 0,
-): Promise<Array<HermesSession>> {
-  const resp = await hermesGet<{ items: Array<HermesSession>; total: number }>(
+): Promise<Array<ReloSession>> {
+  const resp = await reloGet<{ items: Array<ReloSession>; total: number }>(
     `/api/sessions?limit=${limit}&offset=${offset}`,
   )
   return resp.items
 }
 
-export async function getSession(sessionId: string): Promise<HermesSession> {
-  const resp = await hermesGet<{ session: HermesSession }>(
+export async function getSession(sessionId: string): Promise<ReloSession> {
+  const resp = await reloGet<{ session: ReloSession }>(
     `/api/sessions/${sessionId}`,
   )
   return resp.session
@@ -134,8 +133,8 @@ export async function createSession(opts?: {
   id?: string
   title?: string
   model?: string
-}): Promise<HermesSession> {
-  const resp = await hermesPost<{ session: HermesSession }>(
+}): Promise<ReloSession> {
+  const resp = await reloPost<{ session: ReloSession }>(
     '/api/sessions',
     opts || {},
   )
@@ -145,8 +144,8 @@ export async function createSession(opts?: {
 export async function updateSession(
   sessionId: string,
   updates: { title?: string },
-): Promise<HermesSession> {
-  const resp = await hermesPatch<{ session: HermesSession }>(
+): Promise<ReloSession> {
+  const resp = await reloPatch<{ session: ReloSession }>(
     `/api/sessions/${sessionId}`,
     updates,
   )
@@ -154,13 +153,13 @@ export async function updateSession(
 }
 
 export async function deleteSession(sessionId: string): Promise<void> {
-  return hermesDeleteReq(`/api/sessions/${sessionId}`)
+  return reloDeleteReq(`/api/sessions/${sessionId}`)
 }
 
 export async function getMessages(
   sessionId: string,
-): Promise<Array<HermesMessage>> {
-  const resp = await hermesGet<{ items: Array<HermesMessage>; total: number }>(
+): Promise<Array<ReloMessage>> {
+  const resp = await reloGet<{ items: Array<ReloMessage>; total: number }>(
     `/api/sessions/${sessionId}/messages`,
   )
   return resp.items
@@ -170,25 +169,24 @@ export async function searchSessions(
   query: string,
   limit = 20,
 ): Promise<{ query: string; count: number; results: Array<unknown> }> {
-  return hermesGet(
+  return reloGet(
     `/api/sessions/search?q=${encodeURIComponent(query)}&limit=${limit}`,
   )
 }
 
 export async function forkSession(
   sessionId: string,
-): Promise<{ session: HermesSession; forked_from: string }> {
-  return hermesPost(`/api/sessions/${sessionId}/fork`)
+): Promise<{ session: ReloSession; forked_from: string }> {
+  return reloPost(`/api/sessions/${sessionId}/fork`)
 }
 
-// ── Conversion helpers (Hermes → Chat format) ─────────────────
+// ── Conversion helpers (Relo → Chat format) ─────────────────
 
-/** Convert a HermesMessage to the ChatMessage format the frontend expects */
+/** Convert a ReloMessage to the ChatMessage format the frontend expects */
 export function toChatMessage(
-  msg: HermesMessage,
+  msg: ReloMessage,
   options?: { historyIndex?: number },
 ): Record<string, unknown> {
-  // Accept either parsed arrays from FastAPI or legacy JSON strings.
   let toolCalls: Array<unknown> | undefined
   if (Array.isArray(msg.tool_calls)) {
     toolCalls = msg.tool_calls
@@ -200,10 +198,8 @@ export function toChatMessage(
     }
   }
 
-  // Build content array
   const content: Array<Record<string, unknown>> = []
 
-  // Build streamToolCalls array for separate pill rendering and content blocks
   const streamToolCallsArr: Array<Record<string, unknown>> = []
   if (msg.role === 'assistant' && toolCalls && Array.isArray(toolCalls)) {
     for (const tc of toolCalls) {
@@ -264,9 +260,9 @@ export function toChatMessage(
   }
 }
 
-/** Convert a HermesSession to the session summary format the frontend expects */
+/** Convert a ReloSession to the session summary format the frontend expects */
 export function toSessionSummary(
-  session: HermesSession,
+  session: ReloSession,
 ): Record<string, unknown> {
   return {
     key: session.id,
@@ -307,7 +303,7 @@ type StreamChatOptions = {
 }
 
 /**
- * Send a chat message and stream SSE events from Hermes FastAPI.
+ * Send a chat message and stream SSE events from the Relo gateway.
  * Returns a promise that resolves when the stream ends.
  */
 export async function streamChat(
@@ -321,7 +317,7 @@ export async function streamChat(
   opts: StreamChatOptions,
 ): Promise<void> {
   const res = await fetch(
-    `${HERMES_API}/api/sessions/${sessionId}/chat/stream`,
+    `${RELO_API}/api/sessions/${sessionId}/chat/stream`,
     {
       method: 'POST',
       headers: { ..._authHeaders(), 'Content-Type': 'application/json' },
@@ -332,7 +328,7 @@ export async function streamChat(
 
   if (!res.ok) {
     const text = await res.text().catch(() => '')
-    throw new Error(`Hermes chat stream: ${res.status} ${text}`)
+    throw new Error(`Relo chat stream: ${res.status} ${text}`)
   }
 
   const reader = res.body?.getReader()
@@ -376,7 +372,7 @@ export async function sendChat(
   const msg =
     typeof messageOrOpts === 'string' ? messageOrOpts : messageOrOpts.message
   const mdl = typeof messageOrOpts === 'string' ? model : messageOrOpts.model
-  return hermesPost(`/api/sessions/${sessionId}/chat`, {
+  return reloPost(`/api/sessions/${sessionId}/chat`, {
     message: msg,
     model: mdl,
   })
@@ -385,33 +381,33 @@ export async function sendChat(
 // ── Memory ───────────────────────────────────────────────────────
 
 export async function getMemory(): Promise<unknown> {
-  return hermesGet('/api/memory')
+  return reloGet('/api/memory')
 }
 
 // ── Skills ───────────────────────────────────────────────────────
 
 export async function listSkills(): Promise<unknown> {
-  return hermesGet('/api/skills')
+  return reloGet('/api/skills')
 }
 
 export async function getSkill(name: string): Promise<unknown> {
-  return hermesGet(`/api/skills/${encodeURIComponent(name)}`)
+  return reloGet(`/api/skills/${encodeURIComponent(name)}`)
 }
 
 export async function getSkillCategories(): Promise<unknown> {
-  return hermesGet('/api/skills/categories')
+  return reloGet('/api/skills/categories')
 }
 
 // ── Config ───────────────────────────────────────────────────────
 
-export async function getConfig(): Promise<HermesConfig> {
-  return hermesGet<HermesConfig>('/api/config')
+export async function getConfig(): Promise<ReloConfig> {
+  return reloGet<ReloConfig>('/api/config')
 }
 
 export async function patchConfig(
   patch: Record<string, unknown>,
 ): Promise<Record<string, unknown>> {
-  return hermesPatch<Record<string, unknown>>('/api/config', patch)
+  return reloPatch<Record<string, unknown>>('/api/config', patch)
 }
 
 // ── Models ───────────────────────────────────────────────────────
@@ -420,14 +416,14 @@ export async function listModels(): Promise<{
   object: string
   data: Array<{ id: string; object: string }>
 }> {
-  return hermesGet('/v1/models')
+  return reloGet('/v1/models')
 }
 
 // ── Connection check ─────────────────────────────────────────────
 
-export async function isHermesAvailable(): Promise<boolean> {
+export async function isReloAvailable(): Promise<boolean> {
   try {
-    const res = await fetch(`${HERMES_API}/health`, {
+    const res = await fetch(`${RELO_API}/health`, {
       signal: AbortSignal.timeout(3000),
     })
     if (!res.ok) {
@@ -445,6 +441,6 @@ export async function isHermesAvailable(): Promise<boolean> {
 export {
   ensureGatewayProbed,
   getCapabilities as getGatewayCapabilities,
-  HERMES_API,
+  RELO_API,
   SESSIONS_API_UNAVAILABLE_MESSAGE,
 }

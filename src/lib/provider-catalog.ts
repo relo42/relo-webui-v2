@@ -9,7 +9,7 @@ export type ProviderInfo = {
   configExample: string
 }
 
-export const HERMES_CONFIG_PATH = '~/.relo/relo-agent/config.yaml'
+export const RELO_CONFIG_PATH = '~/.relo/relo-agent/config.yaml'
 
 export const PROVIDER_CATALOG: Array<ProviderInfo> = [
   {

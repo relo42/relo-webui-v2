@@ -13,8 +13,8 @@ import {
   ensureGatewayProbed,
   getGatewayCapabilities,
   sendChat,
-  HERMES_API,
-} from '../../server/hermes-api'
+  RELO_API,
+} from '../../server/relo-api'
 
 export const Route = createFileRoute('/api/approvals/$approvalId/deny')({
   server: {
@@ -38,7 +38,7 @@ export const Route = createFileRoute('/api/approvals/$approvalId/deny')({
         if (caps.sessions) {
           try {
             const res = await fetch(
-              `${HERMES_API}/api/sessions/${sessionKey}/deny`,
+              `${RELO_API}/api/sessions/${sessionKey}/deny`,
               {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

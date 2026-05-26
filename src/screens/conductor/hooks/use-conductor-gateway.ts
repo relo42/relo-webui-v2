@@ -384,7 +384,7 @@ function workersLookComplete(workers: ConductorWorker[], staleAfterMs: number): 
 }
 
 function prettifyCronLabel(value: string): string {
-  // Hermes cron sessions are keyed `cron_<jobId>_<YYYYMMDD>_<HHMMSS>`
+  // Relo cron sessions are keyed `cron_<jobId>_<YYYYMMDD>_<HHMMSS>`
   // and Conductor names jobs `conductor-<unix_ms>`. Strip both to a
   // human-friendly tag instead of leaking the raw runtime key.
   const cronMatch = value.match(/^cron[_:]([0-9a-f]{6,})/i)

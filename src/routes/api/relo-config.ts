@@ -1,6 +1,6 @@
 /**
- * Hermes Config API — read/write ~/.hermes/config.yaml and ~/.hermes/.env
- * Gives the web UI the same config power as `hermes setup`
+ * Relo Config API — read/write ~/.relo/config.yaml and ~/.relo/.env
+ * Gives the web UI the same config power as `relo setup`
  */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -16,7 +16,7 @@ const RELO_HOME = path.join(os.homedir(), '.relo', 'relo-agent')
 const CONFIG_PATH = path.join(RELO_HOME, 'config.yaml')
 const ENV_PATH = path.join(RELO_HOME, '.env')
 
-// Known Hermes providers
+// Known Relo providers
 const PROVIDERS = [
   { id: 'nous', name: 'Nous Portal', authType: 'oauth', envKeys: [] },
   { id: 'openai-codex', name: 'OpenAI Codex', authType: 'oauth', envKeys: [] },
@@ -122,7 +122,7 @@ function checkAuthStore(providerId: string): {
   source: string
   maskedKey?: string
 } {
-  // Check Hermes auth store
+  // Check Relo auth store
   for (const storePath of [
     path.join(os.homedir(), '.relo', 'relo-agent', 'auth-profiles.json'),
     path.join(
@@ -144,8 +144,8 @@ function checkAuthStore(providerId: string): {
         const p = value as Record<string, unknown>
         const token = String(p.token || p.key || p.access || '').trim()
         if (token) {
-          const source = storePath.includes('.hermes')
-            ? 'hermes-auth-store'
+          const source = storePath.includes('.relo')
+            ? 'relo-auth-store'
             : 'openclaw-auth-store'
           return { hasToken: true, source, maskedKey: maskKey(token) }
         }
@@ -155,7 +155,7 @@ function checkAuthStore(providerId: string): {
   return { hasToken: false, source: '' }
 }
 
-export const Route = createFileRoute('/api/hermes-config')({
+export const Route = createFileRoute('/api/relo-config')({
   server: {
     handlers: {
       GET: async ({ request }) => {
@@ -212,7 +212,7 @@ export const Route = createFileRoute('/api/hermes-config')({
           providers: providerStatus,
           activeProvider,
           activeModel,
-          hermesHome: RELO_HOME,
+          reloHome: RELO_HOME,
         })
       },
 
@@ -277,7 +277,7 @@ export const Route = createFileRoute('/api/hermes-config')({
 
         return Response.json({
           ok: true,
-          message: 'Config updated. Restart Hermes to apply changes.',
+          message: 'Config updated. Restart Relo to apply changes.',
         })
       },
     },

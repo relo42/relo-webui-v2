@@ -4,7 +4,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { isAuthenticated } from '../../server/auth-middleware'
 import { requireJsonContentType } from '../../server/rate-limit'
-import { deleteSession } from '../../server/hermes-api'
+import { deleteSession } from '../../server/relo-api'
 import { ensureGatewayProbed } from '../../server/gateway-capabilities'
 
 export const Route = createFileRoute('/api/conductor-stop')({

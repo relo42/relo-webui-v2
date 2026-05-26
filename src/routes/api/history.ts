@@ -6,7 +6,7 @@ import {
   getMessages,
   listSessions,
   toChatMessage,
-} from '../../server/hermes-api'
+} from '../../server/relo-api'
 import {
   getLocalMessages,
   listLocalSessions,

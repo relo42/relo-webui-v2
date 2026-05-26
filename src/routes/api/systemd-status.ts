@@ -1,7 +1,7 @@
 /**
  * GET /api/systemd-status
  *
- * Returns the systemd user service status for hermes-studio.
+ * Returns the systemd user service status for relo-webui.
  * Works on Linux with systemd; returns `available: false` on other platforms.
  */
 import { createFileRoute } from '@tanstack/react-router'
@@ -14,7 +14,7 @@ import { isAuthenticated } from '../../server/auth-middleware'
 
 const execFileAsync = promisify(execFile)
 
-const UNIT = 'hermes-studio'
+const UNIT = 'relo-webui'
 const UNIT_PATH = join(
   homedir(),
   '.config',

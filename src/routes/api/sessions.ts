@@ -12,7 +12,7 @@ import {
   listSessions,
   toSessionSummary,
   updateSession,
-} from '../../server/hermes-api'
+} from '../../server/relo-api'
 import {
   deleteLocalSession,
   ensureLocalSession,

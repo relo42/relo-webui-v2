@@ -308,7 +308,7 @@ function HermesContent() {
   if (!configAvailable) {
     return (
       <BackendUnavailableState
-        feature="Hermes Agent Settings"
+        feature="Relo Gateway Settings"
         description={getUnavailableReason('config')}
       />
     )
@@ -1134,10 +1134,10 @@ function _AdvancedContent() {
     <div className="space-y-4">
       <SectionHeader
         title="Advanced"
-        description="Hermes endpoint, connectivity, and data management."
+        description="Relo Gateway endpoint, connectivity, and data management."
       />
       <div className={SETTINGS_CARD_CLASS}>
-        <Row label="Hermes URL" description="Used for API requests from Studio">
+        <Row label="Relo Gateway URL" description="Used for API requests from Studio">
           <div className="w-full max-w-sm">
             <Input
               type="url"
@@ -1145,7 +1145,7 @@ function _AdvancedContent() {
               value={settings.hermesUrl}
               onChange={(e) => validateAndUpdateUrl(e.target.value)}
               className="h-8 w-full rounded-lg border-primary-200 text-sm"
-              aria-label="Hermes URL"
+              aria-label="Relo Gateway URL"
               aria-invalid={!!urlError}
               aria-describedby={urlError ? urlErrorId : undefined}
             />
@@ -1167,7 +1167,7 @@ function _AdvancedContent() {
             value={settings.hermesApiKey}
             onChange={(e) => updateSettings({ hermesApiKey: e.target.value })}
             className="h-8 w-full max-w-sm rounded-lg border-primary-200 text-sm"
-            aria-label="Hermes API server key"
+            aria-label="Relo Gateway API key"
           />
         </Row>
         <Row label="Connection status">
@@ -1758,7 +1758,7 @@ export function SettingsDialog({
                 Settings
               </DialogTitle>
               <DialogDescription className="sr-only">
-                Configure Hermes Studio
+                Configure Relo WebUI
               </DialogDescription>
             </div>
             <DialogClose

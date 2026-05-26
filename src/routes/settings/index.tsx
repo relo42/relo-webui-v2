@@ -375,24 +375,24 @@ function SettingsRoute() {
 
         {/* Content area */}
         <div className="flex-1 min-w-0 flex flex-col gap-4">
-          {/* ── Hermes Agent ──────────────────────────────────── */}
+          {/* ── Relo Agent ──────────────────────────────────── */}
           {activeSection === 'hermes' && (
-            <HermesConfigSection activeView="hermes" />
+            <ReloConfigSection activeView="hermes" />
           )}
           {activeSection === 'agent' && (
-            <HermesConfigSection activeView="agent" />
+            <ReloConfigSection activeView="agent" />
           )}
           {activeSection === 'routing' && (
-            <HermesConfigSection activeView="routing" />
+            <ReloConfigSection activeView="routing" />
           )}
           {activeSection === 'voice' && (
-            <HermesConfigSection activeView="voice" />
+            <ReloConfigSection activeView="voice" />
           )}
           {activeSection === 'display' && (
-            <HermesConfigSection activeView="display" />
+            <ReloConfigSection activeView="display" />
           )}
           {activeSection === 'permissions' && (
-            <HermesConfigSection activeView="permissions" />
+            <ReloConfigSection activeView="permissions" />
           )}
 
           {/* ── Appearance ──────────────────────────────────────── */}
@@ -637,12 +637,12 @@ function SettingsRoute() {
 // ── Identity File Editor ──────────────────────────────────────────────────────
 
 /**
- * Reads and writes the three identity-defining files in ~/.hermes:
+ * Reads and writes the three identity-defining files in ~/.relo/relo-agent:
  *   • SOUL.md      — agent persona / tone (loaded every message, no restart)
  *   • persona.md   — startup directives (read at session start)
  *   • CLAUDE.md    — coding guidelines / project context
  *
- * All I/O goes through GET|POST /api/files which is scoped to ~/.hermes.
+ * All I/O goes through GET|POST /api/files which is scoped to ~/.relo/relo-agent.
  */
 const IDENTITY_FILES = [
   {
@@ -753,7 +753,7 @@ function IdentityFileEditor() {
   return (
     <SettingsSection
       title="Identity Files"
-      description="Edit the files that define your Hermes agent's personality, startup behaviour, and coding guidelines. Changes are saved directly to ~/.hermes."
+      description="Edit the files that define your Hermes agent's personality, startup behaviour, and coding guidelines. Changes are saved directly to ~/.relo/relo-agent."
       icon={UserIcon}
     >
       {/* File picker */}
@@ -921,7 +921,7 @@ function IntegrationsSection() {
     <>
     <SettingsSection
       title="Integrations"
-      description="Connect external services used by Hermes Studio features."
+      description="Connect external services used by Relo WebUI features."
       icon={SparklesIcon}
     >
       <SettingsRow
@@ -1004,7 +1004,7 @@ function IntegrationsSection() {
   )
 }
 
-// ── Platforms Section (chat platform tokens → ~/.hermes/.env) ────────────────
+// ── Platforms Section (chat platform tokens → ~/.relo/relo-agent/.env) ────────────────
 
 const CHAT_PLATFORMS = [
   {
@@ -1075,7 +1075,7 @@ const CHAT_PLATFORMS = [
 type PlatformKey = (typeof CHAT_PLATFORMS)[number]['key']
 
 function PlatformsSection() {
-  // envVars: current values from ~/.hermes/.env (masked)
+  // envVars: current values from ~/.relo/relo-agent/.env (masked)
   const [envStatus, setEnvStatus] = useState<Record<string, boolean>>({})
   const [inputs, setInputs] = useState<Record<string, string>>({})
   const [saving, setSaving] = useState<Record<string, boolean>>({})
@@ -1162,7 +1162,7 @@ function PlatformsSection() {
   return (
     <SettingsSection
       title="Messaging Platforms"
-      description="Connect Hermes to chat platforms. Tokens are saved to ~/.hermes/.env and take effect after restarting the gateway with hermes --gateway."
+      description="Connect Hermes to chat platforms. Tokens are saved to ~/.relo/relo-agent/.env and take effect after restarting the gateway with hermes --gateway."
       icon={MessageMultiple01Icon}
     >
       {CHAT_PLATFORMS.map((platform) => (
@@ -1446,7 +1446,7 @@ function ChatDisplaySection() {
           />
         </SettingsRow>
       </SettingsSection>
-      {/* Mobile Navigation removed — not relevant for Hermes Studio */}
+      {/* Mobile Navigation removed — not relevant for Relo WebUI */}
     </>
   )
 }
@@ -1535,7 +1535,7 @@ function _LoaderStyleSection() {
   )
 }
 
-// ── Hermes Agent Configuration ──────────────────────────────────────
+// ── Relo Agent Configuration ──────────────────────────────────────
 
 type HermesProvider = {
   id: string
@@ -1546,7 +1546,7 @@ type HermesProvider = {
   maskedKeys: Record<string, string>
 }
 
-type HermesConfigData = {
+type ReloConfigData = {
   config: Record<string, unknown>
   providers: Array<HermesProvider>
   activeProvider: string
@@ -1603,12 +1603,12 @@ function AddPlatformOverride({
   )
 }
 
-function HermesConfigSection({
+function ReloConfigSection({
   activeView = 'hermes',
 }: {
   activeView?: 'hermes' | 'agent' | 'permissions' | 'routing' | 'voice' | 'display'
 }) {
-  const [data, setData] = useState<HermesConfigData | null>(null)
+  const [data, setData] = useState<ReloConfigData | null>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [saveMessage, setSaveMessage] = useState<string | null>(null)
@@ -1631,7 +1631,7 @@ function HermesConfigSection({
   >([])
   const [loadingModels, setLoadingModels] = useState(false)
 
-  const syncInputsFromData = useCallback((configData: HermesConfigData) => {
+  const syncInputsFromData = useCallback((configData: ReloConfigData) => {
     setModelInput(configData.activeModel || '')
     setProviderInput(configData.activeProvider || '')
     setBaseUrlInput((configData.config?.base_url as string) || '')
@@ -1639,7 +1639,7 @@ function HermesConfigSection({
 
   const fetchConfig = useCallback(async () => {
     const res = await fetch('/api/hermes-config')
-    const configData = (await res.json()) as HermesConfigData
+    const configData = (await res.json()) as ReloConfigData
     setData(configData)
     syncInputsFromData(configData)
     return configData
@@ -1731,7 +1731,7 @@ function HermesConfigSection({
   if (loading) {
     return (
       <SettingsSection
-        title="Hermes Agent"
+        title="Relo Agent"
         description="Loading configuration..."
         icon={Settings02Icon}
       >
@@ -1746,12 +1746,12 @@ function HermesConfigSection({
   if (!data) {
     return (
       <SettingsSection
-        title="Hermes Agent"
+        title="Relo Agent"
         description="Could not load Hermes configuration."
         icon={Settings02Icon}
       >
         <p className="text-sm" style={{ color: 'var(--theme-muted)' }}>
-          Make sure Hermes Agent is running on localhost:8642
+          Make sure Relo Agent is running on localhost:8642
         </p>
       </SettingsSection>
     )
@@ -1811,7 +1811,7 @@ function HermesConfigSection({
     <>
       <SettingsSection
         title="Model & Provider"
-        description="Configure the default AI model for Hermes Agent."
+        description="Configure the default AI model for Relo Agent."
         icon={SourceCodeSquareIcon}
       >
         <SettingsRow
@@ -1920,7 +1920,7 @@ function HermesConfigSection({
 
       <SettingsSection
         title="API Keys"
-        description="Manage provider API keys stored in ~/.hermes/.env"
+        description="Manage provider API keys stored in ~/.relo/relo-agent/.env"
         icon={CloudIcon}
       >
         {data.providers
@@ -1997,7 +1997,7 @@ function HermesConfigSection({
 
       <SettingsSection
         title="Memory"
-        description="Configure Hermes Agent memory and user profiles."
+        description="Configure Relo Agent memory and user profiles."
         icon={UserIcon}
       >
         <SettingsRow
@@ -2121,7 +2121,7 @@ function HermesConfigSection({
 
       <SettingsSection
         title="About"
-        description="Hermes Agent runtime information."
+        description="Relo Agent runtime information."
         icon={Notification03Icon}
       >
         <SettingsRow
@@ -3379,7 +3379,7 @@ function SystemdAutoStartSection() {
           }}
         >
           <p style={{ ...headingStyle, fontWeight: 400, ...muteStyle }}>
-            You can still start Hermes Studio manually:
+            You can still start Relo WebUI manually:
           </p>
           <pre
             style={{

@@ -40,7 +40,7 @@ type SkillSummary = {
   security: SecurityRisk
 }
 
-const HERMES_API_URL = process.env.HERMES_API_URL || 'http://127.0.0.1:8642'
+const RELO_API_URL = process.env.RELO_API_URL || 'http://127.0.0.1:8642'
 
 const KNOWN_CATEGORIES = [
   'All',
@@ -130,7 +130,7 @@ function writeLocalPrefs(prefs: StudioPrefs): void {
 
 // ── Local skills scanner ────────────────────────────────────────────────────
 // Reads skills installed at ~/.relo/relo-agent/skills/{category}/{skill-name}/SKILL.md
-// Used when the Hermes gateway doesn't expose /api/skills.
+// Used when the Relo gateway doesn't expose /api/skills.
 
 const LOCAL_SKILLS_DIR = path.join(os.homedir(), '.relo', 'relo-agent', 'skills')
 
@@ -332,10 +332,10 @@ function normalizeSkill(value: unknown): SkillSummary | null {
 }
 
 async function fetchHermesSkills(): Promise<Array<SkillSummary>> {
-  const response = await fetch(`${HERMES_API_URL}/api/skills`)
+  const response = await fetch(`${RELO_API_URL}/api/skills`)
   if (!response.ok) {
     const body = await response.text().catch(() => '')
-    throw new Error(body || `Hermes skills request failed (${response.status})`)
+    throw new Error(body || `Relo skills request failed (${response.status})`)
   }
 
   const payload = (await response.json()) as unknown

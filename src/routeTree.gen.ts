@@ -46,22 +46,22 @@ import { Route as ApiSystemdStatusRouteImport } from './routes/api/systemd-statu
 import { Route as ApiSystemdControlRouteImport } from './routes/api/systemd-control'
 import { Route as ApiSystemHealthRouteImport } from './routes/api/system-health'
 import { Route as ApiStateAnalyticsRouteImport } from './routes/api/state-analytics'
-import { Route as ApiStartHermesRouteImport } from './routes/api/start-hermes'
+import { Route as ApiStartReloRouteImport } from './routes/api/start-relo'
 import { Route as ApiStartAgentRouteImport } from './routes/api/start-agent'
 import { Route as ApiSkillsRouteImport } from './routes/api/skills'
 import { Route as ApiSessionsRouteImport } from './routes/api/sessions'
 import { Route as ApiSessionStatusRouteImport } from './routes/api/session-status'
 import { Route as ApiSendStreamRouteImport } from './routes/api/send-stream'
 import { Route as ApiSendRouteImport } from './routes/api/send'
+import { Route as ApiReloRunsRouteImport } from './routes/api/relo-runs'
+import { Route as ApiReloJobsRouteImport } from './routes/api/relo-jobs'
+import { Route as ApiReloConfigRouteImport } from './routes/api/relo-config'
 import { Route as ApiProviderUsageRouteImport } from './routes/api/provider-usage'
 import { Route as ApiPingRouteImport } from './routes/api/ping'
 import { Route as ApiPathsRouteImport } from './routes/api/paths'
 import { Route as ApiModelsRouteImport } from './routes/api/models'
 import { Route as ApiMemoryRouteImport } from './routes/api/memory'
 import { Route as ApiHistoryRouteImport } from './routes/api/history'
-import { Route as ApiHermesRunsRouteImport } from './routes/api/hermes-runs'
-import { Route as ApiHermesJobsRouteImport } from './routes/api/hermes-jobs'
-import { Route as ApiHermesConfigRouteImport } from './routes/api/hermes-config'
 import { Route as ApiGatewayStatusRouteImport } from './routes/api/gateway-status'
 import { Route as ApiFilesRouteImport } from './routes/api/files'
 import { Route as ApiEventsRouteImport } from './routes/api/events'
@@ -83,6 +83,8 @@ import { Route as ApiSkillsSettingsRouteImport } from './routes/api/skills/setti
 import { Route as ApiSkillsInstallRouteImport } from './routes/api/skills/install'
 import { Route as ApiSkillsHubSearchRouteImport } from './routes/api/skills/hub-search'
 import { Route as ApiSessionsSendRouteImport } from './routes/api/sessions/send'
+import { Route as ApiReloProxySplatRouteImport } from './routes/api/relo-proxy/$'
+import { Route as ApiReloJobsJobIdRouteImport } from './routes/api/relo-jobs.$jobId'
 import { Route as ApiProfilesRenameRouteImport } from './routes/api/profiles/rename'
 import { Route as ApiProfilesReadRouteImport } from './routes/api/profiles/read'
 import { Route as ApiProfilesListRouteImport } from './routes/api/profiles/list'
@@ -101,8 +103,6 @@ import { Route as ApiKnowledgeSearchRouteImport } from './routes/api/knowledge/s
 import { Route as ApiKnowledgeReadRouteImport } from './routes/api/knowledge/read'
 import { Route as ApiKnowledgeListRouteImport } from './routes/api/knowledge/list'
 import { Route as ApiKnowledgeGraphRouteImport } from './routes/api/knowledge/graph'
-import { Route as ApiHermesProxySplatRouteImport } from './routes/api/hermes-proxy/$'
-import { Route as ApiHermesJobsJobIdRouteImport } from './routes/api/hermes-jobs.$jobId'
 import { Route as ApiEventsReplayRouteImport } from './routes/api/events/replay'
 import { Route as ApiCrewsCrewIdRouteImport } from './routes/api/crews/$crewId'
 import { Route as ApiAgentsAgentIdRouteImport } from './routes/api/agents/$agentId'
@@ -110,7 +110,7 @@ import { Route as ApiCrewsTemplatesIndexRouteImport } from './routes/api/crews/t
 import { Route as ApiTasksTaskIdMoveRouteImport } from './routes/api/tasks/$taskId.move'
 import { Route as ApiSessionsSessionKeyStatusRouteImport } from './routes/api/sessions/$sessionKey.status'
 import { Route as ApiSessionsSessionKeyActiveRunRouteImport } from './routes/api/sessions/$sessionKey.active-run'
-import { Route as ApiHermesRunsRunIdEventsRouteImport } from './routes/api/hermes-runs.$runId.events'
+import { Route as ApiReloRunsRunIdEventsRouteImport } from './routes/api/relo-runs.$runId.events'
 import { Route as ApiCrewsTemplatesIdRouteImport } from './routes/api/crews/templates/$id'
 import { Route as ApiCrewsCrewIdWorkflowRouteImport } from './routes/api/crews/$crewId.workflow'
 import { Route as ApiCrewsCrewIdUsageRouteImport } from './routes/api/crews/$crewId.usage'
@@ -304,9 +304,9 @@ const ApiStateAnalyticsRoute = ApiStateAnalyticsRouteImport.update({
   path: '/api/state-analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiStartHermesRoute = ApiStartHermesRouteImport.update({
-  id: '/api/start-hermes',
-  path: '/api/start-hermes',
+const ApiStartReloRoute = ApiStartReloRouteImport.update({
+  id: '/api/start-relo',
+  path: '/api/start-relo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiStartAgentRoute = ApiStartAgentRouteImport.update({
@@ -339,6 +339,21 @@ const ApiSendRoute = ApiSendRouteImport.update({
   path: '/api/send',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiReloRunsRoute = ApiReloRunsRouteImport.update({
+  id: '/api/relo-runs',
+  path: '/api/relo-runs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiReloJobsRoute = ApiReloJobsRouteImport.update({
+  id: '/api/relo-jobs',
+  path: '/api/relo-jobs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiReloConfigRoute = ApiReloConfigRouteImport.update({
+  id: '/api/relo-config',
+  path: '/api/relo-config',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiProviderUsageRoute = ApiProviderUsageRouteImport.update({
   id: '/api/provider-usage',
   path: '/api/provider-usage',
@@ -367,21 +382,6 @@ const ApiMemoryRoute = ApiMemoryRouteImport.update({
 const ApiHistoryRoute = ApiHistoryRouteImport.update({
   id: '/api/history',
   path: '/api/history',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiHermesRunsRoute = ApiHermesRunsRouteImport.update({
-  id: '/api/hermes-runs',
-  path: '/api/hermes-runs',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiHermesJobsRoute = ApiHermesJobsRouteImport.update({
-  id: '/api/hermes-jobs',
-  path: '/api/hermes-jobs',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiHermesConfigRoute = ApiHermesConfigRouteImport.update({
-  id: '/api/hermes-config',
-  path: '/api/hermes-config',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiGatewayStatusRoute = ApiGatewayStatusRouteImport.update({
@@ -489,6 +489,16 @@ const ApiSessionsSendRoute = ApiSessionsSendRouteImport.update({
   path: '/send',
   getParentRoute: () => ApiSessionsRoute,
 } as any)
+const ApiReloProxySplatRoute = ApiReloProxySplatRouteImport.update({
+  id: '/api/relo-proxy/$',
+  path: '/api/relo-proxy/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiReloJobsJobIdRoute = ApiReloJobsJobIdRouteImport.update({
+  id: '/$jobId',
+  path: '/$jobId',
+  getParentRoute: () => ApiReloJobsRoute,
+} as any)
 const ApiProfilesRenameRoute = ApiProfilesRenameRouteImport.update({
   id: '/api/profiles/rename',
   path: '/api/profiles/rename',
@@ -579,16 +589,6 @@ const ApiKnowledgeGraphRoute = ApiKnowledgeGraphRouteImport.update({
   path: '/api/knowledge/graph',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiHermesProxySplatRoute = ApiHermesProxySplatRouteImport.update({
-  id: '/api/hermes-proxy/$',
-  path: '/api/hermes-proxy/$',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiHermesJobsJobIdRoute = ApiHermesJobsJobIdRouteImport.update({
-  id: '/$jobId',
-  path: '/$jobId',
-  getParentRoute: () => ApiHermesJobsRoute,
-} as any)
 const ApiEventsReplayRoute = ApiEventsReplayRouteImport.update({
   id: '/replay',
   path: '/replay',
@@ -626,12 +626,11 @@ const ApiSessionsSessionKeyActiveRunRoute =
     path: '/$sessionKey/active-run',
     getParentRoute: () => ApiSessionsRoute,
   } as any)
-const ApiHermesRunsRunIdEventsRoute =
-  ApiHermesRunsRunIdEventsRouteImport.update({
-    id: '/$runId/events',
-    path: '/$runId/events',
-    getParentRoute: () => ApiHermesRunsRoute,
-  } as any)
+const ApiReloRunsRunIdEventsRoute = ApiReloRunsRunIdEventsRouteImport.update({
+  id: '/$runId/events',
+  path: '/$runId/events',
+  getParentRoute: () => ApiReloRunsRoute,
+} as any)
 const ApiCrewsTemplatesIdRoute = ApiCrewsTemplatesIdRouteImport.update({
   id: '/api/crews/templates/$id',
   path: '/api/crews/templates/$id',
@@ -702,22 +701,22 @@ export interface FileRoutesByFullPath {
   '/api/events': typeof ApiEventsRouteWithChildren
   '/api/files': typeof ApiFilesRoute
   '/api/gateway-status': typeof ApiGatewayStatusRoute
-  '/api/hermes-config': typeof ApiHermesConfigRoute
-  '/api/hermes-jobs': typeof ApiHermesJobsRouteWithChildren
-  '/api/hermes-runs': typeof ApiHermesRunsRouteWithChildren
   '/api/history': typeof ApiHistoryRoute
   '/api/memory': typeof ApiMemoryRouteWithChildren
   '/api/models': typeof ApiModelsRoute
   '/api/paths': typeof ApiPathsRoute
   '/api/ping': typeof ApiPingRoute
   '/api/provider-usage': typeof ApiProviderUsageRoute
+  '/api/relo-config': typeof ApiReloConfigRoute
+  '/api/relo-jobs': typeof ApiReloJobsRouteWithChildren
+  '/api/relo-runs': typeof ApiReloRunsRouteWithChildren
   '/api/send': typeof ApiSendRoute
   '/api/send-stream': typeof ApiSendStreamRoute
   '/api/session-status': typeof ApiSessionStatusRoute
   '/api/sessions': typeof ApiSessionsRouteWithChildren
   '/api/skills': typeof ApiSkillsRouteWithChildren
   '/api/start-agent': typeof ApiStartAgentRoute
-  '/api/start-hermes': typeof ApiStartHermesRoute
+  '/api/start-relo': typeof ApiStartReloRoute
   '/api/state-analytics': typeof ApiStateAnalyticsRoute
   '/api/system-health': typeof ApiSystemHealthRoute
   '/api/systemd-control': typeof ApiSystemdControlRoute
@@ -737,8 +736,6 @@ export interface FileRoutesByFullPath {
   '/api/agents/$agentId': typeof ApiAgentsAgentIdRoute
   '/api/crews/$crewId': typeof ApiCrewsCrewIdRouteWithChildren
   '/api/events/replay': typeof ApiEventsReplayRoute
-  '/api/hermes-jobs/$jobId': typeof ApiHermesJobsJobIdRoute
-  '/api/hermes-proxy/$': typeof ApiHermesProxySplatRoute
   '/api/knowledge/graph': typeof ApiKnowledgeGraphRoute
   '/api/knowledge/list': typeof ApiKnowledgeListRoute
   '/api/knowledge/read': typeof ApiKnowledgeReadRoute
@@ -757,6 +754,8 @@ export interface FileRoutesByFullPath {
   '/api/profiles/list': typeof ApiProfilesListRoute
   '/api/profiles/read': typeof ApiProfilesReadRoute
   '/api/profiles/rename': typeof ApiProfilesRenameRoute
+  '/api/relo-jobs/$jobId': typeof ApiReloJobsJobIdRoute
+  '/api/relo-proxy/$': typeof ApiReloProxySplatRoute
   '/api/sessions/send': typeof ApiSessionsSendRoute
   '/api/skills/hub-search': typeof ApiSkillsHubSearchRoute
   '/api/skills/install': typeof ApiSkillsInstallRoute
@@ -775,7 +774,7 @@ export interface FileRoutesByFullPath {
   '/api/crews/$crewId/usage': typeof ApiCrewsCrewIdUsageRoute
   '/api/crews/$crewId/workflow': typeof ApiCrewsCrewIdWorkflowRoute
   '/api/crews/templates/$id': typeof ApiCrewsTemplatesIdRoute
-  '/api/hermes-runs/$runId/events': typeof ApiHermesRunsRunIdEventsRoute
+  '/api/relo-runs/$runId/events': typeof ApiReloRunsRunIdEventsRoute
   '/api/sessions/$sessionKey/active-run': typeof ApiSessionsSessionKeyActiveRunRoute
   '/api/sessions/$sessionKey/status': typeof ApiSessionsSessionKeyStatusRoute
   '/api/tasks/$taskId/move': typeof ApiTasksTaskIdMoveRoute
@@ -812,22 +811,22 @@ export interface FileRoutesByTo {
   '/api/events': typeof ApiEventsRouteWithChildren
   '/api/files': typeof ApiFilesRoute
   '/api/gateway-status': typeof ApiGatewayStatusRoute
-  '/api/hermes-config': typeof ApiHermesConfigRoute
-  '/api/hermes-jobs': typeof ApiHermesJobsRouteWithChildren
-  '/api/hermes-runs': typeof ApiHermesRunsRouteWithChildren
   '/api/history': typeof ApiHistoryRoute
   '/api/memory': typeof ApiMemoryRouteWithChildren
   '/api/models': typeof ApiModelsRoute
   '/api/paths': typeof ApiPathsRoute
   '/api/ping': typeof ApiPingRoute
   '/api/provider-usage': typeof ApiProviderUsageRoute
+  '/api/relo-config': typeof ApiReloConfigRoute
+  '/api/relo-jobs': typeof ApiReloJobsRouteWithChildren
+  '/api/relo-runs': typeof ApiReloRunsRouteWithChildren
   '/api/send': typeof ApiSendRoute
   '/api/send-stream': typeof ApiSendStreamRoute
   '/api/session-status': typeof ApiSessionStatusRoute
   '/api/sessions': typeof ApiSessionsRouteWithChildren
   '/api/skills': typeof ApiSkillsRouteWithChildren
   '/api/start-agent': typeof ApiStartAgentRoute
-  '/api/start-hermes': typeof ApiStartHermesRoute
+  '/api/start-relo': typeof ApiStartReloRoute
   '/api/state-analytics': typeof ApiStateAnalyticsRoute
   '/api/system-health': typeof ApiSystemHealthRoute
   '/api/systemd-control': typeof ApiSystemdControlRoute
@@ -847,8 +846,6 @@ export interface FileRoutesByTo {
   '/api/agents/$agentId': typeof ApiAgentsAgentIdRoute
   '/api/crews/$crewId': typeof ApiCrewsCrewIdRouteWithChildren
   '/api/events/replay': typeof ApiEventsReplayRoute
-  '/api/hermes-jobs/$jobId': typeof ApiHermesJobsJobIdRoute
-  '/api/hermes-proxy/$': typeof ApiHermesProxySplatRoute
   '/api/knowledge/graph': typeof ApiKnowledgeGraphRoute
   '/api/knowledge/list': typeof ApiKnowledgeListRoute
   '/api/knowledge/read': typeof ApiKnowledgeReadRoute
@@ -867,6 +864,8 @@ export interface FileRoutesByTo {
   '/api/profiles/list': typeof ApiProfilesListRoute
   '/api/profiles/read': typeof ApiProfilesReadRoute
   '/api/profiles/rename': typeof ApiProfilesRenameRoute
+  '/api/relo-jobs/$jobId': typeof ApiReloJobsJobIdRoute
+  '/api/relo-proxy/$': typeof ApiReloProxySplatRoute
   '/api/sessions/send': typeof ApiSessionsSendRoute
   '/api/skills/hub-search': typeof ApiSkillsHubSearchRoute
   '/api/skills/install': typeof ApiSkillsInstallRoute
@@ -885,7 +884,7 @@ export interface FileRoutesByTo {
   '/api/crews/$crewId/usage': typeof ApiCrewsCrewIdUsageRoute
   '/api/crews/$crewId/workflow': typeof ApiCrewsCrewIdWorkflowRoute
   '/api/crews/templates/$id': typeof ApiCrewsTemplatesIdRoute
-  '/api/hermes-runs/$runId/events': typeof ApiHermesRunsRunIdEventsRoute
+  '/api/relo-runs/$runId/events': typeof ApiReloRunsRunIdEventsRoute
   '/api/sessions/$sessionKey/active-run': typeof ApiSessionsSessionKeyActiveRunRoute
   '/api/sessions/$sessionKey/status': typeof ApiSessionsSessionKeyStatusRoute
   '/api/tasks/$taskId/move': typeof ApiTasksTaskIdMoveRoute
@@ -924,22 +923,22 @@ export interface FileRoutesById {
   '/api/events': typeof ApiEventsRouteWithChildren
   '/api/files': typeof ApiFilesRoute
   '/api/gateway-status': typeof ApiGatewayStatusRoute
-  '/api/hermes-config': typeof ApiHermesConfigRoute
-  '/api/hermes-jobs': typeof ApiHermesJobsRouteWithChildren
-  '/api/hermes-runs': typeof ApiHermesRunsRouteWithChildren
   '/api/history': typeof ApiHistoryRoute
   '/api/memory': typeof ApiMemoryRouteWithChildren
   '/api/models': typeof ApiModelsRoute
   '/api/paths': typeof ApiPathsRoute
   '/api/ping': typeof ApiPingRoute
   '/api/provider-usage': typeof ApiProviderUsageRoute
+  '/api/relo-config': typeof ApiReloConfigRoute
+  '/api/relo-jobs': typeof ApiReloJobsRouteWithChildren
+  '/api/relo-runs': typeof ApiReloRunsRouteWithChildren
   '/api/send': typeof ApiSendRoute
   '/api/send-stream': typeof ApiSendStreamRoute
   '/api/session-status': typeof ApiSessionStatusRoute
   '/api/sessions': typeof ApiSessionsRouteWithChildren
   '/api/skills': typeof ApiSkillsRouteWithChildren
   '/api/start-agent': typeof ApiStartAgentRoute
-  '/api/start-hermes': typeof ApiStartHermesRoute
+  '/api/start-relo': typeof ApiStartReloRoute
   '/api/state-analytics': typeof ApiStateAnalyticsRoute
   '/api/system-health': typeof ApiSystemHealthRoute
   '/api/systemd-control': typeof ApiSystemdControlRoute
@@ -959,8 +958,6 @@ export interface FileRoutesById {
   '/api/agents/$agentId': typeof ApiAgentsAgentIdRoute
   '/api/crews/$crewId': typeof ApiCrewsCrewIdRouteWithChildren
   '/api/events/replay': typeof ApiEventsReplayRoute
-  '/api/hermes-jobs/$jobId': typeof ApiHermesJobsJobIdRoute
-  '/api/hermes-proxy/$': typeof ApiHermesProxySplatRoute
   '/api/knowledge/graph': typeof ApiKnowledgeGraphRoute
   '/api/knowledge/list': typeof ApiKnowledgeListRoute
   '/api/knowledge/read': typeof ApiKnowledgeReadRoute
@@ -979,6 +976,8 @@ export interface FileRoutesById {
   '/api/profiles/list': typeof ApiProfilesListRoute
   '/api/profiles/read': typeof ApiProfilesReadRoute
   '/api/profiles/rename': typeof ApiProfilesRenameRoute
+  '/api/relo-jobs/$jobId': typeof ApiReloJobsJobIdRoute
+  '/api/relo-proxy/$': typeof ApiReloProxySplatRoute
   '/api/sessions/send': typeof ApiSessionsSendRoute
   '/api/skills/hub-search': typeof ApiSkillsHubSearchRoute
   '/api/skills/install': typeof ApiSkillsInstallRoute
@@ -997,7 +996,7 @@ export interface FileRoutesById {
   '/api/crews/$crewId/usage': typeof ApiCrewsCrewIdUsageRoute
   '/api/crews/$crewId/workflow': typeof ApiCrewsCrewIdWorkflowRoute
   '/api/crews/templates/$id': typeof ApiCrewsTemplatesIdRoute
-  '/api/hermes-runs/$runId/events': typeof ApiHermesRunsRunIdEventsRoute
+  '/api/relo-runs/$runId/events': typeof ApiReloRunsRunIdEventsRoute
   '/api/sessions/$sessionKey/active-run': typeof ApiSessionsSessionKeyActiveRunRoute
   '/api/sessions/$sessionKey/status': typeof ApiSessionsSessionKeyStatusRoute
   '/api/tasks/$taskId/move': typeof ApiTasksTaskIdMoveRoute
@@ -1037,22 +1036,22 @@ export interface FileRouteTypes {
     | '/api/events'
     | '/api/files'
     | '/api/gateway-status'
-    | '/api/hermes-config'
-    | '/api/hermes-jobs'
-    | '/api/hermes-runs'
     | '/api/history'
     | '/api/memory'
     | '/api/models'
     | '/api/paths'
     | '/api/ping'
     | '/api/provider-usage'
+    | '/api/relo-config'
+    | '/api/relo-jobs'
+    | '/api/relo-runs'
     | '/api/send'
     | '/api/send-stream'
     | '/api/session-status'
     | '/api/sessions'
     | '/api/skills'
     | '/api/start-agent'
-    | '/api/start-hermes'
+    | '/api/start-relo'
     | '/api/state-analytics'
     | '/api/system-health'
     | '/api/systemd-control'
@@ -1072,8 +1071,6 @@ export interface FileRouteTypes {
     | '/api/agents/$agentId'
     | '/api/crews/$crewId'
     | '/api/events/replay'
-    | '/api/hermes-jobs/$jobId'
-    | '/api/hermes-proxy/$'
     | '/api/knowledge/graph'
     | '/api/knowledge/list'
     | '/api/knowledge/read'
@@ -1092,6 +1089,8 @@ export interface FileRouteTypes {
     | '/api/profiles/list'
     | '/api/profiles/read'
     | '/api/profiles/rename'
+    | '/api/relo-jobs/$jobId'
+    | '/api/relo-proxy/$'
     | '/api/sessions/send'
     | '/api/skills/hub-search'
     | '/api/skills/install'
@@ -1110,7 +1109,7 @@ export interface FileRouteTypes {
     | '/api/crews/$crewId/usage'
     | '/api/crews/$crewId/workflow'
     | '/api/crews/templates/$id'
-    | '/api/hermes-runs/$runId/events'
+    | '/api/relo-runs/$runId/events'
     | '/api/sessions/$sessionKey/active-run'
     | '/api/sessions/$sessionKey/status'
     | '/api/tasks/$taskId/move'
@@ -1147,22 +1146,22 @@ export interface FileRouteTypes {
     | '/api/events'
     | '/api/files'
     | '/api/gateway-status'
-    | '/api/hermes-config'
-    | '/api/hermes-jobs'
-    | '/api/hermes-runs'
     | '/api/history'
     | '/api/memory'
     | '/api/models'
     | '/api/paths'
     | '/api/ping'
     | '/api/provider-usage'
+    | '/api/relo-config'
+    | '/api/relo-jobs'
+    | '/api/relo-runs'
     | '/api/send'
     | '/api/send-stream'
     | '/api/session-status'
     | '/api/sessions'
     | '/api/skills'
     | '/api/start-agent'
-    | '/api/start-hermes'
+    | '/api/start-relo'
     | '/api/state-analytics'
     | '/api/system-health'
     | '/api/systemd-control'
@@ -1182,8 +1181,6 @@ export interface FileRouteTypes {
     | '/api/agents/$agentId'
     | '/api/crews/$crewId'
     | '/api/events/replay'
-    | '/api/hermes-jobs/$jobId'
-    | '/api/hermes-proxy/$'
     | '/api/knowledge/graph'
     | '/api/knowledge/list'
     | '/api/knowledge/read'
@@ -1202,6 +1199,8 @@ export interface FileRouteTypes {
     | '/api/profiles/list'
     | '/api/profiles/read'
     | '/api/profiles/rename'
+    | '/api/relo-jobs/$jobId'
+    | '/api/relo-proxy/$'
     | '/api/sessions/send'
     | '/api/skills/hub-search'
     | '/api/skills/install'
@@ -1220,7 +1219,7 @@ export interface FileRouteTypes {
     | '/api/crews/$crewId/usage'
     | '/api/crews/$crewId/workflow'
     | '/api/crews/templates/$id'
-    | '/api/hermes-runs/$runId/events'
+    | '/api/relo-runs/$runId/events'
     | '/api/sessions/$sessionKey/active-run'
     | '/api/sessions/$sessionKey/status'
     | '/api/tasks/$taskId/move'
@@ -1258,22 +1257,22 @@ export interface FileRouteTypes {
     | '/api/events'
     | '/api/files'
     | '/api/gateway-status'
-    | '/api/hermes-config'
-    | '/api/hermes-jobs'
-    | '/api/hermes-runs'
     | '/api/history'
     | '/api/memory'
     | '/api/models'
     | '/api/paths'
     | '/api/ping'
     | '/api/provider-usage'
+    | '/api/relo-config'
+    | '/api/relo-jobs'
+    | '/api/relo-runs'
     | '/api/send'
     | '/api/send-stream'
     | '/api/session-status'
     | '/api/sessions'
     | '/api/skills'
     | '/api/start-agent'
-    | '/api/start-hermes'
+    | '/api/start-relo'
     | '/api/state-analytics'
     | '/api/system-health'
     | '/api/systemd-control'
@@ -1293,8 +1292,6 @@ export interface FileRouteTypes {
     | '/api/agents/$agentId'
     | '/api/crews/$crewId'
     | '/api/events/replay'
-    | '/api/hermes-jobs/$jobId'
-    | '/api/hermes-proxy/$'
     | '/api/knowledge/graph'
     | '/api/knowledge/list'
     | '/api/knowledge/read'
@@ -1313,6 +1310,8 @@ export interface FileRouteTypes {
     | '/api/profiles/list'
     | '/api/profiles/read'
     | '/api/profiles/rename'
+    | '/api/relo-jobs/$jobId'
+    | '/api/relo-proxy/$'
     | '/api/sessions/send'
     | '/api/skills/hub-search'
     | '/api/skills/install'
@@ -1331,7 +1330,7 @@ export interface FileRouteTypes {
     | '/api/crews/$crewId/usage'
     | '/api/crews/$crewId/workflow'
     | '/api/crews/templates/$id'
-    | '/api/hermes-runs/$runId/events'
+    | '/api/relo-runs/$runId/events'
     | '/api/sessions/$sessionKey/active-run'
     | '/api/sessions/$sessionKey/status'
     | '/api/tasks/$taskId/move'
@@ -1370,22 +1369,22 @@ export interface RootRouteChildren {
   ApiEventsRoute: typeof ApiEventsRouteWithChildren
   ApiFilesRoute: typeof ApiFilesRoute
   ApiGatewayStatusRoute: typeof ApiGatewayStatusRoute
-  ApiHermesConfigRoute: typeof ApiHermesConfigRoute
-  ApiHermesJobsRoute: typeof ApiHermesJobsRouteWithChildren
-  ApiHermesRunsRoute: typeof ApiHermesRunsRouteWithChildren
   ApiHistoryRoute: typeof ApiHistoryRoute
   ApiMemoryRoute: typeof ApiMemoryRouteWithChildren
   ApiModelsRoute: typeof ApiModelsRoute
   ApiPathsRoute: typeof ApiPathsRoute
   ApiPingRoute: typeof ApiPingRoute
   ApiProviderUsageRoute: typeof ApiProviderUsageRoute
+  ApiReloConfigRoute: typeof ApiReloConfigRoute
+  ApiReloJobsRoute: typeof ApiReloJobsRouteWithChildren
+  ApiReloRunsRoute: typeof ApiReloRunsRouteWithChildren
   ApiSendRoute: typeof ApiSendRoute
   ApiSendStreamRoute: typeof ApiSendStreamRoute
   ApiSessionStatusRoute: typeof ApiSessionStatusRoute
   ApiSessionsRoute: typeof ApiSessionsRouteWithChildren
   ApiSkillsRoute: typeof ApiSkillsRouteWithChildren
   ApiStartAgentRoute: typeof ApiStartAgentRoute
-  ApiStartHermesRoute: typeof ApiStartHermesRoute
+  ApiStartReloRoute: typeof ApiStartReloRoute
   ApiStateAnalyticsRoute: typeof ApiStateAnalyticsRoute
   ApiSystemHealthRoute: typeof ApiSystemHealthRoute
   ApiSystemdControlRoute: typeof ApiSystemdControlRoute
@@ -1401,7 +1400,6 @@ export interface RootRouteChildren {
   CrewsIndexRoute: typeof CrewsIndexRoute
   ApiAgentsAgentIdRoute: typeof ApiAgentsAgentIdRoute
   ApiCrewsCrewIdRoute: typeof ApiCrewsCrewIdRouteWithChildren
-  ApiHermesProxySplatRoute: typeof ApiHermesProxySplatRoute
   ApiKnowledgeGraphRoute: typeof ApiKnowledgeGraphRoute
   ApiKnowledgeListRoute: typeof ApiKnowledgeListRoute
   ApiKnowledgeReadRoute: typeof ApiKnowledgeReadRoute
@@ -1416,6 +1414,7 @@ export interface RootRouteChildren {
   ApiProfilesListRoute: typeof ApiProfilesListRoute
   ApiProfilesReadRoute: typeof ApiProfilesReadRoute
   ApiProfilesRenameRoute: typeof ApiProfilesRenameRoute
+  ApiReloProxySplatRoute: typeof ApiReloProxySplatRoute
   ApiTasksTaskIdRoute: typeof ApiTasksTaskIdRouteWithChildren
   ApiAgentsIndexRoute: typeof ApiAgentsIndexRoute
   ApiAuditIndexRoute: typeof ApiAuditIndexRoute
@@ -1689,11 +1688,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiStateAnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/start-hermes': {
-      id: '/api/start-hermes'
-      path: '/api/start-hermes'
-      fullPath: '/api/start-hermes'
-      preLoaderRoute: typeof ApiStartHermesRouteImport
+    '/api/start-relo': {
+      id: '/api/start-relo'
+      path: '/api/start-relo'
+      fullPath: '/api/start-relo'
+      preLoaderRoute: typeof ApiStartReloRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/start-agent': {
@@ -1738,6 +1737,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiSendRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/relo-runs': {
+      id: '/api/relo-runs'
+      path: '/api/relo-runs'
+      fullPath: '/api/relo-runs'
+      preLoaderRoute: typeof ApiReloRunsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/relo-jobs': {
+      id: '/api/relo-jobs'
+      path: '/api/relo-jobs'
+      fullPath: '/api/relo-jobs'
+      preLoaderRoute: typeof ApiReloJobsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/relo-config': {
+      id: '/api/relo-config'
+      path: '/api/relo-config'
+      fullPath: '/api/relo-config'
+      preLoaderRoute: typeof ApiReloConfigRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/provider-usage': {
       id: '/api/provider-usage'
       path: '/api/provider-usage'
@@ -1778,27 +1798,6 @@ declare module '@tanstack/react-router' {
       path: '/api/history'
       fullPath: '/api/history'
       preLoaderRoute: typeof ApiHistoryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/hermes-runs': {
-      id: '/api/hermes-runs'
-      path: '/api/hermes-runs'
-      fullPath: '/api/hermes-runs'
-      preLoaderRoute: typeof ApiHermesRunsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/hermes-jobs': {
-      id: '/api/hermes-jobs'
-      path: '/api/hermes-jobs'
-      fullPath: '/api/hermes-jobs'
-      preLoaderRoute: typeof ApiHermesJobsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/hermes-config': {
-      id: '/api/hermes-config'
-      path: '/api/hermes-config'
-      fullPath: '/api/hermes-config'
-      preLoaderRoute: typeof ApiHermesConfigRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/gateway-status': {
@@ -1948,6 +1947,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiSessionsSendRouteImport
       parentRoute: typeof ApiSessionsRoute
     }
+    '/api/relo-proxy/$': {
+      id: '/api/relo-proxy/$'
+      path: '/api/relo-proxy/$'
+      fullPath: '/api/relo-proxy/$'
+      preLoaderRoute: typeof ApiReloProxySplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/relo-jobs/$jobId': {
+      id: '/api/relo-jobs/$jobId'
+      path: '/$jobId'
+      fullPath: '/api/relo-jobs/$jobId'
+      preLoaderRoute: typeof ApiReloJobsJobIdRouteImport
+      parentRoute: typeof ApiReloJobsRoute
+    }
     '/api/profiles/rename': {
       id: '/api/profiles/rename'
       path: '/api/profiles/rename'
@@ -2074,20 +2087,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiKnowledgeGraphRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/hermes-proxy/$': {
-      id: '/api/hermes-proxy/$'
-      path: '/api/hermes-proxy/$'
-      fullPath: '/api/hermes-proxy/$'
-      preLoaderRoute: typeof ApiHermesProxySplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/hermes-jobs/$jobId': {
-      id: '/api/hermes-jobs/$jobId'
-      path: '/$jobId'
-      fullPath: '/api/hermes-jobs/$jobId'
-      preLoaderRoute: typeof ApiHermesJobsJobIdRouteImport
-      parentRoute: typeof ApiHermesJobsRoute
-    }
     '/api/events/replay': {
       id: '/api/events/replay'
       path: '/replay'
@@ -2137,12 +2136,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiSessionsSessionKeyActiveRunRouteImport
       parentRoute: typeof ApiSessionsRoute
     }
-    '/api/hermes-runs/$runId/events': {
-      id: '/api/hermes-runs/$runId/events'
+    '/api/relo-runs/$runId/events': {
+      id: '/api/relo-runs/$runId/events'
       path: '/$runId/events'
-      fullPath: '/api/hermes-runs/$runId/events'
-      preLoaderRoute: typeof ApiHermesRunsRunIdEventsRouteImport
-      parentRoute: typeof ApiHermesRunsRoute
+      fullPath: '/api/relo-runs/$runId/events'
+      preLoaderRoute: typeof ApiReloRunsRunIdEventsRouteImport
+      parentRoute: typeof ApiReloRunsRoute
     }
     '/api/crews/templates/$id': {
       id: '/api/crews/templates/$id'
@@ -2224,30 +2223,6 @@ const ApiEventsRouteWithChildren = ApiEventsRoute._addFileChildren(
   ApiEventsRouteChildren,
 )
 
-interface ApiHermesJobsRouteChildren {
-  ApiHermesJobsJobIdRoute: typeof ApiHermesJobsJobIdRoute
-}
-
-const ApiHermesJobsRouteChildren: ApiHermesJobsRouteChildren = {
-  ApiHermesJobsJobIdRoute: ApiHermesJobsJobIdRoute,
-}
-
-const ApiHermesJobsRouteWithChildren = ApiHermesJobsRoute._addFileChildren(
-  ApiHermesJobsRouteChildren,
-)
-
-interface ApiHermesRunsRouteChildren {
-  ApiHermesRunsRunIdEventsRoute: typeof ApiHermesRunsRunIdEventsRoute
-}
-
-const ApiHermesRunsRouteChildren: ApiHermesRunsRouteChildren = {
-  ApiHermesRunsRunIdEventsRoute: ApiHermesRunsRunIdEventsRoute,
-}
-
-const ApiHermesRunsRouteWithChildren = ApiHermesRunsRoute._addFileChildren(
-  ApiHermesRunsRouteChildren,
-)
-
 interface ApiMemoryRouteChildren {
   ApiMemoryListRoute: typeof ApiMemoryListRoute
   ApiMemoryReadRoute: typeof ApiMemoryReadRoute
@@ -2264,6 +2239,30 @@ const ApiMemoryRouteChildren: ApiMemoryRouteChildren = {
 
 const ApiMemoryRouteWithChildren = ApiMemoryRoute._addFileChildren(
   ApiMemoryRouteChildren,
+)
+
+interface ApiReloJobsRouteChildren {
+  ApiReloJobsJobIdRoute: typeof ApiReloJobsJobIdRoute
+}
+
+const ApiReloJobsRouteChildren: ApiReloJobsRouteChildren = {
+  ApiReloJobsJobIdRoute: ApiReloJobsJobIdRoute,
+}
+
+const ApiReloJobsRouteWithChildren = ApiReloJobsRoute._addFileChildren(
+  ApiReloJobsRouteChildren,
+)
+
+interface ApiReloRunsRouteChildren {
+  ApiReloRunsRunIdEventsRoute: typeof ApiReloRunsRunIdEventsRoute
+}
+
+const ApiReloRunsRouteChildren: ApiReloRunsRouteChildren = {
+  ApiReloRunsRunIdEventsRoute: ApiReloRunsRunIdEventsRoute,
+}
+
+const ApiReloRunsRouteWithChildren = ApiReloRunsRoute._addFileChildren(
+  ApiReloRunsRouteChildren,
 )
 
 interface ApiSessionsRouteChildren {
@@ -2362,22 +2361,22 @@ const rootRouteChildren: RootRouteChildren = {
   ApiEventsRoute: ApiEventsRouteWithChildren,
   ApiFilesRoute: ApiFilesRoute,
   ApiGatewayStatusRoute: ApiGatewayStatusRoute,
-  ApiHermesConfigRoute: ApiHermesConfigRoute,
-  ApiHermesJobsRoute: ApiHermesJobsRouteWithChildren,
-  ApiHermesRunsRoute: ApiHermesRunsRouteWithChildren,
   ApiHistoryRoute: ApiHistoryRoute,
   ApiMemoryRoute: ApiMemoryRouteWithChildren,
   ApiModelsRoute: ApiModelsRoute,
   ApiPathsRoute: ApiPathsRoute,
   ApiPingRoute: ApiPingRoute,
   ApiProviderUsageRoute: ApiProviderUsageRoute,
+  ApiReloConfigRoute: ApiReloConfigRoute,
+  ApiReloJobsRoute: ApiReloJobsRouteWithChildren,
+  ApiReloRunsRoute: ApiReloRunsRouteWithChildren,
   ApiSendRoute: ApiSendRoute,
   ApiSendStreamRoute: ApiSendStreamRoute,
   ApiSessionStatusRoute: ApiSessionStatusRoute,
   ApiSessionsRoute: ApiSessionsRouteWithChildren,
   ApiSkillsRoute: ApiSkillsRouteWithChildren,
   ApiStartAgentRoute: ApiStartAgentRoute,
-  ApiStartHermesRoute: ApiStartHermesRoute,
+  ApiStartReloRoute: ApiStartReloRoute,
   ApiStateAnalyticsRoute: ApiStateAnalyticsRoute,
   ApiSystemHealthRoute: ApiSystemHealthRoute,
   ApiSystemdControlRoute: ApiSystemdControlRoute,
@@ -2393,7 +2392,6 @@ const rootRouteChildren: RootRouteChildren = {
   CrewsIndexRoute: CrewsIndexRoute,
   ApiAgentsAgentIdRoute: ApiAgentsAgentIdRoute,
   ApiCrewsCrewIdRoute: ApiCrewsCrewIdRouteWithChildren,
-  ApiHermesProxySplatRoute: ApiHermesProxySplatRoute,
   ApiKnowledgeGraphRoute: ApiKnowledgeGraphRoute,
   ApiKnowledgeListRoute: ApiKnowledgeListRoute,
   ApiKnowledgeReadRoute: ApiKnowledgeReadRoute,
@@ -2408,6 +2406,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiProfilesListRoute: ApiProfilesListRoute,
   ApiProfilesReadRoute: ApiProfilesReadRoute,
   ApiProfilesRenameRoute: ApiProfilesRenameRoute,
+  ApiReloProxySplatRoute: ApiReloProxySplatRoute,
   ApiTasksTaskIdRoute: ApiTasksTaskIdRouteWithChildren,
   ApiAgentsIndexRoute: ApiAgentsIndexRoute,
   ApiAuditIndexRoute: ApiAuditIndexRoute,

@@ -20,7 +20,7 @@ type AuthCheckResponse = {
   error?: string
 }
 
-type HermesConfigResponse = {
+type ReloConfigResponse = {
   activeProvider?: string
   activeModel?: string
 }
@@ -157,7 +157,7 @@ export function ModelConfigurationStep({
   setCanProceed,
 }: OnboardingStepComponentProps) {
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
-  const [config, setConfig] = useState<HermesConfigResponse | null>(null)
+  const [config, setConfig] = useState<ReloConfigResponse | null>(null)
 
   useEffect(() => {
     setCanProceed(true)
@@ -175,7 +175,7 @@ export function ModelConfigurationStep({
           throw new Error(`HTTP ${response.status}`)
         }
 
-        const data = (await response.json()) as HermesConfigResponse
+        const data = (await response.json()) as ReloConfigResponse
         if (!cancelled) {
           setConfig(data)
           setStatus('ready')

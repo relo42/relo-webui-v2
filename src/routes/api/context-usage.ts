@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { json } from '@tanstack/react-start'
 import { isAuthenticated } from '@/server/auth-middleware'
-import { BEARER_TOKEN, HERMES_API } from '@/server/gateway-capabilities'
+import { BEARER_TOKEN, RELO_API } from '@/server/gateway-capabilities'
 
 const MODEL_CONTEXT_WINDOWS: Record<string, number> = {
   'claude-opus-4-6': 200_000,
@@ -61,7 +61,7 @@ export const Route = createFileRoute('/api/context-usage')({
           if (sessionId) {
             try {
               const res = await fetch(
-                `${HERMES_API}/api/sessions/${encodeURIComponent(sessionId)}`,
+                `${RELO_API}/api/sessions/${encodeURIComponent(sessionId)}`,
                 {
                   headers: authHeaders(),
                   signal: AbortSignal.timeout(3000),
@@ -82,7 +82,7 @@ export const Route = createFileRoute('/api/context-usage')({
           if (!sessionData) {
             try {
               const listRes = await fetch(
-                `${HERMES_API}/api/sessions?limit=1`,
+                `${RELO_API}/api/sessions?limit=1`,
                 {
                   headers: authHeaders(),
                   signal: AbortSignal.timeout(3000),
@@ -150,7 +150,7 @@ export const Route = createFileRoute('/api/context-usage')({
               const targetSessionId = sessionId || String(sessionData.id || '')
               if (targetSessionId) {
                 const msgRes = await fetch(
-                  `${HERMES_API}/api/sessions/${encodeURIComponent(targetSessionId)}/messages`,
+                  `${RELO_API}/api/sessions/${encodeURIComponent(targetSessionId)}/messages`,
                   {
                     headers: authHeaders(),
                     signal: AbortSignal.timeout(5000),

@@ -1,21 +1,21 @@
-import { HERMES_API } from './gateway-capabilities'
+import { RELO_API } from './gateway-capabilities'
 
 /** Optional bearer token for authenticated OpenAI-compatible endpoints (e.g. Codex OAuth). */
-const BEARER_TOKEN = process.env.HERMES_API_TOKEN || ''
+const BEARER_TOKEN = process.env.RELO_API_TOKEN || ''
 
 /** Cached first available model from /v1/models — used as fallback when no model is specified. */
 let _cachedDefaultModel: string | null = null
 
 async function getDefaultModel(): Promise<string> {
   if (_cachedDefaultModel) return _cachedDefaultModel
-  if (process.env.HERMES_DEFAULT_MODEL) {
-    _cachedDefaultModel = process.env.HERMES_DEFAULT_MODEL
+  if (process.env.RELO_DEFAULT_MODEL) {
+    _cachedDefaultModel = process.env.RELO_DEFAULT_MODEL
     return _cachedDefaultModel
   }
   try {
     const headers: Record<string, string> = {}
     if (BEARER_TOKEN) headers['Authorization'] = `Bearer ${BEARER_TOKEN}`
-    const res = await fetch(`${HERMES_API}/v1/models`, {
+    const res = await fetch(`${RELO_API}/v1/models`, {
       headers,
       signal: AbortSignal.timeout(3_000),
     })
@@ -162,10 +162,10 @@ export async function openaiChat(
     headers['Authorization'] = `Bearer ${BEARER_TOKEN}`
   }
   if (options.sessionId) {
-    headers['X-Hermes-Session-Id'] = options.sessionId
+    headers['X-Relo-Session-Id'] = options.sessionId
   }
 
-  const response = await fetch(`${HERMES_API}/v1/chat/completions`, {
+  const response = await fetch(`${RELO_API}/v1/chat/completions`, {
     method: 'POST',
     headers,
     body: JSON.stringify(await buildRequestBody(messages, options)),

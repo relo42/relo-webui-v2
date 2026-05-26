@@ -947,14 +947,14 @@ function ChatSidebarComponent({
               >
                 <img
                   src="/hermes-avatar.webp"
-                  alt="Hermes"
+                  alt="Relo"
                   className="size-6 rounded-lg"
                 />
                 <span
                   className="text-sm font-semibold tracking-tight"
                   style={{ color: 'var(--theme-text)' }}
                 >
-                  Hermes Studio
+                  Relo WebUI
                 </span>
               </Link>
             </motion.div>

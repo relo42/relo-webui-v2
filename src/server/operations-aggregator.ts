@@ -8,7 +8,7 @@
 import type { OperationAgent, OperationAgentStatus } from '../types/operation'
 import { listCrews } from './crew-store'
 import type { CrewMemberStatus } from './crew-store'
-import { listSessions } from './hermes-api'
+import { listSessions } from './relo-api'
 
 function crewStatusToOpStatus(status: CrewMemberStatus): OperationAgentStatus {
   switch (status) {

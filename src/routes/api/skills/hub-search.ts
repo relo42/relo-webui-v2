@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { json } from '@tanstack/react-start'
 import { isAuthenticated } from '../../../server/auth-middleware'
-import { BEARER_TOKEN, HERMES_API } from '../../../server/gateway-capabilities'
+import { BEARER_TOKEN, RELO_API } from '../../../server/gateway-capabilities'
 import { readSkillsSettings } from './settings'
 
 export type HubSkillSource = 'skillsmp' | 'installed-fallback'
@@ -37,7 +37,7 @@ function skillsmpHeaders(): HeadersInit {
   }
 }
 
-function hermesAuthHeaders(): Record<string, string> {
+function reloAuthHeaders(): Record<string, string> {
   return BEARER_TOKEN ? { Authorization: `Bearer ${BEARER_TOKEN}` } : {}
 }
 
@@ -120,12 +120,12 @@ async function searchSkillsmp(
     .map((s) => normalizeSkillsmpResult(s, installedIds))
 }
 
-// ── Installed IDs from Hermes gateway ────────────────────────────────────────
+// ── Installed IDs from Relo gateway ────────────────────────────────────────
 
 async function fetchInstalledIds(): Promise<Set<string>> {
   try {
-    const res = await fetch(`${HERMES_API}/api/skills`, {
-      headers: hermesAuthHeaders(),
+    const res = await fetch(`${RELO_API}/api/skills`, {
+      headers: reloAuthHeaders(),
       signal: AbortSignal.timeout(5_000),
     })
     if (!res.ok) return new Set()

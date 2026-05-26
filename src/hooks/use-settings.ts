@@ -6,10 +6,10 @@ export type SettingsThemeMode = 'system' | 'dark'
 export type AccentColor = 'orange' | 'purple' | 'blue' | 'green'
 
 export type StudioSettings = {
-  hermesUrl: string
-  hermesToken: string
-  /** API_SERVER_KEY for non-loopback Hermes instances (v0.9.0) */
-  hermesApiKey: string
+  reloUrl: string
+  reloToken: string
+  /** API_SERVER_KEY for non-loopback Relo gateway instances */
+  reloApiKey: string
   theme: SettingsThemeMode
   accentColor: AccentColor
   editorFontSize: number
@@ -32,9 +32,9 @@ type SettingsState = {
 }
 
 export const defaultStudioSettings: StudioSettings = {
-  hermesUrl: '',
-  hermesToken: '',
-  hermesApiKey: '',
+  reloUrl: '',
+  reloToken: '',
+  reloApiKey: '',
   theme: 'system',
   accentColor: 'blue',
   editorFontSize: 13,
@@ -68,7 +68,7 @@ export const useSettingsStore = create<SettingsState>()(
       }
     },
     {
-      name: 'hermes-settings',
+      name: 'relo-settings',
       skipHydration: true,
     },
   ),

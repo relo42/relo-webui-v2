@@ -25,7 +25,7 @@ import {
   getProviderInfo,
   normalizeProviderId,
 } from '@/lib/provider-catalog'
-import { getConfig, patchConfig } from '@/server/hermes-api'
+import { getConfig, patchConfig } from '@/server/relo-api'
 import { cn } from '@/lib/utils'
 
 /**
@@ -74,11 +74,11 @@ type ProvidersScreenProps = {
   embedded?: boolean
 }
 
-type HermesConfig = Record<string, unknown>
+type ReloConfig = Record<string, unknown>
 
 type ConfigQueryResponse = {
   ok?: boolean
-  payload?: HermesConfig
+  payload?: ReloConfig
   error?: string
 }
 
@@ -271,7 +271,7 @@ const SETTINGS: Array<SettingDefinition> = [
     min: 1,
     step: 1000,
   },
-  // Thinking/reasoning settings removed — not supported by Hermes Agent
+  // Thinking/reasoning settings removed — not supported by Relo Agent
   // Legacy settings removed: bootstrap, block streaming,
   // compaction, thinking, verbose, and fast mode do not apply here.
   {
@@ -434,7 +434,7 @@ function defaultFormatValue(
 
 function getDraftValue(
   setting: SettingDefinition,
-  config: HermesConfig | undefined,
+  config: ReloConfig | undefined,
   draftValues: Record<string, string>,
 ): string {
   if (draftValues[setting.id] !== undefined) return draftValues[setting.id]
@@ -526,7 +526,7 @@ function ProviderStatusBadge({ status }: { status: ProviderStatus }) {
 
 function SettingCard(props: {
   setting: SettingDefinition
-  config: HermesConfig | undefined
+  config: ReloConfig | undefined
   draftValues: Record<string, string>
   setDraftValues: React.Dispatch<React.SetStateAction<Record<string, string>>>
   saveSetting: (payload: SaveSettingPayload) => Promise<void>
@@ -802,7 +802,7 @@ function parseModelProvider(value: unknown): ModelProviderOption {
 }
 
 function readPrimaryModelConfig(
-  config: HermesConfig | undefined,
+  config: ReloConfig | undefined,
 ): ModelConfigDraft {
   const modelBlock = readRecord(config?.model)
   const flatModel = typeof config?.model === 'string' ? config.model : ''
@@ -815,7 +815,7 @@ function readPrimaryModelConfig(
 }
 
 function readFallbackModelConfig(
-  config: HermesConfig | undefined,
+  config: ReloConfig | undefined,
 ): ModelConfigDraft {
   const fallbackBlock = readRecord(config?.fallback_model)
 
@@ -827,7 +827,7 @@ function readFallbackModelConfig(
 }
 
 function readPerformanceConfig(
-  config: HermesConfig | undefined,
+  config: ReloConfig | undefined,
 ): PerformanceDraft {
   const performanceBlock = readRecord(config?.performance)
   const staleTimeout =
@@ -1078,7 +1078,7 @@ function ActiveModelCard({
           <p className="text-sm text-[var(--theme-muted)]">
             Update the primary model, optional fallback, and stream timeout
             settings saved in{' '}
-            <code className="font-mono">~/.hermes/config.yaml</code>.
+            <code className="font-mono">~/.relo/relo-agent/config.yaml</code>.
           </p>
         </div>
         <Button
@@ -1096,7 +1096,7 @@ function ActiveModelCard({
         </p>
       ) : configQuery.error ? (
         <p className="mt-4 text-sm text-red-500">
-          Could not load config — is Hermes Agent running?
+          Could not load config — is Relo Agent running?
         </p>
       ) : (
         <div className="mt-5 space-y-4">

@@ -7,7 +7,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { json } from '@tanstack/react-start'
 import { isAuthenticated } from '../../../server/auth-middleware'
 import {
-  HERMES_API,
+  RELO_API,
   ensureGatewayProbed,
   getCapabilities,
 } from '../../../server/gateway-capabilities'
@@ -198,11 +198,11 @@ export const Route = createFileRoute('/api/skills/install')({
             return json({ ok: true, installed: true, skillId, method: 'github' })
           }
 
-          // ── Strategy 2: Hermes gateway native install ─────────────────────
+          // ── Strategy 2: Relo gateway native install ─────────────────────
           await ensureGatewayProbed()
           if (getCapabilities().skills) {
             try {
-              const res = await fetch(`${HERMES_API}/api/skills/install`, {
+              const res = await fetch(`${RELO_API}/api/skills/install`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ skillId }),

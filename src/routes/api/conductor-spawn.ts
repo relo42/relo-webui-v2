@@ -8,7 +8,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { isAuthenticated } from '../../server/auth-middleware'
 import { requireJsonContentType } from '../../server/rate-limit'
 import {
-  HERMES_API,
+  RELO_API,
   BEARER_TOKEN,
   ensureGatewayProbed,
 } from '../../server/gateway-capabilities'
@@ -144,7 +144,7 @@ async function createHermesJob(payload: {
     deliver: payload.deliver ?? 'local',
   })
   await ensureGatewayProbed()
-  const res = await fetch(`${HERMES_API}/api/jobs`, {
+  const res = await fetch(`${RELO_API}/api/jobs`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', ...authHeaders() },
     body,

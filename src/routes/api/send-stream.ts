@@ -18,7 +18,7 @@ import {
   ensureGatewayProbed,
   getGatewayCapabilities,
   streamChat,
-} from '../../server/hermes-api'
+} from '../../server/relo-api'
 import {
   appendLocalMessage,
   ensureLocalSession,
@@ -186,7 +186,7 @@ function normalizePortableHistory(
 function normalizeHermesErrorMessage(error: unknown): string {
   const raw = error instanceof Error ? error.message : String(error)
   const message = raw.trim()
-  if (!message) return 'Hermes request failed'
+  if (!message) return 'Relo request failed'
   return message.replace(/\bserver\b/gi, 'Hermes')
 }
 
@@ -831,7 +831,7 @@ export const Route = createFileRoute('/api/send-stream')({
                             ?.message,
                         ) ||
                         readString(data.message) ||
-                        'Hermes stream error'
+                        'Relo stream error'
                       sendEvent('error', {
                         message: errorMessage,
                         sessionKey: sessionKeyFromEvent,

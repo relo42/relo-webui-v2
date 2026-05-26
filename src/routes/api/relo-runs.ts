@@ -5,12 +5,12 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { isAuthenticated } from '../../server/auth-middleware'
 import {
-  HERMES_API,
+  RELO_API,
   ensureGatewayProbed,
   getCapabilities,
 } from '../../server/gateway-capabilities'
 
-export const Route = createFileRoute('/api/hermes-runs')({
+export const Route = createFileRoute('/api/relo-runs')({
   server: {
     handlers: {
       POST: async ({ request }) => {
@@ -28,7 +28,7 @@ export const Route = createFileRoute('/api/hermes-runs')({
           )
         }
         const body = await request.text()
-        const res = await fetch(`${HERMES_API}/v1/runs`, {
+        const res = await fetch(`${RELO_API}/v1/runs`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body,

@@ -59,10 +59,10 @@ export function HelpScreen() {
     <div className="flex h-full flex-col overflow-y-auto" style={{ background: 'var(--theme-bg)' }}>
       <div className="mx-auto w-full max-w-4xl px-6 py-10">
         <h1 style={{ color: 'var(--theme-text)', fontSize: '2.25rem', fontWeight: 800, marginBottom: '0.5rem' }}>
-          Hermes Studio Help
+          Relo WebUI Help
         </h1>
         <p style={{ color: 'var(--theme-muted)', fontSize: '1.1rem', marginBottom: '2.5rem' }}>
-          A comprehensive guide to every feature in Hermes Studio. Use the table of contents below to jump to any section.
+          A comprehensive guide to every feature in Relo WebUI. Use the table of contents below to jump to any section.
         </p>
 
         {/* Table of Contents */}
@@ -90,9 +90,9 @@ export function HelpScreen() {
         <section id="getting-started" style={sectionStyle}>
           <h2 style={h2Style}>1. Getting Started</h2>
 
-          <h3 style={h3Style}>Connecting to Hermes Gateway</h3>
+          <h3 style={h3Style}>Connecting to Relo Gateway</h3>
           <p style={pStyle}>
-            Hermes Studio communicates with your AI agents through the Hermes Gateway server. Before you can use any features, you need to establish a connection.
+            Relo WebUI communicates with your AI agents through the Relo Gateway server. Before you can use any features, you need to establish a connection.
           </p>
           <ol style={olStyle}>
             <li>Open the Settings screen by clicking the gear icon in the sidebar or pressing <kbd style={kbdStyle}>Ctrl+,</kbd>.</li>
@@ -102,12 +102,12 @@ export function HelpScreen() {
             <li>A green indicator in the top bar confirms a successful connection.</li>
           </ol>
           <div style={tipStyle}>
-            <strong>Tip:</strong> If you are running Hermes Gateway locally, the default URL is usually <code>http://localhost:3001</code>. The connection status indicator in the top navigation bar shows green when connected and red when disconnected.
+            <strong>Tip:</strong> If you are running Relo Gateway locally, the default URL is usually <code>http://localhost:3001</code>. The connection status indicator in the top navigation bar shows green when connected and red when disconnected.
           </div>
 
           <h3 style={h3Style}>First-time Setup</h3>
           <p style={pStyle}>
-            When you first launch Hermes Studio, a setup wizard may appear to guide you through initial configuration. If it does not appear, follow these steps:
+            When you first launch Relo WebUI, a setup wizard may appear to guide you through initial configuration. If it does not appear, follow these steps:
           </p>
           <ol style={olStyle}>
             <li>Configure your gateway connection (see above).</li>
@@ -659,7 +659,7 @@ export function HelpScreen() {
 
           <h3 style={h3Style}>Terminal Usage</h3>
           <p style={pStyle}>
-            The integrated terminal gives you a shell directly within Hermes Studio:
+            The integrated terminal gives you a shell directly within Relo WebUI:
           </p>
           <ol style={olStyle}>
             <li>Navigate to the <strong>Terminal</strong> screen from the sidebar, or press <kbd style={kbdStyle}>Ctrl+`</kbd> to toggle it as a bottom panel.</li>
@@ -668,7 +668,7 @@ export function HelpScreen() {
             <li>Multiple terminal tabs are supported - click <strong>+</strong> to create a new tab.</li>
           </ol>
           <div style={noteStyle}>
-            <strong>Note:</strong> The terminal is connected to the same system where your Hermes Gateway runs. Commands execute on that machine.
+            <strong>Note:</strong> The terminal is connected to the same system where your Relo Gateway runs. Commands execute on that machine.
           </div>
         </section>
 
@@ -726,10 +726,10 @@ export function HelpScreen() {
 
           <h3 style={h3Style}>Connection Settings</h3>
           <p style={pStyle}>
-            Configure how Hermes Studio connects to your gateway:
+            Configure how Relo WebUI connects to your gateway:
           </p>
           <ul style={ulStyle}>
-            <li><strong>Gateway URL</strong> - The HTTP address of your Hermes Gateway server.</li>
+            <li><strong>Gateway URL</strong> - The HTTP address of your Relo Gateway server.</li>
             <li><strong>API Key</strong> - Authentication key for secured gateways.</li>
             <li><strong>Reconnect Interval</strong> - How often to retry if the connection drops (default: 5 seconds).</li>
             <li><strong>WebSocket</strong> - Enable/disable WebSocket for real-time streaming (recommended: enabled).</li>
@@ -737,7 +737,7 @@ export function HelpScreen() {
 
           <h3 style={h3Style}>Appearance (Themes, Accent Colors)</h3>
           <p style={pStyle}>
-            Customize the visual appearance of Hermes Studio:
+            Customize the visual appearance of Relo WebUI:
           </p>
           <ul style={ulStyle}>
             <li><strong>Theme</strong> - Choose from available dark themes. The app is designed as dark-mode only for optimal readability during extended use.</li>
@@ -793,7 +793,7 @@ export function HelpScreen() {
 
           <h3 style={h3Style}>Systemd Auto-start</h3>
           <p style={pStyle}>
-            Configure Hermes Gateway to start automatically with your system:
+            Configure Relo Gateway to start automatically with your system:
           </p>
           <ol style={olStyle}>
             <li>In Settings, find the <strong>System</strong> section.</li>
@@ -808,7 +808,7 @@ export function HelpScreen() {
         <section id="keyboard-shortcuts" style={sectionStyle}>
           <h2 style={h2Style}>13. Keyboard Shortcuts</h2>
           <p style={pStyle}>
-            Hermes Studio supports keyboard shortcuts for quick navigation and common actions. Below is the full reference:
+            Relo WebUI supports keyboard shortcuts for quick navigation and common actions. Below is the full reference:
           </p>
 
           <h3 style={h3Style}>Global Navigation</h3>
@@ -994,7 +994,7 @@ export function HelpScreen() {
           </p>
           <ol style={olStyle}>
             <li>Verify your Gateway URL is correct in Settings (check for typos, correct port number).</li>
-            <li>Ensure the Hermes Gateway server is running. If you installed it as a systemd service, check with: <code>systemctl --user status hermes-gateway</code>.</li>
+            <li>Ensure the Relo Gateway server is running. If you installed it as a systemd service, check with: <code>systemctl --user status hermes-gateway</code>.</li>
             <li>Check that no firewall is blocking the connection port.</li>
             <li>If using a remote server, ensure your network can reach it (try pinging the host).</li>
             <li>Try the <strong>Test Connection</strong> button in Settings - it provides specific error messages.</li>
@@ -1016,7 +1016,7 @@ export function HelpScreen() {
             If certain features appear grayed out or show "unavailable":
           </p>
           <ul style={ulStyle}>
-            <li>Some features require specific gateway capabilities. Update your Hermes Gateway to the latest version.</li>
+            <li>Some features require specific gateway capabilities. Update your Relo Gateway to the latest version.</li>
             <li>Check that required skills are installed and enabled in the Skills screen.</li>
             <li>Verify your gateway's configuration includes the necessary modules (e.g., the conductor module for missions).</li>
             <li>Ensure your connection has the appropriate permissions. Some gateways restrict features by API key scope.</li>
@@ -1040,7 +1040,7 @@ export function HelpScreen() {
         </section>
 
         <footer style={{ textAlign: 'center', padding: '2rem 0', borderTop: '1px solid var(--theme-border-subtle)', color: 'var(--theme-muted)', fontSize: '0.85rem' }}>
-          <p>Hermes Studio Help - Last updated April 2026</p>
+          <p>Relo WebUI Help - Last updated April 2026</p>
         </footer>
       </div>
     </div>

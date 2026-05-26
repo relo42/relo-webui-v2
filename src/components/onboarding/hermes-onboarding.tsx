@@ -215,7 +215,7 @@ export function HermesOnboarding() {
         setBackendStatus('ready')
         setBackendMessage(
           data.capabilities.sessions
-            ? 'Backend connected. Core chat works, and Hermes gateway enhancements are available.'
+            ? 'Backend connected. Core chat works, and Relo gateway enhancements are available.'
             : 'Backend connected. Core chat is ready.',
         )
         return
@@ -494,15 +494,15 @@ export function HermesOnboarding() {
             <div className="space-y-4 text-center">
               <img
                 src="/hermes-avatar.webp"
-                alt="Hermes"
+                alt="Relo"
                 className="mx-auto size-20 rounded-2xl"
                 style={{
                   filter: 'drop-shadow(0 8px 24px rgba(99,102,241,0.3))',
                 }}
               />
-              <h2 className="text-xl font-bold">Welcome to Hermes Studio</h2>
+              <h2 className="text-xl font-bold">Welcome to Relo WebUI</h2>
               <p className="text-sm" style={mutedStyle}>
-                Works with any OpenAI-compatible backend. Hermes gateway APIs
+                Works with any OpenAI-compatible backend. Relo gateway APIs
                 unlock sessions, memory, skills, and other extras automatically.
               </p>
               <button
@@ -525,7 +525,7 @@ export function HermesOnboarding() {
               <div className="text-4xl">🔌</div>
               <h2 className="text-lg font-bold">Connect Your Backend</h2>
               <p className="text-sm" style={mutedStyle}>
-                Start by verifying that Hermes Studio can reach your
+                Start by verifying that Relo WebUI can reach your
                 OpenAI-compatible backend.
               </p>
 
@@ -573,7 +573,7 @@ export function HermesOnboarding() {
                     <p className="mt-2" style={mutedStyle}>
                       Use any backend that exposes{' '}
                       <code>/v1/chat/completions</code>. If you point Hermes
-                      Workspace at a Hermes gateway, enhanced features unlock
+                      Workspace at a Relo gateway, enhanced features unlock
                       automatically.
                     </p>
                     <div
@@ -622,14 +622,14 @@ export function HermesOnboarding() {
               <p className="text-center text-xs" style={mutedStyle}>
                 {canEditConfig
                   ? 'Save provider settings here, then choose a model before testing chat.'
-                  : 'This backend manages provider settings outside Hermes Studio. Confirm the model you expect to use, then test chat.'}
+                  : 'This backend manages provider settings outside Relo WebUI. Confirm the model you expect to use, then test chat.'}
               </p>
 
               <div className="rounded-xl p-3 text-xs" style={cardStyle}>
                 <p style={mutedStyle}>Backend mode</p>
                 <p className="mt-1">
                   {backendInfo?.capabilities?.sessions
-                    ? 'Hermes gateway detected'
+                    ? 'Relo gateway detected'
                     : 'Portable OpenAI-compatible backend'}
                 </p>
                 {configuredModel ? (
@@ -1013,7 +1013,7 @@ export function HermesOnboarding() {
                     ) : (
                       <p className="mt-2 text-xs text-yellow-400">
                         Confirm the backend is running and still reachable from
-                        Hermes Studio.
+                        Relo WebUI.
                       </p>
                     )}
                   </div>
@@ -1051,8 +1051,8 @@ export function HermesOnboarding() {
               <p className="text-sm" style={mutedStyle}>
                 Core chat is set up.{' '}
                 {enhancedFeatures.length > 0
-                  ? 'This backend also exposes Hermes gateway enhancements.'
-                  : 'If you later connect a Hermes gateway, enhanced features unlock automatically.'}
+                  ? 'This backend also exposes Relo gateway enhancements.'
+                  : 'If you later connect a Relo gateway, enhanced features unlock automatically.'}
               </p>
               <div
                 className="grid grid-cols-3 gap-2 text-xs"

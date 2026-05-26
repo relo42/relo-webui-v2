@@ -1,10 +1,10 @@
 /**
- * Jobs API client — talks to Hermes FastAPI /api/jobs endpoints.
+ * Jobs API client — talks to Relo gateway /api/jobs endpoints.
  */
 
-const HERMES_API = '/api/hermes-jobs'
+const RELO_JOBS_API = '/api/relo-jobs'
 
-export type HermesJob = {
+export type ReloJob = {
   id: string
   name: string
   prompt: string
@@ -34,8 +34,8 @@ export type JobOutput = {
   size: number
 }
 
-export async function fetchJobs(): Promise<Array<HermesJob>> {
-  const res = await fetch(`${HERMES_API}?include_disabled=true`)
+export async function fetchJobs(): Promise<Array<ReloJob>> {
+  const res = await fetch(`${RELO_JOBS_API}?include_disabled=true`)
   if (!res.ok) throw new Error(`Failed to fetch jobs: ${res.status}`)
   const data = await res.json()
   return data.jobs ?? []
@@ -49,8 +49,8 @@ export async function createJob(input: {
   skills?: Array<string>
   repeat?: number
   pre_run_script?: string
-}): Promise<HermesJob> {
-  const res = await fetch(HERMES_API, {
+}): Promise<ReloJob> {
+  const res = await fetch(RELO_JOBS_API, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(input),
@@ -65,8 +65,8 @@ export async function createJob(input: {
 export async function updateJob(
   jobId: string,
   updates: Record<string, unknown>,
-): Promise<HermesJob> {
-  const res = await fetch(`${HERMES_API}/${jobId}`, {
+): Promise<ReloJob> {
+  const res = await fetch(`${RELO_JOBS_API}/${jobId}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(updates),
@@ -76,28 +76,28 @@ export async function updateJob(
 }
 
 export async function deleteJob(jobId: string): Promise<void> {
-  const res = await fetch(`${HERMES_API}/${jobId}`, { method: 'DELETE' })
+  const res = await fetch(`${RELO_JOBS_API}/${jobId}`, { method: 'DELETE' })
   if (!res.ok) throw new Error(`Failed to delete job: ${res.status}`)
 }
 
-export async function pauseJob(jobId: string): Promise<HermesJob> {
-  const res = await fetch(`${HERMES_API}/${jobId}?action=pause`, {
+export async function pauseJob(jobId: string): Promise<ReloJob> {
+  const res = await fetch(`${RELO_JOBS_API}/${jobId}?action=pause`, {
     method: 'POST',
   })
   if (!res.ok) throw new Error(`Failed to pause job: ${res.status}`)
   return (await res.json()).job
 }
 
-export async function resumeJob(jobId: string): Promise<HermesJob> {
-  const res = await fetch(`${HERMES_API}/${jobId}?action=resume`, {
+export async function resumeJob(jobId: string): Promise<ReloJob> {
+  const res = await fetch(`${RELO_JOBS_API}/${jobId}?action=resume`, {
     method: 'POST',
   })
   if (!res.ok) throw new Error(`Failed to resume job: ${res.status}`)
   return (await res.json()).job
 }
 
-export async function triggerJob(jobId: string): Promise<HermesJob> {
-  const res = await fetch(`${HERMES_API}/${jobId}?action=run`, {
+export async function triggerJob(jobId: string): Promise<ReloJob> {
+  const res = await fetch(`${RELO_JOBS_API}/${jobId}?action=run`, {
     method: 'POST',
   })
   if (!res.ok) throw new Error(`Failed to trigger job: ${res.status}`)
@@ -108,7 +108,7 @@ export async function fetchJobOutput(
   jobId: string,
   limit = 10,
 ): Promise<Array<JobOutput>> {
-  const res = await fetch(`${HERMES_API}/${jobId}?action=output&limit=${limit}`)
+  const res = await fetch(`${RELO_JOBS_API}/${jobId}?action=output&limit=${limit}`)
   if (!res.ok) throw new Error(`Failed to fetch output: ${res.status}`)
   return (await res.json()).outputs ?? []
 }
@@ -133,7 +133,7 @@ export type RunEvent = {
  * Returns the run_id to subscribe to events at /api/hermes-runs/:runId/events.
  */
 export async function startRun(prompt: string): Promise<string> {
-  const res = await fetch('/api/hermes-runs', {
+  const res = await fetch('/api/relo-runs', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ input: prompt }),
