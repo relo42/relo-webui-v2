@@ -72,10 +72,10 @@ const SECTIONS: Array<{ id: SectionId; label: string; icon: any }> = [
 ]
 
 const DARK_ENTERPRISE_THEMES = new Set<ThemeId>([
-  'hermes-official',
-  'hermes-classic',
-  'hermes-slate',
-  'hermes-mono',
+  'relo-official',
+  'relo-classic',
+  'relo-slate',
+  'relo-mono',
 ])
 
 function _isDarkEnterpriseTheme(theme: string | null): theme is ThemeId {
@@ -817,10 +817,10 @@ function AppearanceContent() {
 
 
 const THEME_PREVIEWS: Record<string, { bg: string; panel: string; border: string; accent: string; text: string }> = {
-  'hermes-official': { bg: '#0A0E1A', panel: '#11182A', border: '#24304A', accent: '#6366F1', text: '#E6EAF2' },
-  'hermes-classic': { bg: '#0d0f12', panel: '#1a1f26', border: '#2a313b', accent: '#b98a44', text: '#eceff4' },
-  'hermes-slate': { bg: '#0d1117', panel: '#1c2128', border: '#30363d', accent: '#7eb8f6', text: '#c9d1d9' },
-  'hermes-mono': { bg: '#111111', panel: '#222222', border: '#333333', accent: '#aaaaaa', text: '#e6edf3' },
+  'relo-official': { bg: '#0A0E1A', panel: '#11182A', border: '#24304A', accent: '#6366F1', text: '#E6EAF2' },
+  'relo-classic': { bg: '#0d0f12', panel: '#1a1f26', border: '#2a313b', accent: '#b98a44', text: '#eceff4' },
+  'relo-slate': { bg: '#0d1117', panel: '#1c2128', border: '#30363d', accent: '#7eb8f6', text: '#c9d1d9' },
+  'relo-mono': { bg: '#111111', panel: '#222222', border: '#333333', accent: '#aaaaaa', text: '#e6edf3' },
 }
 
 const ENTERPRISE_THEMES = THEMES.map((theme) => ({
@@ -872,7 +872,7 @@ function ThemeSwatch({
 function EnterpriseThemePicker() {
   const { updateSettings } = useSettings()
   const [current, setCurrent] = useState(() => {
-    if (typeof window === 'undefined') return 'hermes-official'
+    if (typeof window === 'undefined') return 'relo-official'
     return getTheme()
   })
 

@@ -90,35 +90,35 @@ const THEME_PREVIEWS: Record<
   ThemeId,
   { bg: string; panel: string; border: string; accent: string; text: string }
 > = {
-  'hermes-os': {
+  'relo-os': {
     bg: '#080c14',
     panel: '#0f1828',
     border: '#18263c',
     accent: '#38bdf8',
     text: '#e4edff',
   },
-  'hermes-official': {
+  'relo-official': {
     bg: '#0A0E1A',
     panel: '#11182A',
     border: '#24304A',
     accent: '#6366F1',
     text: '#E6EAF2',
   },
-  'hermes-classic': {
+  'relo-classic': {
     bg: '#0d0f12',
     panel: '#1a1f26',
     border: '#2a313b',
     accent: '#b98a44',
     text: '#eceff4',
   },
-  'hermes-slate': {
+  'relo-slate': {
     bg: '#0d1117',
     panel: '#1c2128',
     border: '#30363d',
     accent: '#7eb8f6',
     text: '#c9d1d9',
   },
-  'hermes-mono': {
+  'relo-mono': {
     bg: '#111111',
     panel: '#222222',
     border: '#333333',
@@ -1082,7 +1082,7 @@ function PlatformsSection() {
   const [msgs, setMsgs] = useState<Record<string, string>>({})
 
   useEffect(() => {
-    fetch('/api/hermes-config')
+    fetch('/api/relo-config')
       .then((r) => r.json())
       .then((d: { config?: Record<string, unknown> }) => {
         // The GET returns config but not raw env values (masked).
@@ -1104,7 +1104,7 @@ function PlatformsSection() {
     setSaving((prev) => ({ ...prev, [platform.key]: true }))
     setMsgs((prev) => ({ ...prev, [platform.key]: '' }))
     try {
-      const res = await fetch('/api/hermes-config', {
+      const res = await fetch('/api/relo-config', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1137,7 +1137,7 @@ function PlatformsSection() {
     setSaving((prev) => ({ ...prev, [`${platform.key}_allowed`]: true }))
     setMsgs((prev) => ({ ...prev, [`${platform.key}_allowed`]: '' }))
     try {
-      const res = await fetch('/api/hermes-config', {
+      const res = await fetch('/api/relo-config', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1638,7 +1638,7 @@ function ReloConfigSection({
   }, [])
 
   const fetchConfig = useCallback(async () => {
-    const res = await fetch('/api/hermes-config')
+    const res = await fetch('/api/relo-config')
     const configData = (await res.json()) as ReloConfigData
     setData(configData)
     syncInputsFromData(configData)
@@ -1684,7 +1684,7 @@ function ReloConfigSection({
     setSaving(true)
     setSaveMessage(null)
     try {
-      const res = await fetch('/api/hermes-config', {
+      const res = await fetch('/api/relo-config', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updates),
