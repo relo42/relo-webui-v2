@@ -29,9 +29,14 @@ const APP_CSP = [
   "frame-src 'self' http: https:",
 ].join('; ')
 
-const THEME_STORAGE_KEY = 'hermes-theme'
-const DEFAULT_THEME = 'hermes-os'
+const THEME_STORAGE_KEY = 'relo-theme'
+const DEFAULT_THEME = 'relo-os'
 const VALID_THEMES = [
+  'relo-os',
+  'relo-official',
+  'relo-classic',
+  'relo-slate',
+  'relo-mono',
   'hermes-os',
   'hermes-official',
   'hermes-classic',
