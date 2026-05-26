@@ -7,7 +7,7 @@ const SESSIONS_FILE = join(DATA_DIR, 'local-sessions.json')
 const MAX_MESSAGES_PER_SESSION = 500
 
 // Redis key prefix
-const REDIS_PREFIX = 'hermes:studio'
+const REDIS_PREFIX = 'relo:webui'
 
 export type LocalSession = {
   id: string

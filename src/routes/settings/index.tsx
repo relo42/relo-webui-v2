@@ -90,35 +90,35 @@ const THEME_PREVIEWS: Record<
   ThemeId,
   { bg: string; panel: string; border: string; accent: string; text: string }
 > = {
-  'hermes-os': {
+  'relo-os': {
     bg: '#080c14',
     panel: '#0f1828',
     border: '#18263c',
     accent: '#38bdf8',
     text: '#e4edff',
   },
-  'hermes-official': {
+  'relo-official': {
     bg: '#0A0E1A',
     panel: '#11182A',
     border: '#24304A',
     accent: '#6366F1',
     text: '#E6EAF2',
   },
-  'hermes-classic': {
+  'relo-classic': {
     bg: '#0d0f12',
     panel: '#1a1f26',
     border: '#2a313b',
     accent: '#b98a44',
     text: '#eceff4',
   },
-  'hermes-slate': {
+  'relo-slate': {
     bg: '#0d1117',
     panel: '#1c2128',
     border: '#30363d',
     accent: '#7eb8f6',
     text: '#c9d1d9',
   },
-  'hermes-mono': {
+  'relo-mono': {
     bg: '#111111',
     panel: '#222222',
     border: '#333333',

@@ -32,11 +32,11 @@ const APP_CSP = [
 const THEME_STORAGE_KEY = 'hermes-theme'
 const DEFAULT_THEME = 'hermes-os'
 const VALID_THEMES = [
-  'hermes-os',
-  'hermes-official',
-  'hermes-classic',
-  'hermes-slate',
-  'hermes-mono',
+  'relo-os',
+  'relo-official',
+  'relo-classic',
+  'relo-slate',
+  'relo-mono',
 ]
 
 const themeScript = `
@@ -293,7 +293,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             } catch(e){}
 
             var isDark = !['hermes-official-light','hermes-classic-light','hermes-slate-light','hermes-mono-light'].includes(theme);
-            var quips = ["Consulting the oracle...","Loading ancient knowledge...","Warming up the messenger...","Calibrating tool chain...","Summoning Hermes...","Preparing the workspace...","Bridging realms...","Initializing agent runtime..."];
+            var quips = ["Consulting the oracle...","Loading ancient knowledge...","Warming up neural links...","Calibrating tool chain...","Initializing Relo...","Preparing the workspace...","Bridging realms...","Initializing agent runtime..."];
             var quip = quips[Math.floor(Math.random() * quips.length)];
 
             var d = document.createElement('div');
@@ -327,7 +327,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             setTimeout(function(){ window.__dismissSplash && window.__dismissSplash(); }, 5000);
             // Fast dismiss: returning users skip quickly
             try {
-              if (localStorage.getItem('hermes-hermes-url') || localStorage.getItem('hermes-url')) {
+              if (localStorage.getItem('relo-url') || localStorage.getItem('hermes-url')) {
                 setTimeout(function(){ window.__dismissSplash && window.__dismissSplash(); }, 600);
               }
             } catch(e) {}

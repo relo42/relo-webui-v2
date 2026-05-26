@@ -43,7 +43,7 @@ export const THEMES: Array<{
   },
 ]
 
-const STORAGE_KEY = 'hermes-theme'
+const STORAGE_KEY = 'relo-theme'
 const DEFAULT_THEME: ThemeId = 'relo-os'
 const THEME_SET = new Set<ThemeId>(THEMES.map((theme) => theme.id))
 

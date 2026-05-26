@@ -83,7 +83,7 @@ export function AgentStatusStrip() {
         style={{ color: '#38bdf8', fontWeight: 600, letterSpacing: '0.12em' }}
       >
         <span style={{ fontSize: 13, lineHeight: 1 }}>◈</span>
-        <span style={{ fontSize: 9.5 }}>HERMES OS</span>
+        <span style={{ fontSize: 9.5 }}>RELO OS</span>
       </span>
 
       {/* Separator */}
